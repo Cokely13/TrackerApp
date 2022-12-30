@@ -3,6 +3,8 @@
 const db = require('./db')
 
 const User = require('./models/User')
+const Event = require('./models/Event')
+const Result = require('./models/Result')
 
 //associations could go here!
 
@@ -10,5 +12,7 @@ module.exports = {
   db,
   models: {
     User,
+    Event,
+    Result
   },
 }

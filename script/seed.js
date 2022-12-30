@@ -1,6 +1,6 @@
 'use strict'
 
-const {db, models: {User} } = require('../server/db')
+const {db, models: {User, Event, Result} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -14,6 +14,16 @@ async function seed() {
   const users = await Promise.all([
     User.create({ username: 'Ryan', password: 'test' }),
     User.create({ username: 'murphy', password: '123' }),
+  ])
+
+  const events = await Promise.all([
+    Event.create({ eventName: '5k', description: 'time' }),
+    Event.create({ eventName: 'Row/Run', description: '500 m, 1 mile run, 500 m' }),
+  ])
+
+  const results = await Promise.all([
+    Result.create({ eventName: '5k', time: '21:00' }),
+    Result.create({ eventName: '5k', time: '25:00' }),
   ])
 
   console.log(`seeded ${users.length} users`)
