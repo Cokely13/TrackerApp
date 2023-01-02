@@ -33,6 +33,7 @@ render () {
     <a href="#" className="card-link">Another link</a>
   </div>
 </div>)})}
+ <Link className="btn btn-primary" to={`/events/create`}>Create Event</Link>
 </div>
 )
 }}
