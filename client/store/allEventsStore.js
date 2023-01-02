@@ -44,7 +44,7 @@ export const createEvent = (event, history) => {
 export const deleteEvent = (id, history) => {
   return async (dispatch) => {
     const { data: event } = await Axios.delete(`/api/events/${id}`);
-    dispatch(_deleteEvents(event));
+    dispatch(_deleteEvent(event));
     history.push("/events");
   };
 };

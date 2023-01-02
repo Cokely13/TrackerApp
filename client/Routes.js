@@ -8,6 +8,7 @@ import Users from './components/Users';
 import Results from './components/Results';
 import EventDetail from './components/EventDetail';
 import CreateEvent from './components/Create Event';
+import AddResult from './components/AddResult';
 import {me} from './store'
 
 
@@ -32,6 +33,7 @@ class Routes extends Component {
             <Route exact path="/events/create" component={CreateEvent} />
             <Route exact path="/events/:eventId" component={EventDetail} />
             <Route exact path="/results" component={Results} />
+            <Route exact path="/results/add/:eventId" component={AddResult} />
             <Redirect to="/home" />
           </Switch>
         ) : (

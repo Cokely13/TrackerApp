@@ -29,8 +29,7 @@ render () {
     <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
     <p className="card-text">{event.description}</p>
     <Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link>
-
-    <a href="#" className="card-link">Another link</a>
+    <Link className="card-link" to={`/results/add/${event.id}`}>Add Result</Link>
   </div>
 </div>)})}
  <Link className="btn btn-primary" to={`/events/create`}>Create Event</Link>
