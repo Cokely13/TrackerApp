@@ -3,7 +3,6 @@ const { models: { Result }} = require('../db')
 
 router.get('/', async (req, res, next) => {
   try {
-    console.log("TEST")
     const results = await Result.findAll()
     res.json(results)
   } catch (err) {
@@ -13,7 +12,6 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    console.log("TEST", req.params.id)
     const result = await Result.findByPk(req.params.id);
     res.json(result);
   } catch (err) {

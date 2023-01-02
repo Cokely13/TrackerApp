@@ -6,7 +6,9 @@ import Home from './components/Home';
 import Events from './components/Events';
 import Users from './components/Users';
 import Results from './components/Results';
+import EventDetail from './components/EventDetail';
 import {me} from './store'
+
 
 /**
  * COMPONENT
@@ -23,10 +25,11 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/home" component={Home} />
-            <Route path="/users" component={Users} />
-            <Route path="/events" component={Events} />
-            <Route path="/results" component={Results} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/users" component={Users} />
+            <Route exact path="/events" component={Events} />
+            <Route exact path="/events/:eventId" component={EventDetail} />
+            <Route exact path="/results" component={Results} />
             <Redirect to="/home" />
           </Switch>
         ) : (

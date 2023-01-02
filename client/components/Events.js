@@ -1,5 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { connect} from 'react-redux'
+import { Link } from 'react-router-dom';
 import { fetchEvents } from '../store/allEventsStore'
 
 
@@ -18,7 +19,6 @@ componentDidMount(){
 
 render () {
 
-console.log("EVENTS", this.props.allEvents)
   return (
     <div>
        {this.props.allEvents.map((event) => {
@@ -28,7 +28,8 @@ console.log("EVENTS", this.props.allEvents)
     <h5 className="card-title">{event.eventName}</h5>
     <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
     <p className="card-text">{event.description}</p>
-    <a href="#" className="card-link">Card link</a>
+    <Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link>
+
     <a href="#" className="card-link">Another link</a>
   </div>
 </div>)})}
