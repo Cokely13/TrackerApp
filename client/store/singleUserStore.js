@@ -21,7 +21,7 @@ const _updateSingleEvent = (userdata) => {
 };
 
 //Thunks
-export const fetchUser = (id) => {
+export const fetchSingleUser = (id) => {
   return async (dispatch) => {
     const { data } = await axios.get(`/api/users/${id}`);
     dispatch(_setSingleUser(data));

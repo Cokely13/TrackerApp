@@ -1,0 +1,25 @@
+const Sequelize = require('sequelize')
+const db = require('../db')
+
+const RegisteredEvent = db.define('event', {
+  eventName: {
+    type: Sequelize.STRING,
+    // unique: true,
+    allowNull: false
+  },
+  // eventId: {
+  //   type: Sequelize.INTEGER,
+  //   unique: true,
+  //   allowNull: false
+  // },
+  description: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  completed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+})
+
+module.exports = RegisteredEvent

@@ -9,6 +9,7 @@ import Results from './components/Results';
 import EventDetail from './components/EventDetail';
 import CreateEvent from './components/Create Event';
 import AddResult from './components/AddResult';
+import Profile from './components/Profile';
 import {me} from './store'
 
 
@@ -28,6 +29,7 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route exact path="/home" component={Home} />
+            <Route exact path="/profile" component={Profile} />
             <Route exact path="/users" component={Users} />
             <Route exact path="/events" component={Events} />
             <Route exact path="/events/create" component={CreateEvent} />
