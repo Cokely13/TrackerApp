@@ -31,7 +31,7 @@ export const fetchEvent = (id) => {
 export const updateSingleEvent = (event, history) => {
   return async (dispatch) => {
     try {
-        await axios.put(`/api/cars/update/${event.id}`, event);
+        await axios.put(`/api/events/update/${event.id}`, event);
         const { data: eventData } = await axios.get(`/api/events/${event.id}`);
         dispatch(_setSingleEvent(eventData));
         history.push(`/events/${event.id}`)

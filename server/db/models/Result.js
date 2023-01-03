@@ -10,6 +10,9 @@ const Result = db.define('result', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  userName: {
+    type: Sequelize.STRING,
+  },
 })
 
 module.exports = Result

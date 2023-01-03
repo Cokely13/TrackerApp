@@ -7,12 +7,14 @@ import eventsReducer from './allEventsStore'
 import resultsReducer from './allResultsStore'
 import usersReducer from './allUsersStore'
 import singleEventReducer from './singleEventStore'
+import singleUserReducer from './singleUserStore'
 
 const reducer = combineReducers({ auth,
 allEvents: eventsReducer,
 allResults: resultsReducer,
 allUsers: usersReducer,
-singleEvent: singleEventReducer })
+singleEvent: singleEventReducer,
+singleUser: singleUserReducer })
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

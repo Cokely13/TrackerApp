@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect} from 'react-redux'
 import { fetchResults } from '../store/allResultsStore'
+import { fetchUsers } from '../store/allUsersStore';
 
 export class Results extends React.Component {
   constructor() {
@@ -12,19 +13,27 @@ export class Results extends React.Component {
 
 componentDidMount(){
   this.props.fetchResults()
+  this.props.fetchUsers()
 }
 
 
 render () {
+  console.log ("result", this.props.allResults)
   return (
     <div>
     <div className="container text-center">
   <div className="row align-items-start">
     <div className="col">
-      Date
+      UserName
     </div>
     <div className="col">
-     Event
+      UserId
+    </div>
+    <div className="col">
+      EventId
+    </div>
+    <div className="col">
+     Event Name
     </div>
     <div className="col">
       Time
@@ -35,8 +44,14 @@ render () {
     {this.props.allResults.map((result) => {
         return (<div className="container text-center"key={result.id}>
           <div className="row align-items-start">
+          <div className="col" >
+        {result.userName}
+    </div>
         <div className="col" >
-      Date
+        {result.userId}
+    </div>
+    <div className="col" >
+        {result.eventId}
     </div>
     <div className="col">
      {result.eventName}
@@ -60,6 +75,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch, { history }) => {
   return {
     fetchResults: () => dispatch(fetchResults()),
+    fetchUsers: () => dispatch(fetchUsers()),
   };
 };
 

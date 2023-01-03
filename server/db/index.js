@@ -12,7 +12,7 @@ Event.hasMany(Result)
 User.hasMany(Result)
 // User.hasMany(Event)
 // Result.hasOne(Event)
-// Result.hasOne(User)
+Result.hasOne(User)
 
 module.exports = {
   db,

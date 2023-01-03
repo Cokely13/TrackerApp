@@ -14,6 +14,7 @@ export class EventDetail extends React.Component {
 
 componentDidMount(props){
   this.props.fetchEvent(this.props.match.params.eventId)
+  console.log("check", this.props)
 }
 render () {
   console.log("STATE", this.props)

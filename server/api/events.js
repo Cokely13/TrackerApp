@@ -1,10 +1,9 @@
 const router = require('express').Router()
-const { models: { Event }} = require('../db')
+const { models: { Event, Result }} = require('../db')
 
 
 router.get('/', async (req, res, next) => {
   try {
-    console.log("TEST")
     const events = await Event.findAll()
     res.json(events)
   } catch (err) {
