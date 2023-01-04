@@ -20,6 +20,12 @@ const RegisteredEvent = db.define('event', {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
+  comments: {
+    type: Sequelize.STRING,
+  },
+  dateCompleted: {
+    type: Sequelize.DATEONLY,
+  },
 })
 
 module.exports = RegisteredEvent

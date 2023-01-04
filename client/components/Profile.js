@@ -17,6 +17,7 @@ export class Profile extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
     componentDidMount(){
@@ -24,8 +25,8 @@ export class Profile extends React.Component {
       this.props.fetchSingleUser(this.props.userId)
     }
 
-    handleSubmit(event){
-      // event.preventDefault();
+    handleSubmit(event,  ){
+      event.preventDefault();
       console.log("HO!!!", event)
       // this.setState
     }
@@ -49,7 +50,7 @@ export class Profile extends React.Component {
  {/* <Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link> */}
  <Link className="card-link" to={`/results/add/${event.eventId}`}>Add Result</Link>
  <h1></h1>
- <button className="btn btn-primary" onClick={this.handleSubmit(event)}>Done</button>
+ <Link className="card-link" to={`/completed/${event.eventId}`}>Complete Event</Link>
 </div>
 </div>)})}
 </div>

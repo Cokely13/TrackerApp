@@ -31,7 +31,7 @@ export const fetchSingleRegisteredEvent = (id) => {
 export const updateSingleRegisteredEvent = (event, history) => {
   return async (dispatch) => {
     try {
-        await axios.put(`/api/registeredevents/update/${event.id}`, event);
+        await axios.put(`/api/registeredevents/${event.id}`, event);
         const { data: eventData } = await axios.get(`/api/registeredevents/${event.id}`);
         dispatch(_updateSingleRegisteredEvent(eventData));
         history.push(`/profile`)

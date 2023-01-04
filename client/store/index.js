@@ -27,4 +27,5 @@ const store = createStore(reducer, middleware)
 
 export default store
 export * from './auth'
-// export * from './allEventsStore'
+export * from './allEventsStore'
+export * from './allResultsStore'

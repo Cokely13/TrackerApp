@@ -4,7 +4,8 @@ const { models: { Result, User }} = require('../db')
 router.get('/', async (req, res, next) => {
   try {
     const results = await Result.findAll()
-    res.json(results)
+    const sort = results.sort((a,b) => a < b )
+    res.json(sort)
   } catch (err) {
     next(err)
   }

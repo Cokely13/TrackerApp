@@ -11,17 +11,11 @@ export class AddResult extends React.Component {
   constructor() {
     super();
     this.state = {
-      result: {
       eventName: "",
       time: "",
       eventId: "",
       userId: "",
       userName: ""
-      },
-      register: {
-        id: "",
-        completed: true,
-      }
 
     };
     this.handleChange = this.handleChange.bind(this);
@@ -41,11 +35,9 @@ export class AddResult extends React.Component {
 
   handleChange(event) {
     this.setState({
-      result:{
       eventName:this.props.singleEvent.eventName,
       userName:this.props.singleUser.username,
       [event.target.name]: event.target.value,
-    },
     // register: {
     //   id: this.myRegisteredEvent.id,
     // }
