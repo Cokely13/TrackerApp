@@ -53,7 +53,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch, { history }) => {
   return {
     fetchEvents: () => dispatch(fetchEvents()),
-    createRegisteredEvent: (event) => dispatch(createRegisteredEvent(event, history))
+    // createRegisteredEvent: (event) => dispatch(createRegisteredEvent(event, history))
   };
 };
 

@@ -4,16 +4,25 @@ import { Link } from 'react-router-dom'
 import { fetchEvent } from '../store/singleEventStore';
 import { createResult } from '../store/allResultsStore'
 import { fetchSingleUser } from '../store/singleUserStore';
+import {fetchSingleRegisteredEvent, updateSingleRegisteredEvent} from '../store/singleRegisteredEventStore'
+import {fetchRegisteredEvents} from '../store/allRegisteredEventsStore'
 
 export class AddResult extends React.Component {
   constructor() {
     super();
     this.state = {
+      result: {
       eventName: "",
       time: "",
       eventId: "",
       userId: "",
       userName: ""
+      },
+      register: {
+        id: "",
+        completed: true,
+      }
+
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,6 +30,7 @@ export class AddResult extends React.Component {
 
   componentDidMount(props){
     this.props.fetchSingleUser(this.props.userId)
+    this.props.fetchRegisteredEvents()
     this.props.fetchEvent(this.props.match.params.eventId)
     this.setState({
       // eventName: this.props.singleEvent.eventName,
@@ -31,18 +41,34 @@ export class AddResult extends React.Component {
 
   handleChange(event) {
     this.setState({
+      result:{
       eventName:this.props.singleEvent.eventName,
       userName:this.props.singleUser.username,
       [event.target.name]: event.target.value,
+    },
+    // register: {
+    //   id: this.myRegisteredEvent.id,
+    // }
     });
   }
 
   handleSubmit(event) {
     event.preventDefault();
     this.props.createResult({ ...this.state});
+    // updateSingleRegisteredEvent(this.state.register)
   }
 
     render() {
+      const myId = this.props.userId
+      const eventId = this.props.match.params.eventId
+      // console.log("state", this.state)
+      // console.log("registered", this.props.registeredEvents)
+      const myRegisteredEvent = this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId === myId && registeredEvent.eventName === this.props.singleEvent.eventName)
+      // const regId = myRegisteredEvent[0]
+      // console.log("Myregistered", myRegisteredEvent)
+      // const myEvent = myRegisteredEvents.filter(myRegisteredEvent => myRegisteredEvent.eventId === "7")
+      // console.log("EVENT", myEvent)
+      // console.log("IDDDD", regId)
   return (
 
 
@@ -71,17 +97,22 @@ export class AddResult extends React.Component {
 const mapStateToProps = (state) => ({
   userId: state.auth.id,
   singleEvent: state.singleEvent,
-  singleUser: state.singleUser
+  singleUser: state.singleUser,
+  registeredEvents: state.registeredEvents,
+  singleRegisteredEvent: state.singleRegisteredEvent
 })
 
 const mapDispatchToProps = (dispatch, { history }) => {
   return{
     fetchEvent: (id) => {dispatch(fetchEvent(id))},
     fetchSingleUser: (id) => {dispatch(fetchSingleUser(id))},
-    updateSingleEvent: (event, history) => dispatch(updateSingleEvent(event, history)),
-    createResult: (result)=> dispatch(createResult(result, history))
+    // updateSingleEvent: (event, history) => dispatch(updateSingleEvent(event, history)),
+    updateSingleRegisteredEvent: (event, history) => dispatch(updateSingleRegisteredEvent(event, history)),
+    createResult: (result)=> dispatch(createResult(result, history)),
+    fetchSingleRegisteredEvent: (id) => dispatch(fetchSingleRegisteredEvent(id)),
+    fetchRegisteredEvents :  () => dispatch(fetchRegisteredEvents())}
   }
-  }
+
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddResult)

@@ -33,7 +33,7 @@ export const updateSingleEvent = (event, history) => {
     try {
         await axios.put(`/api/events/update/${event.id}`, event);
         const { data: eventData } = await axios.get(`/api/events/${event.id}`);
-        dispatch(_setSingleEvent(eventData));
+        dispatch(_updateSingleEvent(eventData));
         history.push(`/events/${event.id}`)
       }
      catch (error) {

@@ -33,7 +33,7 @@ export const updateSingleUser = (user, history) => {
     try {
         await axios.put(`/api/users/update/${user.id}`, user);
         const { data: userData } = await axios.get(`/api/users/${user.id}`);
-        dispatch(_setSingleEvent(userData));
+        dispatch(_updateSingleUser(userData));
         history.push(`/users/${user.id}`)
       }
      catch (error) {
