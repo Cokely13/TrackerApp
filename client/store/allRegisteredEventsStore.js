@@ -5,37 +5,37 @@ const CREATE_REGISTEREDEVENT = "CREATE_REGISTEREDEVENT"
 const DELETE_REGISTEREDEVENT = "DELETE_REGISTEREDEVENT"
 
 
-export const setRegisteredEvents = (events) =>{
+export const setRegisteredEvents = (registeredevents) =>{
   return{
     type: SET_REGISTEREDEVENTS,
-    events
+    registeredevents
   }
 };
 
-const _createRegisteredEvent = (event) => {
+const _createRegisteredEvent = (registeredevent) => {
   return {
     type: CREATE_REGISTEREDEVENT,
-    event,
+    registeredevent,
   };
 };
 
-const _deleteRegisteredEvent = (event) => {
+const _deleteRegisteredEvent = (registeredevent) => {
   return {
     type: DELETE_REGISTEREDEVENT,
-    event
+    registeredevent
   };
 };
 
 export const fetchRegisteredEvents = () => {
   return async (dispatch) => {
-        const {data}= await Axios.get("/api/registeredevents");
+        const {data}= await Axios.get("/api/registered");
         dispatch(setRegisteredEvents(data));
   };
 };
 
-export const createRegisteredEvent = (event, history) => {
+export const createRegisteredEvent = (registeredevent, history) => {
   return async (dispatch) => {
-    const { data: created } = await Axios.post("/api/registeredevents", event);
+    const { data: created } = await Axios.post("/api/registered", registeredevent);
     dispatch(_createRegisteredEvent(created));
     history.push("/profile");
   };
@@ -43,9 +43,9 @@ export const createRegisteredEvent = (event, history) => {
 
 export const deleteRegisterEvent = (id, history) => {
   return async (dispatch) => {
-    const { data: event } = await Axios.delete(`/api/registeredevents/${id}`);
-    dispatch(_deleteRegisteredEvent(event));
-    history.push("/registeredevents");
+    const { data: registeredevent } = await Axios.delete(`/api/registered/${id}`);
+    dispatch(_deleteRegisteredEvent(registeredevent));
+    history.push("/registered");
   };
 };
 
@@ -54,11 +54,11 @@ const initialState = [];
 export default function registeredEventsReducer(state = initialState, action) {
   switch (action.type) {
     case SET_REGISTEREDEVENTS:
-      return action.events;
+      return action.registeredevents;
       case CREATE_REGISTEREDEVENT:
-        return [...state, action.event];
+        return [...state, action.registeredevent];
         case DELETE_REGISTEREDEVENT:
-      return state.filter((event) => event.id !== action.event.id)
+      return state.filter((registeredevent) => registeredevent.id !== action.eregisteredvent.id)
       ;
       default:
         return state;

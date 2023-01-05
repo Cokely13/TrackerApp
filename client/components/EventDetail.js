@@ -58,7 +58,7 @@ render () {
      return (
  <div className ="card" style={{width: "18rem"}} key={event.id} >
 <div className="card-body">
- <h5 className="card-title">User Name: {event.userName}</h5>
+ <h5 className="card-title"><Link to={`/users/${event.userId}`} >User Name: {event.userName}</Link></h5>
  <h6 className="card-subtitle mb-2 text-muted">Event Id: {event.eventId}</h6>
  <h6 className="card-text">Time: {event.time}</h6>
  </div>

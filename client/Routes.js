@@ -11,6 +11,7 @@ import CreateEvent from './components/Create Event';
 import AddResult from './components/AddResult';
 import Profile from './components/Profile';
 import CompleteEvent from './components/CompleteEvent';
+import UsersPage from './components/UsersPage';
 import {me} from './store'
 
 
@@ -32,6 +33,7 @@ class Routes extends Component {
             <Route exact path="/home" component={Home} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/users" component={Users} />
+            <Route exact path="/users/:userId" component={UsersPage} />
             <Route exact path="/events" component={Events} />
             <Route exact path="/events/create" component={CreateEvent} />
             <Route exact path="/events/:eventId" component={EventDetail} />

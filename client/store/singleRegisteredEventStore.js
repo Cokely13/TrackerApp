@@ -23,16 +23,19 @@ const _updateSingleRegisteredEvent = (eventdata) => {
 //Thunks
 export const fetchSingleRegisteredEvent = (id) => {
   return async (dispatch) => {
-    const { data } = await axios.get(`/api/registeredevents/${id}`);
+    const { data } = await axios.get(`/api/registered/${id}`);
     dispatch(_setSingleRegisteredEvent(data));
   };
 };
 
-export const updateSingleRegisteredEvent = (event, history) => {
+export const updateSingleRegisteredEvent = (eventId, history) => {
   return async (dispatch) => {
     try {
-        await axios.put(`/api/registeredevents/${event.id}`, event);
-        const { data: eventData } = await axios.get(`/api/registeredevents/${event.id}`);
+        // await axios.put(`/api/registered/${event.id}`, event);
+        await axios.put(`/api/registered/${eventId}`, {
+          completed: true
+        });
+        const { data: eventData } = await axios.get(`/api/registered/${event.id}`);
         dispatch(_updateSingleRegisteredEvent(eventData));
         history.push(`/profile`)
       }

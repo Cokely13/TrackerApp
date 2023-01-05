@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const RegisteredEvent = db.define('event', {
+const RegisteredEvent = db.define('registeredevent', {
   eventName: {
     type: Sequelize.STRING,
     // unique: true,

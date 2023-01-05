@@ -24,6 +24,6 @@ module.exports = {
     User,
     Event,
     Result,
-    RegisteredEvent
+    RegisteredEvent,
   },
 }

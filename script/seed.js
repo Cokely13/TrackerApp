@@ -1,6 +1,6 @@
 'use strict'
 
-const {db, models: {User, Event, Result, RegisteredEvent} } = require('../server/db')
+const {db, models: {User, Event, Result, Registered} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -28,14 +28,14 @@ async function seed() {
   // const results = await Promise.all([
   //   Result.create({ eventName: '5k', time: '21:00', eventId: '1', userId: '1' }),
   //   Result.create({ eventName: '5k', time: '25:00', eventId: '1', userId: '2'  }),
-  //   Result.create({ eventName: '5k', time: '27:00', eventId: '1', userId: '3'  }),
+  //   Result.create({ evenstName: '5k', time: '27:00', eventId: '1', userId: '3'  }),
   // ])
 
-  // const registeredEvents = await Promise.all([
-  //   RegisteredEvent.create({ eventName: '5k', description: 'time', userId: "1", eventId: "1" }),
-  //   RegisteredEvent.create({ eventName: 'Row/Run', description: '500 m, 1 mile run, 500 m' }),
-  //   RegisteredEvent.create({ eventName: 'Row/Run', description: '500 m, 1 mile run, 500 m', eventId: "2", userId: "2" }),
-  //   RegisteredEvent.create({ eventName: 'Bike', description: '30 miles', eventId: "3", userId: "2", completed: true })
+  // const registered = await Promise.all([
+  //   Registered.create({ eventName: '5k', description: 'time', userId: "1", eventId: "1" }),
+  //   Registered.create({ eventName: 'Row/Run', description: '500 m, 1 mile run, 500 m' }),
+  //   // RegisteredEvent.create({ eventName: 'Row/Run', description: '500 m, 1 mile run, 500 m', eventId: "2", userId: "2" }),
+  //   // RegisteredEvent.create({ eventName: 'Bike', description: '30 miles', eventId: "3", userId: "2", completed: true })
   // ])
 
   console.log(`seeded ${users.length} users`)

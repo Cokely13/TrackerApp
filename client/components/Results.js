@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect} from 'react-redux'
+import { Link } from 'react-router-dom';
 import { fetchResults } from '../store/allResultsStore'
 import { fetchUsers } from '../store/allUsersStore';
 
@@ -64,17 +65,15 @@ render () {
     {sorted.map((result) => {
         return (<div className="container text-center"key={result.id}>
           <div className="row align-items-start">
-          <div className="col" >
-        {result.userName}
+          <div className="col" ><Link to={`/users/${result.userId}`}>{result.userName}</Link>
     </div>
-        <div className="col" >
-        {result.userId}
+        <div className="col" ><Link to={`/users/${result.userId}`}>{result.userId}</Link>
     </div>
-    <div className="col" >
-        {result.eventId}
+    <div className="col"><Link to={`/events/${result.eventId}`}>
+        {result.eventId}</Link>
     </div>
-    <div className="col">
-     {result.eventName}
+    <div className="col"><Link to={`/events/${result.eventId}`}>
+        {result.eventName}</Link>
     </div>
     <div className="col">
        {result.time}
