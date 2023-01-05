@@ -4,6 +4,7 @@ import { Link} from 'react-router-dom'
 import { fetchEvent } from '../store/singleEventStore'
 import { updateSingleEvent } from '../store/singleEventStore'
 import {createRegisteredEvent} from '../store/allRegisteredEventsStore'
+import { fetchResults } from '../store/allResultsStore'
 
 
 export class EventDetail extends React.Component {
@@ -18,6 +19,7 @@ export class EventDetail extends React.Component {
 
 componentDidMount(props){
   this.props.fetchEvent(this.props.match.params.eventId)
+  this.props.fetchResults()
   // console.log("check", this.props)
 }
 
@@ -34,8 +36,14 @@ handleSubmit(event) {
 
 
 render () {
-  console.log("STATE", this.props)
+  console.log("id", this.props.match.params.eventId)
+  const eventId = this.props.match.params.eventId
+  console.log("eventId", eventId)
+  const myResults = this.props.allResults.filter(result => result.eventId == eventId)
+      console.log(this.props.allResults)
+      console.log(myResults)
   return (
+    <div>
     <div className ="card" style={{width: "18rem"}}  >
   <div className="card-body">
     <h5 className="card-title">{this.props.singleEvent.eventName}</h5>
@@ -45,19 +53,33 @@ render () {
     {/* <Link className="card-link" to={`/results/add/${this.props.singleEvent.id}`}>Add Result</Link> */}
   </div>
 </div>
+<h2>Results</h2>
+{myResults.map((event) => {
+     return (
+ <div className ="card" style={{width: "18rem"}} key={event.id} >
+<div className="card-body">
+ <h5 className="card-title">User Name: {event.userName}</h5>
+ <h6 className="card-subtitle mb-2 text-muted">Event Id: {event.eventId}</h6>
+ <h6 className="card-text">Time: {event.time}</h6>
+ </div>
+ </div>
+)})}
+</div>
 )
 }}
 
 const mapStateToProps = (state) => ({
   userId: state.auth.id,
-  singleEvent: state.singleEvent
+  singleEvent: state.singleEvent,
+  allResults: state.allResults
 })
 
 const mapDispatchToProps = (dispatch, { history }) => {
   return{
     fetchEvent: (id) => {dispatch(fetchEvent(id))},
     updateSingleEvent: (event, history) => dispatch(updateSingleEvent(event, history)),
-    createRegisteredEvent: (event) => dispatch(createRegisteredEvent(event, history))
+    createRegisteredEvent: (event) => dispatch(createRegisteredEvent(event, history)),
+    fetchResults: () => dispatch(fetchResults())
   }
 
 }
