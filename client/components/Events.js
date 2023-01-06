@@ -28,11 +28,8 @@ componentDidMount(){
 render () {
   const myId = this.props.userId
   const allEvents = this.props.allEvents
-  const stuff = this.props.allEvents.filter(allEvent => allEvent.id === allEvent.registeredevents.eventId)
-  const myRegisteredEvents = this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId === myId)
 
-  console.log("EVENTS", allEvents)
-  console.log("MY REG", myRegisteredEvents)
+  const myRegisteredEvents = this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId === myId)
 
   const eventsAvailable  = allEvents.filter(function(event){
     return myRegisteredEvents.filter(function(reg){

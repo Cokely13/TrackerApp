@@ -25,9 +25,12 @@ sort(event) {
 }
 
 render () {
-  console.log("results", this.props.allResults)
-  const sorted = this.props.allResults.sort((a,b) =>
-  {a.id < b.id})
+  const result = this.props.allResults
+  const sorted = result.sort((a, b) => {
+    return a.eventId - b.eventId;
+});
+
+  // const sorted = this.props.allResults.sort((a,b) => {a.userId < b.userId})
   console.log("sorted", sorted)
 
   return (
