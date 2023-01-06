@@ -30,6 +30,7 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
+    console.log("API CALL")
     const event = await RegisteredEvent.findByPk(req.params.id);
     res.send(await event.update(req.body));
   } catch (error) {

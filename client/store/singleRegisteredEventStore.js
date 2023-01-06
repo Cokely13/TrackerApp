@@ -28,16 +28,16 @@ export const fetchSingleRegisteredEvent = (id) => {
   };
 };
 
-export const updateSingleRegisteredEvent = (eventId, history) => {
+export const updateSingleRegisteredEvent = (event) => {
   return async (dispatch) => {
     try {
+      console.log("IDDTEST", event)
         // await axios.put(`/api/registered/${event.id}`, event);
-        await axios.put(`/api/registered/${eventId}`, {
-          completed: true
-        });
+        await axios.put(`/api/registered/${event.id}`, event
+        );
         const { data: eventData } = await axios.get(`/api/registered/${event.id}`);
         dispatch(_updateSingleRegisteredEvent(eventData));
-        history.push(`/profile`)
+        // history.push(`/profile`)
       }
      catch (error) {
       next(error)
@@ -52,7 +52,7 @@ const singleRegisteredEventReducer = (state = initialState, action) => {
     case SET_SINGLE_REGISTEREDEVENT:
       return action.eventdata;
     case UPDATE_SINGLE_REGISTEREDEVENT:
-      return action.eventdata;
+      return  action.eventdata;
     default:
       return state;
   }

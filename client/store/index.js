@@ -29,3 +29,4 @@ export default store
 export * from './auth'
 export * from './allEventsStore'
 export * from './allResultsStore'
+export * from './singleRegisteredEventStore'
