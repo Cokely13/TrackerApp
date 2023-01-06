@@ -3,6 +3,7 @@ import { connect} from 'react-redux'
 import { Link } from 'react-router-dom';
 import { fetchEvents } from '../store/allEventsStore'
 import {createRegisteredEvent} from '../store/allRegisteredEventsStore'
+import { fetchRegisteredEvents } from '../store/allRegisteredEventsStore';
 
 
 export class Events extends React.Component {
@@ -15,6 +16,7 @@ export class Events extends React.Component {
 
 componentDidMount(){
   this.props.fetchEvents()
+  this.props.fetchRegisteredEvents()
 }
 
 // handleSubmit(event) {
@@ -24,10 +26,25 @@ componentDidMount(){
 
 
 render () {
+  const myId = this.props.userId
+  const allEvents = this.props.allEvents
+  const stuff = this.props.allEvents.filter(allEvent => allEvent.id === allEvent.registeredevents.eventId)
+  const myRegisteredEvents = this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId === myId)
+
+  console.log("EVENTS", allEvents)
+  console.log("MY REG", myRegisteredEvents)
+
+  const eventsAvailable  = allEvents.filter(function(event){
+    return myRegisteredEvents.filter(function(reg){
+       return reg.eventId == event.id;
+    }).length == 0
+ });
+
+
 
   return (
     <div>
-       {this.props.allEvents.map((event) => {
+       {eventsAvailable.map((event) => {
         return (
     <div className ="card" style={{width: "18rem"}} key={event.id} >
   <div className="card-body">
@@ -46,13 +63,16 @@ render () {
 
 const mapState = (state) => {
   return{
-    allEvents: state.allEvents
+    allEvents: state.allEvents,
+    registeredEvents: state.registeredEvents,
+    userId: state.auth.id,
   }
 }
 
 const mapDispatch = (dispatch, { history }) => {
   return {
     fetchEvents: () => dispatch(fetchEvents()),
+    fetchRegisteredEvents: () => dispatch(fetchRegisteredEvents()),
     // createRegisteredEvent: (event) => dispatch(createRegisteredEvent(event, history))
   };
 };
