@@ -34,6 +34,7 @@ render () {
         <th scope="col"># ID</th>
         <th scope="col">Name</th>
         <th scope="col">Registered Events</th>
+        <th scope="col">Completed Events</th>
         <th scope="col">Results</th>
       </tr>
     </thead>
@@ -44,7 +45,8 @@ render () {
         <th scope="row">{user.id}</th>
         {/* <Link> */}
         <td><Link to={`/users/${user.id}`}>{user.username}</Link></td>
-        <td>{registeredEvents.filter(registeredEvent => registeredEvent.userId == user.id).length}</td>
+        <td>{registeredEvents.filter(registeredEvent => registeredEvent.userId == user.id && registeredEvent.completed == false).length}</td>
+        <td>{registeredEvents.filter(registeredEvent => registeredEvent.userId == user.id && registeredEvent.completed == true).length}</td>
         <td>{results.filter(result => result.userId == user.id).length}</td>
         {/* </Link> */}
       </tr>
