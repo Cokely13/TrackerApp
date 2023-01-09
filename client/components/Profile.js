@@ -5,6 +5,7 @@ import {fetchRegisteredEvents} from '../store/allRegisteredEventsStore'
 import { fetchSingleUser } from '../store/singleUserStore';
 import {updateSingleRegisteredEvent} from '../store/singleRegisteredEventStore'
 import { fetchResults } from '../store/allResultsStore';
+import {Image} from 'react-bootstrap'
 import RegisterUpdate from './RegisterUpdate';
 
 export class Profile extends React.Component {
@@ -42,25 +43,22 @@ export class Profile extends React.Component {
       }
 
 
-    // handleSubmit(event, ){
-    //     event.preventDefault();
-    //   this.props.updateSingleRegisteredEvent
-    // }
+
 
     render () {
       const myId = this.props.userId
       const myRegisteredEvents = this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId === myId && registeredEvent.completed == false)
       const myCompletedEvents = this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId === myId && registeredEvent.completed == true)
       const myResults = this.props.allResults.filter(result => result.userId === myId)
-      // console.log("HEY", myRegisteredEvents)
-      // const check = this.props.updateSingleRegisteredEvent()
-      // console.log("chec", check)
 
 
   return (
 
     <div>
       <h1>{this.props.singleUser.username}</h1>
+      <Image roundedCircle id="userProfileImage"  style={{width: "18rem"}} src={this.props.singleUser.imageUrl}/>
+      <h1>Birthday: {this.props.singleUser.birthday}</h1>
+      <h1>Gender:{this.props.singleUser.gender}</h1>
       <h2> Active EVENTS</h2>
     {myRegisteredEvents.map((registered) => {
      return (
@@ -70,14 +68,10 @@ export class Profile extends React.Component {
  <h6 className="card-subtitle mb-2 text-muted">Event Id: {registered.id}</h6>
  <h6 className="card-subtitle mb-2 text-muted">Event Description:{registered.description}</h6>
  <h6 className="card-text">{registered.completed ? <p>DONE</p> :<p>NOT DONE </p>}</h6>
- {/* <Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link> */}
+
  <Link className="card-link" to={`/results/add/${registered.eventId}`}>Add Result</Link>
  <h1></h1>
- {/* <div>
- <RegisterUpdate need={event}/>
- </div> */}
  <button onClick={event => this.handleClick(event, registered)}>Complete Event</button>
- {/* <Link className="card-link" to={`/completed/${event.eventId}`}>Complete Event</Link> */}
 </div>
 </div>)})}
 <h2>Results</h2>

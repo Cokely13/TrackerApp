@@ -12,9 +12,29 @@ const User = db.define('user', {
     unique: true,
     allowNull: false
   },
+  gender: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      notEmpty: true,
+      isEmail: true,
+    },
+  },
+  birthday: {
+    type: Sequelize.DATEONLY,
+  },
   password: {
     type: Sequelize.STRING,
-  }
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
+    defaultValue: 'https://cquipsplus.ca/wp-content/themes/cera/assets/images/avatars/user-avatar.png',
+  },
 })
 
 module.exports = User
