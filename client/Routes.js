@@ -12,6 +12,7 @@ import AddResult from './components/AddResult';
 import Profile from './components/Profile';
 import CompleteEvent from './components/CompleteEvent';
 import UsersPage from './components/UsersPage';
+import Calendar from './components/Calendar'
 import {me} from './store'
 
 
@@ -31,6 +32,7 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route exact path="/home" component={Home} />
+            <Route exact path="/cal" component={Calendar} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/users" component={Users} />
             <Route exact path="/users/:userId" component={UsersPage} />

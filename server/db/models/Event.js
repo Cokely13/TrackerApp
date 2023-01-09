@@ -20,6 +20,10 @@ const Event = db.define('event', {
     allowNull: false,
     defaultValue: Sequelize.NOW
   },
+  createdBy: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
     // : {
     //   type: Sequelize.ENUM("pending", "active", "disabled"),
     // },

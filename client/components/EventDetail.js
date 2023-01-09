@@ -44,7 +44,7 @@ render () {
       console.log(myResults)
   return (
     <div>
-    <div className ="card" style={{width: "18rem"}}  >
+    <div className ="card grid text-center" style={{width: "18rem"}}  >
   <div className="card-body">
     <h5 className="card-title">{this.props.singleEvent.eventName}</h5>
     <h5 className="card-subtitle mb-2 text-muted">Type: {this.props.singleEvent.type}</h5>

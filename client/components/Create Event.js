@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux";
 import { createEvent } from '../store/allEventsStore';
+import DatePicker from 'react-datepicker';
 import { Link } from 'react-router-dom'
 
 
@@ -11,8 +12,8 @@ export class CreateEvent extends React.Component {
       eventName: "",
       description: "",
       endDate: "",
-      startDate: "",
-      type: "Type",
+      type: "",
+      createdBy: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,15 +22,21 @@ export class CreateEvent extends React.Component {
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
+      createdBy: this.props.userId
     });
   }
 
   handleSubmit(event) {
     event.preventDefault();
+    console.log("SENDING", this.state)
     this.props.createEvent({ ...this.state});
   }
 
     render() {
+      const current = new Date();
+      const todayDate = new Date().toLocaleString() + ''
+      console.log("New Date", current)
+      console.log("TODAY", todayDate)
       const {description, eventName} = this.state
   return (
     <div className="mb-4 col">
@@ -45,7 +52,7 @@ export class CreateEvent extends React.Component {
         </div>
         <div className="col">
          <label>Type</label>
-          <select  onChange={this.handleChange} placeholder='Type' className="custom-select my-1 mr-sm-2">
+          <select  onChange={this.handleChange} placeholder='Type' className="form-control">
         <option disabled>Type</option>
           <option value="Run">Run</option>
           <option value="Bike">Bike</option>
@@ -55,6 +62,12 @@ export class CreateEvent extends React.Component {
           </select>
         </div>
       </div>
+      <div className="col">
+          <label>EndDate</label>
+          <input name="endDate" onChange={this.handleChange}  type="text" className='form-control'
+          placeholder='MM/dd/yyyy'
+         />
+        </div>
       <button type="submit" className="btn btn-secondary">Add Event</button>
     </form>
   </div>
@@ -62,7 +75,9 @@ export class CreateEvent extends React.Component {
 }
 }
 
-
+const mapStateToProps = (state) => ({
+  userId: state.auth.id,
+})
 
 
 const mapDispatch = (dispatch, { history }) => {
@@ -72,4 +87,4 @@ const mapDispatch = (dispatch, { history }) => {
   };
 };
 
-export default connect(null, mapDispatch)(CreateEvent);
+export default connect(mapStateToProps, mapDispatch)(CreateEvent);

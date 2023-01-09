@@ -18,10 +18,10 @@ async function seed() {
   ])
 
   const events = await Promise.all([
-    Event.create({ eventName: '15k', description: 'time', endDate: "Jan 10, 2023", type: "row" }),
-    Event.create({ eventName: 'Row/Run', description: '500 m, 1 mile run, 500 m', endDate: "Jan 12, 2023", type: "Random" }),
-    Event.create({ eventName: '10k', description: 'run',  endDate: "Jan 10, 2023", type: "run" }),
-    Event.create({ eventName: '30K', description: 'bike',  endDate: "Jan 10, 2023", type: "Bike" }),
+    Event.create({ eventName: '15k', description: 'time', endDate: "Jan 10, 2023", type: "row", createdBy: "1" }),
+    Event.create({ eventName: 'Row/Run', description: '500 m, 1 mile run, 500 m', endDate: "Jan 12, 2023", type: "Random", createdBy: "1" }),
+    Event.create({ eventName: '10k', description: 'run',  endDate: "Jan 10, 2023", type: "run", createdBy: "2" }),
+    Event.create({ eventName: '30K', description: 'bike',  endDate: "Jan 10, 2023", type: "Bike", createdBy: "3" }),
 
   ])
 
