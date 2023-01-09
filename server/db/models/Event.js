@@ -11,6 +11,24 @@ const Event = db.define('event', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  endDate: {
+    type: Sequelize.DATEONLY,
+    allowNull: false
+  },
+  startDate: {
+    type: Sequelize.DATEONLY,
+    allowNull: false,
+    defaultValue: Sequelize.NOW
+  },
+    // : {
+    //   type: Sequelize.ENUM("pending", "active", "disabled"),
+    // },
+  type: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  //   )
+  // },
 })
 
 module.exports = Event

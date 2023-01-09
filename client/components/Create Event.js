@@ -9,7 +9,10 @@ export class CreateEvent extends React.Component {
     super();
     this.state = {
       eventName: "",
-      description: ""
+      description: "",
+      endDate: "",
+      startDate: "",
+      type: "Type",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,16 +41,17 @@ export class CreateEvent extends React.Component {
         </div>
         <div className="col">
           <label>Description</label>
-          <input name="description" onChange={this.handleChange}  type="text" className='form-control' placeholder='Location' />
+          <input name="description" onChange={this.handleChange}  type="text" className='form-control' placeholder='description' />
         </div>
         <div className="col">
-        <select value={"Price Range"} onChange={(event => console.log(event.target.value))}  placeholder='Location' className="custom-select my-1 mr-sm-2">
-        <option disabled>Price Range</option>
-          <option value="1">$</option>
-          <option value="2">$$</option>
-          <option value="3">$$$</option>
-          <option value="4">$$$$</option>
-          <option value="5">$$$$$</option>
+         <label>Type</label>
+          <select  onChange={this.handleChange} placeholder='Type' className="custom-select my-1 mr-sm-2">
+        <option disabled>Type</option>
+          <option value="Run">Run</option>
+          <option value="Bike">Bike</option>
+          <option value="Swim">Swim</option>
+          <option value="Row">Row</option>
+          <option value="Random">Random</option>
           </select>
         </div>
       </div>

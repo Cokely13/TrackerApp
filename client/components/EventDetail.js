@@ -47,8 +47,9 @@ render () {
     <div className ="card" style={{width: "18rem"}}  >
   <div className="card-body">
     <h5 className="card-title">{this.props.singleEvent.eventName}</h5>
-    <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
+    <h5 className="card-subtitle mb-2 text-muted">Type: {this.props.singleEvent.type}</h5>
     <p className="card-text">{this.props.singleEvent.description}</p>
+    <h5 className="card-subtitle mb-2 text-muted">End Date: {this.props.singleEvent.endDate}</h5>
     <Link className="btn btn-primary" onClick={this.handleSubmit} to='/profile' >Register</Link>
     {/* <Link className="card-link" to={`/results/add/${this.props.singleEvent.id}`}>Add Result</Link> */}
   </div>
