@@ -29,22 +29,24 @@ handleSubmit(event) {
     eventName: this.props.singleEvent.eventName,
     description: this.props.singleEvent.description,
     eventId: this.props.singleEvent.id,
-    userId: this.props.userId
+    userId: this.props.userId,
+    image: this.props.singleEvent.image,
+    endDate: this.props.singleEvent.endDate
   }
   this.props.createRegisteredEvent(newReg)
 }
 
 
 render () {
-  console.log("id", this.props.match.params.eventId)
+
   const eventId = this.props.match.params.eventId
-  console.log("eventId", eventId)
   const myResults = this.props.allResults.filter(result => result.eventId == eventId)
       console.log(this.props.allResults)
       console.log(myResults)
   return (
     <div>
     <div className ="card grid text-center" style={{width: "18rem"}}  >
+    <img src={this.props.singleEvent.image} className="card-img-top" />
   <div className="card-body">
     <h5 className="card-title">{this.props.singleEvent.eventName}</h5>
     <h5 className="card-subtitle mb-2 text-muted">Type: {this.props.singleEvent.type}</h5>

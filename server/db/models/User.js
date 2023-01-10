@@ -32,7 +32,7 @@ const User = db.define('user', {
     type: Sequelize.STRING,
   },
   imageUrl: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     defaultValue: 'https://cquipsplus.ca/wp-content/themes/cera/assets/images/avatars/user-avatar.png',
   },
 })

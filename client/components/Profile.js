@@ -46,10 +46,13 @@ export class Profile extends React.Component {
 
 
     render () {
+      const today = new Date();
+      const  todayDate = today.toISOString().substring(0, 10);
       const myId = this.props.userId
       const myRegisteredEvents = this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId === myId && registeredEvent.completed == false)
       const myCompletedEvents = this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId === myId && registeredEvent.completed == true)
       const myResults = this.props.allResults.filter(result => result.userId === myId)
+      console.log("REGI",  myRegisteredEvents)
 
 
   return (
@@ -63,13 +66,13 @@ export class Profile extends React.Component {
     {myRegisteredEvents.map((registered) => {
      return (
  <div className ="card" style={{width: "18rem"}} key={registered.id} >
+  <img src={registered.image} className="card-img-top" />
 <div className="card-body">
  <h5 className="card-title">Event Name:{registered.eventName}</h5>
  <h6 className="card-subtitle mb-2 text-muted">Event Id: {registered.id}</h6>
  <h6 className="card-subtitle mb-2 text-muted">Event Description:{registered.description}</h6>
- <h6 className="card-text">{registered.completed ? <p>DONE</p> :<p>NOT DONE </p>}</h6>
-
- <Link className="card-link" to={`/results/add/${registered.eventId}`}>Add Result</Link>
+ <h6 className="card-text">{ registered.endDate >= todayDate ? <p>Active</p> :<p></p>}</h6>
+ <h6> {registered.endDate >= todayDate ?  <Link className="card-link" to={`/results/add/${registered.eventId}`}>Add Result</Link>:<p>Past </p>}</h6>
  <h1></h1>
  <button onClick={event => this.handleClick(event, registered)}>Complete Event</button>
 </div>

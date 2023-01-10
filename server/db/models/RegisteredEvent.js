@@ -16,6 +16,10 @@ const RegisteredEvent = db.define('registeredevent', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  endDate: {
+    type: Sequelize.DATEONLY,
+    allowNull: false
+  },
   completed: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
@@ -25,6 +29,10 @@ const RegisteredEvent = db.define('registeredevent', {
   },
   dateCompleted: {
     type: Sequelize.DATEONLY,
+  },
+  image: {
+    type: Sequelize.TEXT,
+    defaultValue: 'https://cquipsplus.ca/wp-content/themes/cera/assets/images/avatars/user-avatar.png',
   },
 })
 

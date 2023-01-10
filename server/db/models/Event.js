@@ -31,8 +31,11 @@ const Event = db.define('event', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  //   )
-  // },
+  image: {
+    type: Sequelize.TEXT,
+    defaultValue: 'https://www.news-medical.net/images/Article_Images/ImageForArticle_22980_16600577310868068.jpg',
+  },
+
 })
 
 module.exports = Event
