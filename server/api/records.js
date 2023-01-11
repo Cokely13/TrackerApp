@@ -3,9 +3,8 @@ const { models: { Record }} = require('../db')
 
 router.get('/', async (req, res, next) => {
   try {
-    const results = await Record.findAll()
-    const sort = results.sort((a,b) => a < b )
-    res.json(sort)
+    const records = await Record.findAll()
+    res.json(records)
   } catch (err) {
     next(err)
   }
@@ -13,8 +12,8 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const result = await Record.findByPk(req.params.id);
-    res.json(result);
+    const records = await Record.findByPk(req.params.id);
+    res.json(records);
   } catch (err) {
     next(err);
   }
@@ -30,8 +29,8 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const result = await Record.findByPk(req.params.id);
-    res.send(await result.update(req.body));
+    const record = await Record.findByPk(req.params.id);
+    res.send(await record.update(req.body));
   } catch (error) {
     next(error);
   }
@@ -39,9 +38,9 @@ router.put('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
   try {
-    const result = await Record.findByPk(req.params.id);
-    await result.destroy();
-    res.send(result);
+    const record = await Record.findByPk(req.params.id);
+    await record.destroy();
+    res.send(record);
   } catch (error) {
     next(error);
   }

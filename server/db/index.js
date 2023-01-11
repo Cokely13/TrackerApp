@@ -12,19 +12,16 @@ const RegisteredEvent = require('./models/RegisteredEvent')
 //associations could go here!
 // Event.hasMany(User)
 Event.hasMany(Result)
-Event.hasOne(Record)
-// Event.hasOne(Image)
+// Event.hasOne(Record)
 Event.hasMany(RegisteredEvent)
 User.hasMany(Result)
-User.hasMany(Record)
+// User.hasMany(Record)
 User.hasMany(RegisteredEvent)
 RegisteredEvent.hasOne(User)
 // Image.hasMany(Event)
 // User.hasMany(Event)
 // Result.hasOne(Event)
 Result.hasOne(User)
-Record.hasOne(User)
-Record.hasOne(Event)
 
 module.exports = {
   db,

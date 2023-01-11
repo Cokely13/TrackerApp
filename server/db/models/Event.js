@@ -35,14 +35,18 @@ const Event = db.define('event', {
     type: Sequelize.TEXT,
     defaultValue: 'https://www.news-medical.net/images/Article_Images/ImageForArticle_22980_16600577310868068.jpg',
   },
-  champ: {
-    type: Sequelize.STRING,
-    defaultValue: "N/A"
-  },
-  champId: {
-    type: Sequelize.STRING,
-    defaultValue: "N/A"
-  }
+  // record: {
+  //   type: Sequelize.STRING,
+  //   defaultValue: "N/A"
+  // },
+  // recordHolderId: {
+  //   type: Sequelize.STRING,
+  //   defaultValue: "N/A"
+  // },
+  // recordHolderName: {
+  //   type: Sequelize.STRING,
+  //   defaultValue: "N/A"
+  // }
 
 })
 

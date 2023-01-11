@@ -1,6 +1,6 @@
 'use strict'
 
-const {db, models: {User, Event, Result, Registered, Record} } = require('../server/db')
+const {db, models: {User, Event, Result, Registered,} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -30,13 +30,13 @@ async function seed() {
 
   ])
 
-  const records = await Promise.all([
-    Record.create({ eventName: '15k', time: 'N/A', eventId: '1', userId: '1', type: 'row', userName: "Matt", endDate: "Jan 8, 2023", createdBy: "2"}),
-    Record.create({ eventName: 'Row/Run', time: 'N/A', eventId: '2', userId: '2', type: 'random', userName: "Scott", endDate: "Jan 8, 2023", createdBy: "2" }),
-    Record.create({ eventName: '10K', time: 'N/A', eventId: '3', userId: '3', type: 'Run', userName: "Ryan", endDate: "Jan 8, 2023", createdBy: "2" }),
-    Record.create({ eventName: '30K', time: 'N/A', eventId: '4', userId: '3', type: 'Bike', userName: "Ryan", endDate: "Jan 8, 2023", createdBy: "2" }),
-    Record.create({ eventName: '1K', time: 'N/A', eventId: '5', userId: '3', type: 'Swim', userName: "Ryan", endDate: "Jan 8, 2023", createdBy: "2" }),
-  ])
+  // const records = await Promise.all([
+  //   Record.create({ eventName: '15k', time: 'N/A', eventId: '1', userId: '1', type: 'row', userName: "Matt", endDate: "Jan 8, 2023", createdBy: "2"}),
+  //   Record.create({ eventName: 'Row/Run', time: 'N/A', eventId: '2', userId: '2', type: 'random', userName: "Scott", endDate: "Jan 8, 2023", createdBy: "2" }),
+  //   Record.create({ eventName: '10K', time: 'N/A', eventId: '3', userId: '3', type: 'Run', userName: "Ryan", endDate: "Jan 8, 2023", createdBy: "2" }),
+  //   Record.create({ eventName: '30K', time: 'N/A', eventId: '4', userId: '3', type: 'Bike', userName: "Ryan", endDate: "Jan 8, 2023", createdBy: "2" }),
+  //   Record.create({ eventName: '1K', time: 'N/A', eventId: '5', userId: '3', type: 'Swim', userName: "Ryan", endDate: "Jan 8, 2023", createdBy: "2" }),
+  // ])
 
   // const results = await Promise.all([
   //   Result.create({ eventName: '5k', time: '21:00', eventId: '1', userId: '1' }),
