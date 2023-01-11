@@ -11,6 +11,8 @@ export class EventDetail extends React.Component {
   constructor() {
     super();
     this.state = {
+      champ: "",
+      champId: ""
     };
 
      this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,6 +36,8 @@ handleSubmit(event) {
     endDate: this.props.singleEvent.endDate
   }
   this.props.createRegisteredEvent(newReg)
+  // const update = {champ: record.name, eventId: this.props.singleEvent.id,}
+  // this.props.updateSingleEvent(update)
 }
 
 
@@ -72,8 +76,9 @@ render () {
 <h2>Record</h2>
 <div className ="card" style={{width: "18rem"}} >
 <div className="card-body">
-<h5 className="card-title">RecordHolder: {record ? record.userName : "Loading" }</h5>
-<h5 className="card-title">Record: {record ? record.time : "Loading" }</h5>
+<h5 className="card-title">RecordHolder: {record ? record.userName : "N/A" }</h5>
+<h5 className="card-title">Record: {record ? record.time : "N/A" }</h5>
+<Link className="btn btn-primary" onClick={this.handleSubmit} to='/profile' >Confirm Record</Link>
 </div>
 </div>
 </div>
