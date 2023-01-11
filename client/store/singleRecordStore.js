@@ -28,16 +28,17 @@ export const fetchRecord = (id) => {
   };
 };
 
-export const updateSingleRecord = (record, history) => {
+export const updateSingleRecord = (record, id, history) => {
   return async (dispatch) => {
     try {
-        await axios.put(`/api/records/update/${record.id}`, record);
-        const { data: recordData } = await axios.get(`/api/records/${record.id}`);
+      console.log("CHECK", id)
+        await axios.put(`/api/records/${id}`, record);
+        const { data: recordData } = await axios.get(`/api/records/${id}`);
         dispatch(_updateSingleRecord(recordData));
-        history.push(`/records/${record.id}`)
+        history.push(`/records`)
       }
      catch (error) {
-      next(error)
+      console.log("ERROR!!!", error)
     }
   };
 };

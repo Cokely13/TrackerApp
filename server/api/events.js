@@ -1,10 +1,11 @@
 const router = require('express').Router()
-const { models: { Event, RegisteredEvent}} = require('../db')
+const { regex } = require('react-admin')
+const { models: { Event, RegisteredEvent, Record}} = require('../db')
 
 
 router.get('/', async (req, res, next) => {
   try {
-    const events = await Event.findAll({include: RegisteredEvent})
+    const events = await Event.findAll({include: Record})
     res.json(events)
   } catch (err) {
     next(err)
@@ -13,7 +14,9 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const event = await Event.findByPk(req.params.id);
+    const eventId = req.params.id
+    const event = await Event.findByPk(req.params.id, {include: Record,
+    where: {eventId: eventId}});
     res.json(event);
   } catch (err) {
     next(err);
@@ -30,7 +33,7 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const event = await Event.findByPk(req.params.id);
+    const event = await Event.findByPk(req.params.id)
     res.send(await event.update(req.body));
   } catch (error) {
     next(error);

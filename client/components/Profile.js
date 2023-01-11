@@ -5,6 +5,7 @@ import {fetchRegisteredEvents} from '../store/allRegisteredEventsStore'
 import { fetchSingleUser } from '../store/singleUserStore';
 import {updateSingleRegisteredEvent} from '../store/singleRegisteredEventStore'
 import { fetchResults } from '../store/allResultsStore';
+import { fetchRecords } from '../store/allRecordsStore';
 import {Image} from 'react-bootstrap'
 import RegisterUpdate from './RegisterUpdate';
 
@@ -24,6 +25,7 @@ export class Profile extends React.Component {
       this.props.fetchRegisteredEvents()
       this.props.fetchSingleUser(this.props.userId)
       this.props.fetchResults()
+      this.props.fetchRecords()
     }
 
     handleClick(event, registered){
@@ -35,7 +37,6 @@ export class Profile extends React.Component {
 
       // // this.props.fetchSingleUser(reg)
       this.props.updateSingleRegisteredEvent(registered)
-      console.log("ID!!", this.state.reset)
       this.setState({
           reset: !this.state.reset
       })
@@ -52,8 +53,11 @@ export class Profile extends React.Component {
       const myRegisteredEvents = this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId === myId && registeredEvent.completed == false)
       const myCompletedEvents = this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId === myId && registeredEvent.completed == true)
       const myResults = this.props.allResults.filter(result => result.userId === myId)
-      console.log("REGI",  myRegisteredEvents)
+      const myRecords = this.props.allRecords.filter(record => record.userId == myId)
+      // const myRecords = filteredRecords[0]
 
+      console.log("my records", this.props.allRecords)
+      console.log("my records", myRecords)
 
   return (
 
@@ -98,6 +102,16 @@ export class Profile extends React.Component {
  <h6 className="card-subtitle mb-2 text-muted">Event Description:{registered.description}</h6>
 </div>
 </div>)})}
+<h2> Your Records</h2>
+  {myRecords.length ? myRecords.map((record) => {
+     return (
+ <div className ="card" style={{width: "18rem"}} key={record.id} >
+<div className="card-body">
+ <h5 className="card-title">Event Name:{record.eventName}</h5>
+ <h6 className="card-subtitle mb-2 text-muted">Event Id: {record.eventId}</h6>
+ <h6 className="card-subtitle mb-2 text-muted">Time:{record.time}</h6>
+</div>
+</div>)}) : <h5>No Records Yet. Step it up Pal!</h5>}
 </div>
 
 )
@@ -108,7 +122,8 @@ const mapState = (state) => {
     registeredEvents: state.registeredEvents,
     userId: state.auth.id,
     singleUser: state.singleUser,
-    allResults: state.allResults
+    allResults: state.allResults,
+    allRecords: state.allRecords
   }
 }
 
@@ -118,6 +133,7 @@ const mapDispatch = (dispatch, { history }) => {
     fetchSingleUser: (id) => {dispatch(fetchSingleUser(id))},
     updateSingleRegisteredEvent: (id) => (dispatch(updateSingleRegisteredEvent((id)))),
     fetchResults: () => dispatch(fetchResults()),
+    fetchRecords: () => dispatch(fetchRecords())
   };
 };
 

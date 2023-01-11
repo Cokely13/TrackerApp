@@ -5,6 +5,7 @@ import {fetchRegisteredEvents} from '../store/allRegisteredEventsStore'
 import { fetchSingleUser } from '../store/singleUserStore';
 import {updateSingleRegisteredEvent} from '../store/singleRegisteredEventStore'
 import { fetchResults } from '../store/allResultsStore';
+import { fetchRecords } from '../store/allRecordsStore';
 
 
 export class UsersPage extends React.Component {
@@ -25,6 +26,7 @@ export class UsersPage extends React.Component {
       this.props.fetchRegisteredEvents()
       this.props.fetchSingleUser(this.props.match.params.userId)
       this.props.fetchResults()
+      this.props.fetchRecords()
     }
 
     handleSubmit(event,  ){
@@ -38,7 +40,7 @@ export class UsersPage extends React.Component {
       console.log("MY ID", myId)
       const myRegisteredEvents = this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId == myId)
       const myResults = this.props.allResults.filter(result => result.userId == myId)
-      console.log(myResults)
+      const myRecords = this.props.allRecords.filter(record => record.userId == myId)
 
 
   return (
@@ -70,6 +72,16 @@ export class UsersPage extends React.Component {
  </div>
  </div>
 )})}
+<h2> Your Records</h2>
+  {myRecords.length ? myRecords.map((record) => {
+     return (
+ <div className ="card" style={{width: "18rem"}} key={record.id} >
+<div className="card-body">
+ <h5 className="card-title">Event Name:{record.eventName}</h5>
+ <h6 className="card-subtitle mb-2 text-muted">Event Id: {record.eventId}</h6>
+ <h6 className="card-subtitle mb-2 text-muted">Time:{record.time}</h6>
+</div>
+</div>)}) : <h5>No Records Yet. Needs to step it up!</h5>}
 </div>
 
 )
@@ -80,7 +92,8 @@ const mapState = (state) => {
     registeredEvents: state.registeredEvents,
     userId: state.auth.id,
     singleUser: state.singleUser,
-    allResults: state.allResults
+    allResults: state.allResults,
+    allRecords: state.allRecords
   }
 }
 
@@ -90,6 +103,7 @@ const mapDispatch = (dispatch, { history }) => {
     fetchSingleUser: (id) => {dispatch(fetchSingleUser(id))},
     updateSingleRegisteredEvent: (event) => (dispatch(updateSingleRegisteredEvent((event, history)))),
     fetchResults: () => dispatch(fetchResults()),
+    fetchRecords: () => dispatch(fetchRecords())
   };
 };
 

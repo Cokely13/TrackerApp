@@ -26,7 +26,7 @@ render () {
   const records = this.props.allResults
 
   console.log("records", records)
-  const sorted = result.sort((a, b) => (a.eventId -b.eventId || parseInt(a.time) - parseInt(b.time)))
+  const sorted = result.sort((a, b) => (a.eventId -b.eventId || Number.parseInt(a.time) - Number.parseInt(b.time)))
     // return parseInt(a.time) - parseInt(b.time);
 // });
 
