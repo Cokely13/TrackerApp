@@ -4,6 +4,7 @@ module.exports = router
 router.use('/users', require('./users'))
 router.use('/events', require('./events'))
 router.use('/results', require('./results'))
+router.use('/records', require('./records'))
 router.use('/registered', require('./registered'))
 
 

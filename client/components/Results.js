@@ -3,36 +3,34 @@ import { connect} from 'react-redux'
 import { Link } from 'react-router-dom';
 import { fetchResults } from '../store/allResultsStore'
 import { fetchUsers } from '../store/allUsersStore';
+import { fetchRecords} from '../store/allRecordsStore'
 
 
 export class Results extends React.Component {
   constructor() {
     super();
     this.state = {
-      sort: 1
     };
-    this.sort = this.sort.bind(this)
 }
 
 componentDidMount(){
   this.props.fetchResults()
   this.props.fetchUsers()
+  this.props.fetchRecords()
   const  allresults = this.props.allResults
 }
 
-sort(event) {
-  console.log("HiLL", event)
-}
 
 render () {
   const result = this.props.allResults
-  console.log("result", result)
+  const records = this.props.allResults
+
+  console.log("records", records)
   const sorted = result.sort((a, b) => (a.eventId -b.eventId || parseInt(a.time) - parseInt(b.time)))
     // return parseInt(a.time) - parseInt(b.time);
 // });
 
   // const sorted = this.props.allResults.sort((a,b) => {a.userId < b.userId})
-  console.log("sorted", sorted)
 
   return (
     <div>
@@ -94,7 +92,8 @@ render () {
 
 const mapState = (state) => {
   return{
-    allResults: state.allResults
+    allResults: state.allResults,
+    allRecords: state.allRecords
   }
 }
 
@@ -102,6 +101,7 @@ const mapDispatch = (dispatch, { history }) => {
   return {
     fetchResults: () => dispatch(fetchResults()),
     fetchUsers: () => dispatch(fetchUsers()),
+    fetchRecords: () => dispatch(fetchRecords())
   };
 };
 

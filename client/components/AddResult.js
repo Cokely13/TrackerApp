@@ -6,6 +6,8 @@ import { createResult } from '../store/allResultsStore'
 import { fetchSingleUser } from '../store/singleUserStore';
 import {fetchSingleRegisteredEvent, updateSingleRegisteredEvent} from '../store/singleRegisteredEventStore'
 import {fetchRegisteredEvents} from '../store/allRegisteredEventsStore'
+import { createRecord } from '../store/allRecordsStore';
+
 
 export class AddResult extends React.Component {
   constructor() {
@@ -102,7 +104,10 @@ const mapDispatchToProps = (dispatch, { history }) => {
     updateSingleRegisteredEvent: (event, history) => dispatch(updateSingleRegisteredEvent(event, history)),
     createResult: (result)=> dispatch(createResult(result, history)),
     fetchSingleRegisteredEvent: (id) => dispatch(fetchSingleRegisteredEvent(id)),
-    fetchRegisteredEvents :  () => dispatch(fetchRegisteredEvents())}
+    fetchRegisteredEvents :  () => dispatch(fetchRegisteredEvents()),
+    createRecord : (event) => dispatch(createRecord(event, history))
+  }
+
   }
 
 

@@ -41,8 +41,10 @@ render () {
 
   const eventId = this.props.match.params.eventId
   const myResults = this.props.allResults.filter(result => result.eventId == eventId)
-      console.log(this.props.allResults)
-      console.log(myResults)
+  const sorted = myResults.sort((a, b) => (parseInt(a.time) - parseInt(b.time)))
+      console.log("UPDATE", sorted)
+  const record = sorted[0]
+  console.log("Record", record)
   return (
     <div>
     <div className ="card grid text-center" style={{width: "18rem"}}  >
@@ -57,7 +59,7 @@ render () {
   </div>
 </div>
 <h2>Results</h2>
-{myResults.map((event) => {
+{sorted.map((event) => {
      return (
  <div className ="card" style={{width: "18rem"}} key={event.id} >
 <div className="card-body">
@@ -67,6 +69,13 @@ render () {
  </div>
  </div>
 )})}
+<h2>Record</h2>
+<div className ="card" style={{width: "18rem"}} >
+<div className="card-body">
+<h5 className="card-title">RecordHolder: {record ? record.userName : "Loading" }</h5>
+<h5 className="card-title">Record: {record ? record.time : "Loading" }</h5>
+</div>
+</div>
 </div>
 )
 }}

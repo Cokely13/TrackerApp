@@ -10,13 +10,17 @@ import singleEventReducer from './singleEventStore'
 import singleUserReducer from './singleUserStore'
 import registeredEventsReducer from './allRegisteredEventsStore'
 import singleRegisteredEventReducer from './singleRegisteredEventStore'
+import recordsReducer from './allRecordsStore'
+import singleRecordReducer from './singleRecordStore'
 
 const reducer = combineReducers({ auth,
 allEvents: eventsReducer,
 allResults: resultsReducer,
+allRecords: recordsReducer,
 allUsers: usersReducer,
 singleEvent: singleEventReducer,
 singleUser: singleUserReducer,
+singlRecord: singleRecordReducer,
 registeredEvents: registeredEventsReducer,
 singleRegisteredEvent: singleRegisteredEventReducer })
 

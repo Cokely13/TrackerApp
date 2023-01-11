@@ -1,6 +1,6 @@
 'use strict'
 
-const {db, models: {User, Event, Result, Registered} } = require('../server/db')
+const {db, models: {User, Event, Result, Registered, Record} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -24,10 +24,18 @@ async function seed() {
   const events = await Promise.all([
     Event.create({ eventName: '15k', description: 'time', endDate: "Jan 10, 2023", type: "row", createdBy: "1", image: "https://www.byrdie.com/thmb/wt0s4-TZV_nQt3NXswXUYHil48Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/TheseOnlineRowingClassesWillHelpYouGetTonedinNoTime-a2959753b88f4ebb8ac9532971123761.jpg", imageId: 1 }),
     Event.create({ eventName: 'Row/Run', description: '500 m, 1 mile run, 500 m', endDate: "Jan 12, 2023", type: "Random", createdBy: "1",image: "https://res.cloudinary.com/upskilled/image/fetch/w_600,h_400,c_crop,c_fill,g_face:auto,f_auto/https://www.upskilled.edu.au/getmedia%2Ff4633697-8724-4633-8488-825ec4a1587f%2Fchallenge-yourself-in-your-next-role-HERO.jpg%3B.aspx%3Fwidth%3D1000%26height%3D667%26ext%3D.jpg", imageId: 1 }),
-    Event.create({ eventName: '10k', description: 'run',  endDate: "Jan 10, 2023", type: "run", createdBy: "2", imageId: 1 }),
+    Event.create({ eventName: '10k', description: 'run',  endDate: "Jan 10, 2023", type: "Run", createdBy: "2", imageId: 1 }),
     Event.create({ eventName: '30K', description: 'bike',  endDate: "Jan 10, 2023", type: "Bike", createdBy: "3", image: "https://c.ndtvimg.com/2020-08/dtm9edd8_cycling_625x300_05_August_20.jpg?ver-20221221.02", imageId: 1 }),
-    Event.create({ eventName: '1k', description: 'swim',  endDate: "Jan 8, 2023", type: "swim", createdBy: "2", image: "https://www.shape.com/thmb/y7XHTgiQzL_gLqtB7AVR1LBYZHc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/swimming-workouts-for-women-d137e32a8fcf4d68bf4713ce2c628a07.jpg", imageId: 1 }),
+    Event.create({ eventName: '1k', description: 'swim',  endDate: "Jan 8, 2023", type: "Swim", createdBy: "2", image: "https://www.shape.com/thmb/y7XHTgiQzL_gLqtB7AVR1LBYZHc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/swimming-workouts-for-women-d137e32a8fcf4d68bf4713ce2c628a07.jpg", imageId: 1 }),
 
+  ])
+
+  const records = await Promise.all([
+    Record.create({ eventName: '15k', time: 'N/A', eventId: '1', userId: '1', type: 'row', userName: "Matt", endDate: "Jan 8, 2023", createdBy: "2"}),
+    Record.create({ eventName: 'Row/Run', time: 'N/A', eventId: '2', userId: '2', type: 'random', userName: "Scott", endDate: "Jan 8, 2023", createdBy: "2" }),
+    Record.create({ eventName: '10K', time: 'N/A', eventId: '3', userId: '3', type: 'Run', userName: "Ryan", endDate: "Jan 8, 2023", createdBy: "2" }),
+    Record.create({ eventName: '30K', time: 'N/A', eventId: '4', userId: '3', type: 'Bike', userName: "Ryan", endDate: "Jan 8, 2023", createdBy: "2" }),
+    Record.create({ eventName: '1K', time: 'N/A', eventId: '5', userId: '3', type: 'Swim', userName: "Ryan", endDate: "Jan 8, 2023", createdBy: "2" }),
   ])
 
   // const results = await Promise.all([

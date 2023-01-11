@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux";
 import { createEvent } from '../store/allEventsStore';
+import { createRecord } from '../store/allRecordsStore';
 import DatePicker from 'react-datepicker';
 import { DateInput, minValue} from 'react-admin';
 import { Link } from 'react-router-dom'
@@ -15,7 +16,7 @@ export class CreateEvent extends React.Component {
       endDate: "",
       type: "",
       createdBy: "",
-      image: ""
+      image: "https://www.news-medical.net/images/Article_Images/ImageForArticle_22980_16600577310868068.jpg"
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleChange2 = this.handleChange2.bind(this);
@@ -73,13 +74,13 @@ export class CreateEvent extends React.Component {
       createdBy: this.props.userId
     });
 
-    console.log("TEST", this.state)
   }
 
   handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
     console.log("SENDING", this.state)
-    this.props.createEvent({ ...this.state});
+    this.props.createEvent({ ...this.state})
+    // this.props.createRecord({ ...this.state});
   }
 
     render() {
@@ -132,7 +133,8 @@ const mapStateToProps = (state) => ({
 const mapDispatch = (dispatch, { history }) => {
   return {
 
-    createEvent: (event) => dispatch(createEvent(event, history))
+    createEvent: (event) => dispatch(createEvent(event, history)),
+    createRecord: (event) => dispatch(createRecord(event, history))
   };
 };
 

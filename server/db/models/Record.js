@@ -1,15 +1,13 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Event = db.define('event', {
+const Record = db.define('record', {
   eventName: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false
   },
   description: {
     type: Sequelize.STRING,
-    allowNull: false
   },
   endDate: {
     type: Sequelize.DATEONLY,
@@ -22,28 +20,21 @@ const Event = db.define('event', {
   },
   createdBy: {
     type: Sequelize.INTEGER,
-    allowNull: false
   },
-    // : {
-    //   type: Sequelize.ENUM("pending", "active", "disabled"),
-    // },
+  time: {
+    type: Sequelize.STRING,
+    defaultValue: "N/A"
+  },
+  userName: {
+    type: Sequelize.STRING,
+  },
   type: {
     type: Sequelize.STRING,
-    allowNull: false
   },
   image: {
     type: Sequelize.TEXT,
     defaultValue: 'https://www.news-medical.net/images/Article_Images/ImageForArticle_22980_16600577310868068.jpg',
   },
-  champ: {
-    type: Sequelize.STRING,
-    defaultValue: "N/A"
-  },
-  champId: {
-    type: Sequelize.STRING,
-    defaultValue: "N/A"
-  }
-
 })
 
-module.exports = Event
+module.exports = Record
