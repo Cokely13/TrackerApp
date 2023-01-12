@@ -73,8 +73,9 @@ export class Profile extends React.Component {
   <img src={registered.image} className="card-img-top" />
 <div className="card-body">
  <h5 className="card-title">Event Name:{registered.eventName}</h5>
- <h6 className="card-subtitle mb-2 text-muted">Event Id: {registered.id}</h6>
+ <h6 className="card-subtitle mb-2 text-muted">Event Id: {registered.eventId}</h6>
  <h6 className="card-subtitle mb-2 text-muted">Event Description:{registered.description}</h6>
+ <Link className="card-link" to={`/events/${registered.eventId}`}>Event Detail</Link>
  <h6 className="card-text">{ registered.endDate >= todayDate ? <p>Active</p> :<p></p>}</h6>
  <h6> {registered.endDate >= todayDate ?  <Link className="card-link" to={`/results/add/${registered.eventId}`}>Add Result</Link>:<p>Past </p>}</h6>
  <h1></h1>
@@ -87,8 +88,9 @@ export class Profile extends React.Component {
  <div className ="card" style={{width: "18rem"}} key={event.id} >
 <div className="card-body">
  <h5 className="card-title">Event Name: {event.eventName}</h5>
- <h6 className="card-subtitle mb-2 text-muted">Event Id: {event.id}</h6>
+ <h6 className="card-subtitle mb-2 text-muted">Event Id: {event.eventId}</h6>
  <h6 className="card-text">Time: {event.time}</h6>
+ <Link className="card-link" to={`/events/${event.eventId}`}>Event Detail</Link>
  </div>
  </div>
 )})}
@@ -100,6 +102,7 @@ export class Profile extends React.Component {
  <h5 className="card-title">Event Name:{registered.eventName}</h5>
  <h6 className="card-subtitle mb-2 text-muted">Event Id: {registered.id}</h6>
  <h6 className="card-subtitle mb-2 text-muted">Event Description:{registered.description}</h6>
+ <Link className="card-link" to={`/events/${registered.id}`}>Event Detail</Link>
 </div>
 </div>)})}
 <h2> Your Records</h2>
@@ -110,6 +113,7 @@ export class Profile extends React.Component {
  <h5 className="card-title">Event Name:{record.eventName}</h5>
  <h6 className="card-subtitle mb-2 text-muted">Event Id: {record.eventId}</h6>
  <h6 className="card-subtitle mb-2 text-muted">Time:{record.time}</h6>
+ <Link className="card-link" to={`/events/${record.eventId}`}>Event Detail</Link>
 </div>
 </div>)}) : <h5>No Records Yet. Step it up Pal!</h5>}
 </div>
