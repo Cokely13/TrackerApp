@@ -1,5 +1,7 @@
 import axios from "axios";
 
+
+
 // Action Types
 const SET_SINGLE_RESULT = "SET_SINGLE_RESULT";
 const UPDATE_SINGLE_RESULT = "UPDATE_SINGLE_RESULT";
@@ -28,13 +30,14 @@ export const fetchResult = (id) => {
   };
 };
 
-export const updateSingleResult = (result, id, history) => {
+export const updateSingleResult = (result, history) => {
+  console.log("IT MADE IT!")
   return async (dispatch) => {
     try {
-        await axios.put(`/api/results/${id}`, result);
-        const { data: resultData } = await axios.get(`/api/results/${id}`);
+        await axios.put(`/api/results/${result.id}`, result);
+        const { data: resultData } = await axios.get(`/api/results/${result.id}`);
         dispatch(_updateSingleResult(resultData));
-        history.push(`/result`)
+        // history.push("/results");
       }
      catch (error) {
       console.log("ERROR!!!", error)

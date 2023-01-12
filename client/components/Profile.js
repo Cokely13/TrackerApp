@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import {fetchRegisteredEvents} from '../store/allRegisteredEventsStore'
 import { fetchSingleUser } from '../store/singleUserStore';
 import {updateSingleRegisteredEvent} from '../store/singleRegisteredEventStore'
-import { fetchResults } from '../store/allResultsStore';
+import { fetchResults, deleteResult } from '../store/allResultsStore';
 import { fetchRecords } from '../store/allRecordsStore';
 import {Image} from 'react-bootstrap'
 import RegisterUpdate from './RegisterUpdate';
@@ -18,7 +18,7 @@ export class Profile extends React.Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
-
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
     componentDidMount(){
@@ -43,6 +43,9 @@ export class Profile extends React.Component {
 
       }
 
+      // handleSubmit(id) {
+      //   this.props.deleteResult(id)
+      //  }
 
 
 
@@ -91,6 +94,10 @@ export class Profile extends React.Component {
  <h6 className="card-subtitle mb-2 text-muted">Event Id: {event.eventId}</h6>
  <h6 className="card-text">Time: {event.time}</h6>
  <Link className="card-link" to={`/events/${event.eventId}`}>Event Detail</Link>
+ <Link className="card-link" to={`/results/${event.id}`}>Edit Result</Link>
+ <p></p>
+<p></p>
+ <button type="button" className="btn btn-danger" onClick={() => this.props.deleteResult(event.id)}>Delete Result</button>
  </div>
  </div>
 )})}
@@ -137,7 +144,8 @@ const mapDispatch = (dispatch, { history }) => {
     fetchSingleUser: (id) => {dispatch(fetchSingleUser(id))},
     updateSingleRegisteredEvent: (id) => (dispatch(updateSingleRegisteredEvent((id)))),
     fetchResults: () => dispatch(fetchResults()),
-    fetchRecords: () => dispatch(fetchRecords())
+    fetchRecords: () => dispatch(fetchRecords()),
+    deleteResult: (id) => dispatch(deleteResult(id, history))
   };
 };
 

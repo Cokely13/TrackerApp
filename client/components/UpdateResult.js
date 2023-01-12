@@ -1,23 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { fetchEvent } from '../store/singleEventStore';
-import { createResult } from '../store/allResultsStore'
-import { fetchSingleUser } from '../store/singleUserStore';
-import {fetchSingleRegisteredEvent, updateSingleRegisteredEvent} from '../store/singleRegisteredEventStore'
-import {fetchRegisteredEvents} from '../store/allRegisteredEventsStore'
-import { createRecord } from '../store/allRecordsStore';
+import { Link, useNavigate } from 'react-router-dom'
+import { fetchResult, updateSingleResult} from '../store/singleResultsStore'
+// import { createResult } from '../store/allResultsStore'
+// import { fetchSingleUser } from '../store/singleUserStore';
+// import {fetchSingleRegisteredEvent, updateSingleRegisteredEvent} from '../store/singleRegisteredEventStore'
+// import {fetchRegisteredEvents} from '../store/allRegisteredEventsStore'
+// import { createRecord } from '../store/allRecordsStore';
 
 
 export class UpdateResult extends React.Component {
   constructor() {
     super();
     this.state = {
+      id: "",
       eventName: "",
       time: "",
-      eventId: "",
+      userName: "",
       userId: "",
-      userName: ""
+      eventId: "",
 
     };
     this.handleChange = this.handleChange.bind(this);
@@ -25,44 +26,45 @@ export class UpdateResult extends React.Component {
   }
 
   componentDidMount(props){
-    this.props.fetchSingleUser(this.props.userId)
-    this.props.fetchRegisteredEvents()
-    this.props.fetchEvent(this.props.match.params.eventId)
-    this.setState({
-      // eventName: this.props.singleEvent.eventName,
-      eventId: this.props.match.params.eventId,
-      userId: this.props.userId
-    })
+    this.props.fetchResult(this.props.match.params.resultId)
+    // this.setState({
+    //   id: this.props.singleResult.id,
+    //   eventName: this.props.singleResult.eventName,
+    //   time: this.props.singleResult.time,
+    //   userName: this.props.singleResult.userName,
+    //   userId: this.props.singleResult.userId,
+    //   eventId: this.props.singleResult.eventId,
+    // })
   }
+
+
 
   handleChange(event) {
+    console.log("id", this.props.singleResult.id,)
+    console.log("prop", this.props.singleResult,)
     this.setState({
-      eventName:this.props.singleEvent.eventName,
-      userName:this.props.singleUser.username,
+      id: this.props.singleResult.id,
+      eventName: this.props.singleResult.eventName,
+      userName: this.props.singleResult.userName,
+      userId: this.props.singleResult.userId,
+      eventId: this.props.singleResult.eventId,
       [event.target.name]: event.target.value,
-    // register: {
-    //   id: this.myRegisteredEvent.id,
-    // }
-    });
-  }
+    })
+
+    console.log("STATEEE", this.state)
+    };
+
 
   handleSubmit(event) {
+    console.log("STATE", this.state)
     event.preventDefault();
-    this.props.createResult({ ...this.state});
+    this.props.updateSingleResult({ ...this.state});
+    this.props.history.push('/profile')
     // updateSingleRegisteredEvent(this.state.register)
   }
 
     render() {
-      const myId = this.props.userId
-      const eventId = this.props.match.params.eventId
-      // console.log("state", this.state)
-      // console.log("registered", this.props.registeredEvents)
-      const myRegisteredEvent = this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId === myId && registeredEvent.eventName === this.props.singleEvent.eventName)
-      // const regId = myRegisteredEvent[0]
-      // console.log("Myregistered", myRegisteredEvent)
-      // const myEvent = myRegisteredEvents.filter(myRegisteredEvent => myRegisteredEvent.eventId === "7")
-      // console.log("EVENT", myEvent)
-      // console.log("IDDDD", regId)
+
   return (
 
 
@@ -71,17 +73,17 @@ export class UpdateResult extends React.Component {
       <div className="form-row">
       <div className="col">
         <label>Event Name</label>
-        <input className="form-control" type="text" placeholder={this.props.singleEvent.eventName} aria-label="Disabled input example" disabled />
+        <input className="form-control" type="text" placeholder={this.props.singleResult.eventName} aria-label="Disabled input example" disabled />
         </div>
         <div className="col">
-          <label>Description</label>
-          <input className="form-control" type="text" placeholder={this.props.singleEvent.description} aria-label="Disabled input example" disabled />
+          <label>Event Id</label>
+          <input className="form-control" type="text" placeholder={this.props.singleResult.eventId} aria-label="Disabled input example" disabled />
           </div>
         <div className="col">
         <label>Time</label>
-          <input name='time' onChange={this.handleChange}  type="text" className='form-control' placeholder='Enter Result'/>
+          <input name='time' onChange={this.handleChange}  type="text" className='form-control' placeholder={this.props.singleResult.time} />
         </div>
-      <button type="submit" className="btn btn-secondary">Add Result</button>
+      <button type="submit" className="btn btn-secondary">Update Result</button>
       </div>
     </form>
   </div>
@@ -90,22 +92,15 @@ export class UpdateResult extends React.Component {
 
 const mapStateToProps = (state) => ({
   userId: state.auth.id,
-  singleEvent: state.singleEvent,
-  singleUser: state.singleUser,
-  registeredEvents: state.registeredEvents,
-  singleRegisteredEvent: state.singleRegisteredEvent
+  singleResult: state.singleResult
+
 })
 
 const mapDispatchToProps = (dispatch, { history }) => {
   return{
-    fetchEvent: (id) => {dispatch(fetchEvent(id))},
-    fetchSingleUser: (id) => {dispatch(fetchSingleUser(id))},
-    // updateSingleEvent: (event, history) => dispatch(updateSingleEvent(event, history)),
-    updateSingleRegisteredEvent: (event, history) => dispatch(updateSingleRegisteredEvent(event, history)),
+    updateSingleResult: (event, history) => dispatch(updateSingleResult(event, history)),
     createResult: (result)=> dispatch(createResult(result, history)),
-    fetchSingleRegisteredEvent: (id) => dispatch(fetchSingleRegisteredEvent(id)),
-    fetchRegisteredEvents :  () => dispatch(fetchRegisteredEvents()),
-    createRecord : (event) => dispatch(createRecord(event, history))
+    fetchResult: (id) => dispatch(fetchResult(id))
   }
 
   }
