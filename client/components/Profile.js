@@ -54,13 +54,14 @@ export class Profile extends React.Component {
       const  todayDate = today.toISOString().substring(0, 10);
       const myId = this.props.userId
       const myRegisteredEvents = this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId === myId && registeredEvent.completed == false)
+      const sorted = myRegisteredEvents.sort((a, b) => (b.id -a.id))
       const myCompletedEvents = this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId === myId && registeredEvent.completed == true)
       const myResults = this.props.allResults.filter(result => result.userId === myId)
       const myRecords = this.props.allRecords.filter(record => record.userId == myId)
       // const myRecords = filteredRecords[0]
 
-      console.log("my records", this.props.allRecords)
-      console.log("my records", myRecords)
+      console.log("my records", myRegisteredEvents)
+      console.log("my records", sorted)
 
   return (
 

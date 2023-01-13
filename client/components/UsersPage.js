@@ -72,7 +72,7 @@ export class UsersPage extends React.Component {
  </div>
  </div>
 )})}
-<h2> Your Records</h2>
+<h2> Records</h2>
   {myRecords.length ? myRecords.map((record) => {
      return (
  <div className ="card" style={{width: "18rem"}} key={record.id} >
