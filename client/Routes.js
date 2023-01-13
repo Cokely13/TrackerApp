@@ -14,7 +14,8 @@ import CompleteEvent from './components/CompleteEvent';
 import UsersPage from './components/UsersPage';
 import Calendar from './components/Calendar'
 import Records from './components/Records';
-import UpdateResult from './components/UpdateResult';
+import EditResult from './components/EditResult';
+import EditEvent from './components/EditEvent';
 import {me} from './store'
 
 
@@ -41,9 +42,10 @@ class Routes extends Component {
             <Route exact path="/events" component={Events} />
             <Route exact path="/events/create" component={CreateEvent} />
             <Route exact path="/events/:eventId" component={EventDetail} />
+            <Route exact path="/eventsedit/:eventId" component={EditEvent} />
             <Route exact path="/completed/:eventId" component={CompleteEvent} />
             <Route exact path="/results" component={Results} />
-            <Route exact path="/results/:resultId" component={UpdateResult} />
+            <Route exact path="/results/:resultId" component={EditResult} />
             <Route exact path="/records" component={Records} />
             <Route exact path="/results/add/:eventId" component={AddResult} />
             <Redirect to="/home" />

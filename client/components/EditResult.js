@@ -9,7 +9,7 @@ import { fetchResult, updateSingleResult} from '../store/singleResultsStore'
 // import { createRecord } from '../store/allRecordsStore';
 
 
-export class UpdateResult extends React.Component {
+export class EditResult extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -107,4 +107,4 @@ const mapDispatchToProps = (dispatch, { history }) => {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(UpdateResult)
+export default connect(mapStateToProps, mapDispatchToProps)(EditResult)

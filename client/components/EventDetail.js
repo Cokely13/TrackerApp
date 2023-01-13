@@ -11,6 +11,7 @@ import { fetchRecords } from '../store/allRecordsStore'
 import { fetchUsers } from '../store/allUsersStore'
 import { updateSingleRecord } from '../store/singleRecordStore'
 import Records from './Records'
+import eventsReducer from '../store/allEventsStore'
 
 
 export class EventDetail extends React.Component {
@@ -101,6 +102,8 @@ render () {
     <p className="card-text">{this.props.singleEvent.description}</p>
     <h5 className="card-subtitle mb-2 text-muted">End Date: {this.props.singleEvent.endDate}</h5>
    {registeredId.length ? <div>Already Registered </div> : <Link className="btn btn-primary" onClick={this.handleSubmit} to='/profile' >Register</Link>}
+   <p></p>
+   <h5>{this.props.singleEvent.createdBy == myId ?  <Link className="btn btn-primary"  to={`/eventsedit/${this.props.singleEvent.createdBy}`}>Edit Event</Link> : <div></div>}</h5>
   </div>
 </div>
 <div>
