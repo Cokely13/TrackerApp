@@ -89,6 +89,8 @@ render () {
   const tempRecord = sorted[0]
   const myRecord = record[0]
   const users = this.props.allUsers
+  const today = new Date();
+  const  todayDate = today.toISOString().substring(0, 10);
 
 
 
@@ -102,7 +104,7 @@ render () {
     <h5 className="card-subtitle mb-2 text-muted">Type: {this.props.singleEvent.type}</h5>
     <p className="card-text">{this.props.singleEvent.description}</p>
     <h5 className="card-subtitle mb-2 text-muted">End Date: {this.props.singleEvent.endDate}</h5>
-   {registeredId.length ? <div>Already Registered </div> : <Link className="btn btn-primary" onClick={this.handleSubmit} to='/profile' >Register</Link>}
+   {todayDate >= this.props.singleEvent.endDate ? <div>Too Late To Register</div> : registeredId.length ? <div>Already Registered </div> : <Link className="btn btn-primary" onClick={this.handleSubmit} to='/profile' >Register</Link>}
    <p></p>
    <h5>{this.props.singleEvent.createdBy == myId ?  <Link className="btn btn-primary"  to={`/eventsedit/${this.props.singleEvent.id}`}>Edit Event</Link> : <div></div>}</h5>
    <p></p>

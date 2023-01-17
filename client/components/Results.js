@@ -10,7 +10,9 @@ export class Results extends React.Component {
   constructor() {
     super();
     this.state = {
+      filterEvents: ""
     };
+    this.handleChange = this.handleChange.bind(this)
 }
 
 componentDidMount(){
@@ -20,12 +22,23 @@ componentDidMount(){
   const  allresults = this.props.allResults
 }
 
+handleChange(event) {
+  // console.log("id", this.props.singleResult.id,)
+  // console.log("prop", this.props.singleResult,)
+  this.setState({
+    [event.target.name]:event.target.value,
+    // image: this.props.singleEvent.image
+  })
+
+  console.log("STATEEE", this.state)
+  };
+
 
 render () {
   const result = this.props.allResults
   const records = this.props.allResults
-
-  console.log("records", records)
+  const eventsIn = this.state.filterEvents
+  console.log("records", eventsIn.length)
   const sorted = result.sort((a, b) => (a.eventId -b.eventId || Number.parseInt(a.time) - Number.parseInt(b.time)))
     // return parseInt(a.time) - parseInt(b.time);
 // });
@@ -35,13 +48,11 @@ render () {
   return (
     <div>
       <div>
-        <select value={"Hi"} onChange={e => this.sort(e.target.value)} id="rating" className='custom-select'>
-              <option value="disabled">Rating</option>
-              <option value="1">1</option>
+        <select onChange={this.handleChange} name="filterEvents" className='custom-select'>
+              <option value="">Filter by Event Id</option>
               <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
             </select>
           </div>
     <div className="container text-center">
@@ -64,7 +75,25 @@ render () {
     </div>
     </div>
     <div>
-    {sorted.map((result) => {
+    {/* this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId === myId) */}
+    {eventsIn.length ? sorted.filter(event=> event.eventId == eventsIn).map((result) => {
+        return (<div className="container text-center"key={result.id}>
+          <div className="row align-items-start">
+          <div className="col" ><Link to={`/users/${result.userId}`}>{result.userName}</Link>
+    </div>
+        <div className="col" ><Link to={`/users/${result.userId}`}>{result.userId}</Link>
+    </div>
+    <div className="col"><Link to={`/events/${result.eventId}`}>
+        {result.eventId}</Link>
+    </div>
+    <div className="col"><Link to={`/events/${result.eventId}`}>
+        {result.eventName}</Link>
+    </div>
+    <div className="col">
+       {result.time}
+    </div>
+    </div>
+    </div>)}) : sorted.map((result) => {
         return (<div className="container text-center"key={result.id}>
           <div className="row align-items-start">
           <div className="col" ><Link to={`/users/${result.userId}`}>{result.userName}</Link>
