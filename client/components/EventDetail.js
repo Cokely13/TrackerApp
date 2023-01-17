@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link} from 'react-router-dom'
 import { fetchEvent } from '../store/singleEventStore'
+import { deleteEvent } from '../store/allEventsStore'
 import { updateSingleEvent } from '../store/singleEventStore'
 import {createRegisteredEvent, fetchRegisteredEvents} from '../store/allRegisteredEventsStore'
 // import {fetchRegisteredEvents} from '../store/singleRegisteredEventStore'
@@ -103,7 +104,9 @@ render () {
     <h5 className="card-subtitle mb-2 text-muted">End Date: {this.props.singleEvent.endDate}</h5>
    {registeredId.length ? <div>Already Registered </div> : <Link className="btn btn-primary" onClick={this.handleSubmit} to='/profile' >Register</Link>}
    <p></p>
-   <h5>{this.props.singleEvent.createdBy == myId ?  <Link className="btn btn-primary"  to={`/eventsedit/${this.props.singleEvent.createdBy}`}>Edit Event</Link> : <div></div>}</h5>
+   <h5>{this.props.singleEvent.createdBy == myId ?  <Link className="btn btn-primary"  to={`/eventsedit/${this.props.singleEvent.id}`}>Edit Event</Link> : <div></div>}</h5>
+   <p></p>
+   <h5>{this.props.singleEvent.createdBy == myId ?  <button className="btn btn-primary"  onClick={() => this.props.deleteEvent(eventId)} >Delete Event</button> : <div></div>}</h5>
   </div>
 </div>
 <div>
@@ -160,7 +163,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch, { history }) => {
   return{
     fetchEvent: (id) => {dispatch(fetchEvent(id))},
-    updateSingleEvent: (event, history) => dispatch(updateSingleEvent(event, history)),
+    updateSingleEvent: (event) => dispatch(updateSingleEvent(event)),
     createRegisteredEvent: (event) => dispatch(createRegisteredEvent(event, history)),
     fetchResults: () => dispatch(fetchResults()),
     fetchUsers: () => dispatch(fetchUsers()),
@@ -168,6 +171,7 @@ const mapDispatchToProps = (dispatch, { history }) => {
     fetchRecords: (id) => {dispatch(fetchRecords(id))},
     updateSingleRecord: (event, id, history) => dispatch(updateSingleRecord(event, id, history)),
     fetchRegisteredEvents: () => {dispatch(fetchRegisteredEvents())},
+    deleteEvent: (id) => (dispatch(deleteEvent(id, history)))
   }
 
 }

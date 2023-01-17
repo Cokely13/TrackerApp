@@ -77,6 +77,7 @@ export class CreateEvent extends React.Component {
   }
 
   handleSubmit(event) {
+    console.log("EVENT", event)
     event.preventDefault()
     console.log("SENDING", this.state)
     this.props.createEvent({ ...this.state})
@@ -98,18 +99,6 @@ export class CreateEvent extends React.Component {
           <label>Description</label>
           <input name="description" onChange={this.handleChange}  type="text" className='form-control' placeholder='description' />
         </div>
-        <div className="col">
-         <label>Type</label>
-          <select  onChange={this.handleChange2} placeholder='Type' className="form-control">
-        <option disabled>Type</option>
-          <option value="Run">Run</option>
-          <option value="Bike">Bike</option>
-          <option value="Swim">Swim</option>
-          <option value="Row">Row</option>
-          <option value="Random">Random</option>
-          </select>
-        </div>
-      </div>
       <div className="col">
           <label>EndDate</label>
           {/* <DateInput source="endDate"/> */}
@@ -118,7 +107,19 @@ export class CreateEvent extends React.Component {
           placeholder='MM/dd/yyyy'
          />
         </div>
+        <div className="col">
+         <label>Type</label>
+          <select  onChange={this.handleChange2} placeholder="type" name="type" className="form-control">
+        <option disabled selected value="Type">Select Type</option>
+          <option value="Run">Run</option>
+          <option value="Bike">Bike</option>
+          <option value="Swim">Swim</option>
+          <option value="Row">Row</option>
+          <option value="Random">Random</option>
+          </select>
+        </div>
       <button type="submit" className="btn btn-secondary">Add Event</button>
+      </div>
     </form>
   </div>
   )

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect} from 'react-redux'
 import { Link } from 'react-router-dom';
 import { fetchEvents } from '../store/allEventsStore'
+import { deleteEvent } from '../store/allEventsStore'
 import {createRegisteredEvent} from '../store/allRegisteredEventsStore'
 import { fetchRegisteredEvents } from '../store/allRegisteredEventsStore';
 
@@ -92,6 +93,10 @@ const  todayDate = today.toISOString().substring(0, 10);
     <h6 className="card-text">{event.endDate >=  todayDate ? <p>Active</p> :<p>NOT DONE </p>}</h6>
     <Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link>
     <h1></h1>
+    <p></p>
+   <h5>{event.createdBy == myId ?  <Link className="btn btn-primary"  to={`/eventsedit/${event.id}`}>Edit Event</Link> : <div></div>}</h5>
+   <p></p>
+   <h5>{event.createdBy == myId ?  <button className="btn btn-primary"  onClick={() => this.props.deleteEvent(event.id)} >Delete Event</button> : <div></div>}</h5>
     {/* <button className="btn btn-primary" onClick={this.handleSubmit}>Register</button> */}
   </div>
 </div>
@@ -150,6 +155,7 @@ const mapDispatch = (dispatch, { history }) => {
     fetchEvents: () => dispatch(fetchEvents()),
     fetchRegisteredEvents: () => dispatch(fetchRegisteredEvents()),
     // createRegisteredEvent: (event) => dispatch(createRegisteredEvent(event, history))
+    deleteEvent: (id) => (dispatch(deleteEvent(id, history)))
   };
 };
 
