@@ -13,11 +13,13 @@ export class Profile extends React.Component {
   constructor() {
     super();
     this.state = {
-      reset: true
+      reset: true,
+      eventTypes: ""
 
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this)
     // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -43,6 +45,12 @@ export class Profile extends React.Component {
 
       }
 
+      handleChange(event) {
+        this.setState({
+          [event.target.name]:event.target.value,
+        })
+      };
+
       // handleSubmit(id) {
       //   this.props.deleteResult(id)
       //  }
@@ -63,6 +71,10 @@ export class Profile extends React.Component {
       console.log("my records", myRegisteredEvents)
       console.log("my records", sorted)
 
+      const eventTypes=myRegisteredEvents.map(({ type }) => type)
+      let unique = eventTypes.filter((item, i, ar) => ar.indexOf(item) === i)
+      const eventTypeSelected = this.state.eventTypes
+
   return (
 
     <div>
@@ -70,8 +82,28 @@ export class Profile extends React.Component {
       <Image roundedCircle id="userProfileImage"  style={{width: "18rem"}} src={this.props.singleUser.imageUrl}/>
       <h1>Birthday: {this.props.singleUser.birthday}</h1>
       <h1>Gender:{this.props.singleUser.gender}</h1>
+      <div>
+        <select onChange={this.handleChange} name="eventTypes" className='custom-select'>
+              <option value="">Filter by Event Type</option>
+              {unique.map((event) => <option key={event} value={event}>{event}</option>)}
+            </select>
+          </div>
       <h2> Active EVENTS</h2>
-    {myRegisteredEvents.map((registered) => {
+    {eventTypeSelected.length ? myRegisteredEvents.filter(event=> event.type == eventTypeSelected).map((registered) => {
+     return (
+ <div className ="card" style={{width: "18rem"}} key={registered.id} >
+  <img src={registered.image} className="card-img-top" />
+<div className="card-body">
+ <h5 className="card-title">Event Name:{registered.eventName}</h5>
+ <h6 className="card-subtitle mb-2 text-muted">Event Id: {registered.eventId}</h6>
+ <h6 className="card-subtitle mb-2 text-muted">Event Description:{registered.description}</h6>
+ <Link className="card-link" to={`/events/${registered.eventId}`}>Event Detail</Link>
+ <h6 className="card-text">{ registered.endDate >= todayDate ? <p>Active</p> :<p></p>}</h6>
+ <h6> {registered.endDate >= todayDate ?  <Link className="card-link" to={`/results/add/${registered.eventId}`}>Add Result</Link>:<p>Past </p>}</h6>
+ <h1></h1>
+ <button onClick={event => this.handleClick(event, registered)}>Complete Event</button>
+</div>
+</div>)}) :  myRegisteredEvents.map((registered) => {
      return (
  <div className ="card" style={{width: "18rem"}} key={registered.id} >
   <img src={registered.image} className="card-img-top" />

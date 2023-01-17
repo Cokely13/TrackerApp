@@ -38,7 +38,9 @@ render () {
   const result = this.props.allResults
   const records = this.props.allResults
   const eventsIn = this.state.filterEvents
-  console.log("records", eventsIn.length)
+  let eventIds = result.map(({ eventId }) => eventId)
+  let unique = eventIds.filter((item, i, ar) => ar.indexOf(item) === i)
+  console.log("records", unique)
   const sorted = result.sort((a, b) => (a.eventId -b.eventId || Number.parseInt(a.time) - Number.parseInt(b.time)))
     // return parseInt(a.time) - parseInt(b.time);
 // });
@@ -50,9 +52,10 @@ render () {
       <div>
         <select onChange={this.handleChange} name="filterEvents" className='custom-select'>
               <option value="">Filter by Event Id</option>
-              <option value="2">2</option>
+              {unique.map((event) => <option key={event} value={event}>{event}</option>)}
+              {/* <option value="2">2</option>
               <option value="6">6</option>
-              <option value="7">7</option>
+              <option value="7">7</option> */}
             </select>
           </div>
     <div className="container text-center">

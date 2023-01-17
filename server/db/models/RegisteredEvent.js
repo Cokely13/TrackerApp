@@ -16,6 +16,9 @@ const RegisteredEvent = db.define('registeredevent', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  type: {
+    type: Sequelize.STRING,
+  },
   endDate: {
     type: Sequelize.DATEONLY,
     allowNull: false

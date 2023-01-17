@@ -11,7 +11,9 @@ export class Events extends React.Component {
   constructor() {
     super();
     this.state = {
+      eventTypes: ""
     };
+    this.handleChange = this.handleChange.bind(this)
     // this.handleSubmit = this.handleSubmit.bind(this);
 }
 
@@ -25,6 +27,12 @@ componentDidMount(){
 //   console.log("CHECK", event)
 // }
 
+handleChange(event) {
+
+  this.setState({
+    [event.target.name]:event.target.value,
+  })
+};
 
 render () {
 const today = new Date();
@@ -50,11 +58,18 @@ const  todayDate = today.toISOString().substring(0, 10);
   const myRegisteredEvents = this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId === myId)
   // const active
 
+
+
   const eventsAvailable  = allEvents.filter(function(event){
     return myRegisteredEvents.filter(function(reg){
        return reg.eventId == event.id;
     }).length == 0
  });
+
+ const eventTypes=eventsAvailable.map(({ type }) => type)
+ let unique = eventTypes.filter((item, i, ar) => ar.indexOf(item) === i)
+ console.log("EVENTYPES", eventTypes)
+ const eventTypeSelected = this.state.eventTypes
 
  const active = eventsAvailable.filter(event=> event.endDate >= todayDate)
  const past = eventsAvailable.filter(event=> event.endDate < todayDate)
@@ -75,10 +90,16 @@ const  todayDate = today.toISOString().substring(0, 10);
 
   return (
     <div>
+       <div>
+        <select onChange={this.handleChange} name="eventTypes" className='custom-select'>
+              <option value="">Filter by Event Type</option>
+              {unique.map((event) => <option key={event} value={event}>{event}</option>)}
+            </select>
+          </div>
     <div>Active Events</div>
     <div className="container text-center">
       <div className='row'>
-       {active.map((event) => {
+       {eventTypeSelected.length ? active.filter(event=> event.type == eventTypeSelected).map((event) => {
         return (
           <div className='col' key={event.id} >
     <div className ="card" style={{width: "18rem"}} >
@@ -105,6 +126,33 @@ const  todayDate = today.toISOString().substring(0, 10);
 <p></p>
 <p></p>
 </div>
+)}) : active.map((event) => {
+  return (
+    <div className='col' key={event.id} >
+<div className ="card" style={{width: "18rem"}} >
+<img src={event.image} className="card-img-top" />
+<div className="card-body">
+<h5 className="card-title">{event.eventName}</h5>
+<h5 className="card-subtitle mb-2 text-muted">Type: {event.type}</h5>
+<h5 className="card-subtitle mb-2 text-muted">End Date: {event.endDate}</h5>
+{/* <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6> */}
+<p className="card-text">{event.description}</p>
+<h6> {event.endDate}</h6>
+<h6 className="card-text">{event.endDate >=  todayDate ? <p>Active</p> :<p>NOT DONE </p>}</h6>
+<Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link>
+<h1></h1>
+<p></p>
+<h5>{event.createdBy == myId ?  <Link className="btn btn-primary"  to={`/eventsedit/${event.id}`}>Edit Event</Link> : <div></div>}</h5>
+<p></p>
+<h5>{event.createdBy == myId ?  <button className="btn btn-primary"  onClick={() => this.props.deleteEvent(event.id)} >Delete Event</button> : <div></div>}</h5>
+{/* <button className="btn btn-primary" onClick={this.handleSubmit}>Register</button> */}
+</div>
+</div>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+</div>
 )})}
 </div>
  <Link className="btn btn-primary" to={`/events/create`}>Create Event</Link>
@@ -112,7 +160,7 @@ const  todayDate = today.toISOString().substring(0, 10);
 <div>Past Events</div>
     <div className="container text-center">
       <div className='row'>
-       {past.map((event) => {
+      {eventTypeSelected.length ? past.filter(event=> event.type == eventTypeSelected).map((event) => {
         return (
           <div className='col' key={event.id} >
     <div className ="card" style={{width: "18rem"}} >
@@ -129,6 +177,29 @@ const  todayDate = today.toISOString().substring(0, 10);
     <h1></h1>
     {/* <button className="btn btn-primary" onClick={this.handleSubmit}>Register</button> */}
   </div>
+</div>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+</div>
+)}) : past.map((event) => {
+  return (
+    <div className='col' key={event.id} >
+<div className ="card" style={{width: "18rem"}} >
+<img src={event.image} className="card-img-top" />
+<div className="card-body">
+<h5 className="card-title">{event.eventName}</h5>
+<h5 className="card-subtitle mb-2 text-muted">Type: {event.type}</h5>
+<h5 className="card-subtitle mb-2 text-muted">End Date: {event.endDate}</h5>
+{/* <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6> */}
+<p className="card-text">{event.description}</p>
+<h6> {event.endDate}</h6>
+<h6 className="card-text">{event.endDate >  todayDate ? <p>Active</p> :<p>Past Due </p>}</h6>
+<Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link>
+<h1></h1>
+{/* <button className="btn btn-primary" onClick={this.handleSubmit}>Register</button> */}
+</div>
 </div>
 <p></p>
 <p></p>

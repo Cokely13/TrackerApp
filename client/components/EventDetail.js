@@ -46,6 +46,7 @@ handleSubmit(event) {
     eventId: this.props.singleEvent.id,
     userId: this.props.userId,
     image: this.props.singleEvent.image,
+    type: this.props.singleEvent.type,
     endDate: this.props.singleEvent.endDate
   }
   this.props.createRegisteredEvent(newReg)
