@@ -82,6 +82,7 @@ export class Profile extends React.Component {
       <Image roundedCircle id="userProfileImage"  style={{width: "18rem"}} src={this.props.singleUser.imageUrl}/>
       <h1>Birthday: {this.props.singleUser.birthday}</h1>
       <h1>Gender:{this.props.singleUser.gender}</h1>
+      <hi># of Records:{myRecords.length}  </hi>
       <div>
         <select onChange={this.handleChange} name="eventTypes" className='custom-select'>
               <option value="">Filter by Event Type</option>
@@ -89,9 +90,10 @@ export class Profile extends React.Component {
             </select>
           </div>
       <h2> Active EVENTS</h2>
+      <div className ="container text-center row" >
     {eventTypeSelected.length ? myRegisteredEvents.filter(event=> event.type == eventTypeSelected).map((registered) => {
      return (
- <div className ="card" style={{width: "18rem"}} key={registered.id} >
+ <div className ="card border-primary mb-3" style={{width: "18rem"}} key={registered.id} >
   <img src={registered.image} className="card-img-top" />
 <div className="card-body">
  <h5 className="card-title">Event Name:{registered.eventName}</h5>
@@ -105,7 +107,7 @@ export class Profile extends React.Component {
 </div>
 </div>)}) :  myRegisteredEvents.map((registered) => {
      return (
- <div className ="card" style={{width: "18rem"}} key={registered.id} >
+ <div className ="card border-primary mb-3" style={{width: "18rem"}} key={registered.id} >
   <img src={registered.image} className="card-img-top" />
 <div className="card-body">
  <h5 className="card-title">Event Name:{registered.eventName}</h5>
@@ -118,19 +120,43 @@ export class Profile extends React.Component {
  <button onClick={event => this.handleClick(event, registered)}>Complete Event</button>
 </div>
 </div>)})}
+</div>
 <h2>Results</h2>
+<div className="container text-center">
+  <div className="row align-items-start">
+    <div className="col">
+      EventId
+    </div>
+    <div className="col">
+     Event Name
+    </div>
+    <div className="col">
+      Time
+    </div>
+    <div className="col">
+      Event Detail
+    </div>
+    <div className="col">
+      Edit Result
+    </div>
+    <div className="col">
+      Delete Result
+    </div>
+    </div>
+    </div>
 {myResults.map((event) => {
      return (
- <div className ="card" style={{width: "18rem"}} key={event.id} >
-<div className="card-body">
- <h5 className="card-title">Event Name: {event.eventName}</h5>
- <h6 className="card-subtitle mb-2 text-muted">Event Id: {event.eventId}</h6>
- <h6 className="card-text">Time: {event.time}</h6>
- <Link className="card-link" to={`/events/${event.eventId}`}>Event Detail</Link>
- <Link className="card-link" to={`/results/${event.id}`}>Edit Result</Link>
+ <div className ="container text-center" key={event.id} >
+<div className="row align-items-start">
+ <h5 className="col">{event.eventId}</h5>
+ <h6 className="col">{event.eventName}</h6>
+ <h6 className="col">{event.time}</h6>
+ <Link className="col" to={`/events/${event.eventId}`}>Event Detail</Link>
+ <Link className="col" to={`/results/${event.id}`}>Edit Result</Link>
+
+ <button type="button" className="btn btn-danger" style={{width: "10rem"}}onClick={() => this.props.deleteResult(event.id)}>Delete Result</button>
  <p></p>
 <p></p>
- <button type="button" className="btn btn-danger" onClick={() => this.props.deleteResult(event.id)}>Delete Result</button>
  </div>
  </div>
 )})}

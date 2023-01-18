@@ -102,7 +102,7 @@ const  todayDate = today.toISOString().substring(0, 10);
        {eventTypeSelected.length ? active.filter(event=> event.type == eventTypeSelected).map((event) => {
         return (
           <div className='col' key={event.id} >
-    <div className ="card" style={{width: "18rem"}} >
+    <div className ="card border-primary mb-3" style={{width: "18rem"}} >
     <img src={event.image} className="card-img-top" />
   <div className="card-body">
     <h5 className="card-title">{event.eventName}</h5>
@@ -129,7 +129,7 @@ const  todayDate = today.toISOString().substring(0, 10);
 )}) : active.map((event) => {
   return (
     <div className='col' key={event.id} >
-<div className ="card" style={{width: "18rem"}} >
+<div className ="card border-primary mb-3" style={{width: "18rem"}} >
 <img src={event.image} className="card-img-top" />
 <div className="card-body">
 <h5 className="card-title">{event.eventName}</h5>
@@ -163,7 +163,7 @@ const  todayDate = today.toISOString().substring(0, 10);
       {eventTypeSelected.length ? past.filter(event=> event.type == eventTypeSelected).map((event) => {
         return (
           <div className='col' key={event.id} >
-    <div className ="card" style={{width: "18rem"}} >
+    <div className ="card border-dark mb-3" style={{width: "18rem"}} >
     <img src={event.image} className="card-img-top" />
   <div className="card-body">
     <h5 className="card-title">{event.eventName}</h5>
@@ -186,7 +186,7 @@ const  todayDate = today.toISOString().substring(0, 10);
 )}) : past.map((event) => {
   return (
     <div className='col' key={event.id} >
-<div className ="card" style={{width: "18rem"}} >
+<div className ="card border-dark mb-3" style={{width: "18rem"}} >
 <img src={event.image} className="card-img-top" />
 <div className="card-body">
 <h5 className="card-title">{event.eventName}</h5>
