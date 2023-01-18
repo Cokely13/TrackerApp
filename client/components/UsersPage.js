@@ -48,27 +48,45 @@ export class UsersPage extends React.Component {
     <div>
       <h1>{this.props.singleUser.username}</h1>
       <h2>EVENTS</h2>
+      <div className ="row container text-center ">
     {myRegisteredEvents.map((event) => {
      return (
+      <div class="col">
  <div className ="card" style={{width: "18rem"}} key={event.id} >
 <div className="card-body">
  <h5 className="card-title">{event.eventName}</h5>
  <h6 className="card-subtitle mb-2 text-muted">{event.description}</h6>
  <h6 className="card-text">{event.completed ? <p>DONE</p> :<p>NOT DONE </p>}</h6>
- {/* <Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link> */}
- {/* <Link className="card-link" to={`/results/add/${event.eventId}`}>Add Result</Link>
- <h1></h1>
- <Link className="card-link" to={`/completed/${event.eventId}`}>Complete Event</Link> */}
+</div>
 </div>
 </div>)})}
+</div>
 <h2>Results</h2>
+<div className="container text-center">
+  <div className="row align-items-start">
+    <div className="col">
+      EventId
+    </div>
+    <div className="col">
+     Event Name
+    </div>
+    <div className="col">
+      Time
+    </div>
+    </div>
+    </div>
 {myResults.map((event) => {
      return (
- <div className ="card" style={{width: "18rem"}} key={event.id} >
+      <div className ="container text-center" key={event.id} >
+<div className="row align-items-start">
+ <h5 className="col">{event.eventId}</h5>
+ <h6 className="col">{event.eventName}</h6>
+ <h6 className="col">{event.time}</h6>
+ {/* <div className ="card" style={{width: "18rem"}} key={event.id} >
 <div className="card-body">
  <h5 className="card-title">Event Name: {event.eventName}</h5>
  <h6 className="card-subtitle mb-2 text-muted">Event Id: {event.id}</h6>
- <h6 className="card-text">Time: {event.time}</h6>
+ <h6 className="card-text">Time: {event.time}</h6> */}
  </div>
  </div>
 )})}

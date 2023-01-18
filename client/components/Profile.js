@@ -90,9 +90,11 @@ export class Profile extends React.Component {
             </select>
           </div>
       <h2> Active EVENTS</h2>
-      <div className ="container text-center row" >
+      {/* gy-5 */}
+      <div className ="row container text-center "  >
     {eventTypeSelected.length ? myRegisteredEvents.filter(event=> event.type == eventTypeSelected).map((registered) => {
      return (
+      <div class="col">
  <div className ="card border-primary mb-3" style={{width: "18rem"}} key={registered.id} >
   <img src={registered.image} className="card-img-top" />
 <div className="card-body">
@@ -105,8 +107,10 @@ export class Profile extends React.Component {
  <h1></h1>
  <button onClick={event => this.handleClick(event, registered)}>Complete Event</button>
 </div>
+</div>
 </div>)}) :  myRegisteredEvents.map((registered) => {
      return (
+      <div class="col">
  <div className ="card border-primary mb-3" style={{width: "18rem"}} key={registered.id} >
   <img src={registered.image} className="card-img-top" />
 <div className="card-body">
@@ -118,6 +122,7 @@ export class Profile extends React.Component {
  <h6> {registered.endDate >= todayDate ?  <Link className="card-link" to={`/results/add/${registered.eventId}`}>Add Result</Link>:<p>Past </p>}</h6>
  <h1></h1>
  <button onClick={event => this.handleClick(event, registered)}>Complete Event</button>
+</div>
 </div>
 </div>)})}
 </div>
