@@ -16,6 +16,7 @@ import Calendar from './components/Calendar'
 import Records from './components/Records';
 import EditResult from './components/EditResult';
 import EditEvent from './components/EditEvent';
+import Registration from './components/Registration';
 import {me} from './store'
 
 
@@ -54,7 +55,7 @@ class Routes extends Component {
           <Switch>
             <Route path='/' exact component={ Login } />
             <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
+            <Route path="/signup" component={Registration} />
           </Switch>
         )}
       </div>

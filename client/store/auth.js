@@ -38,6 +38,18 @@ export const authenticate = (username, password, method) => async dispatch => {
   }
 }
 
+//does the same as the above except it can handle more than just username and password = should only be used for registration
+export const signup = (user) => async (dispatch) => {
+  try {
+    const res = await axios.post(`/auth/signup`, user)
+    window.localStorage.setItem(TOKEN, res.data.token)
+    dispatch(me())
+    history.push('/');
+  } catch (authError) {
+    return dispatch(setAuth({ error: authError }));
+  }
+};
+
 export const logout = () => {
   window.localStorage.removeItem(TOKEN)
   history.push('/login')

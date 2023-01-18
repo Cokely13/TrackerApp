@@ -10,11 +10,16 @@ const User = db.define('user', {
   username: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    // allowNull: false
   },
-  gender: {
+  // gender: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false
+  // },
+  name: {
     type: Sequelize.STRING,
-    allowNull: false
+    unique: true,
+    // allowNull: false
   },
   email: {
     type: Sequelize.STRING,
@@ -30,6 +35,7 @@ const User = db.define('user', {
   },
   password: {
     type: Sequelize.STRING,
+    allowNull: false
   },
   imageUrl: {
     type: Sequelize.TEXT,

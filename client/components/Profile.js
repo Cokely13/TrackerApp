@@ -82,7 +82,7 @@ export class Profile extends React.Component {
       <Image roundedCircle id="userProfileImage"  style={{width: "18rem"}} src={this.props.singleUser.imageUrl}/>
       <h1>Birthday: {this.props.singleUser.birthday}</h1>
       <h1>Gender:{this.props.singleUser.gender}</h1>
-      <hi># of Records:{myRecords.length}  </hi>
+      <h1># of Records:{myRecords.length}  </h1>
       <div>
         <select onChange={this.handleChange} name="eventTypes" className='custom-select'>
               <option value="">Filter by Event Type</option>
@@ -94,7 +94,7 @@ export class Profile extends React.Component {
       <div className ="row container text-center "  >
     {eventTypeSelected.length ? myRegisteredEvents.filter(event=> event.type == eventTypeSelected).map((registered) => {
      return (
-      <div class="col">
+      <div className="col" key={registered.id}>
  <div className ="card border-primary mb-3" style={{width: "18rem"}} key={registered.id} >
   <img src={registered.image} className="card-img-top" />
 <div className="card-body">
@@ -110,7 +110,7 @@ export class Profile extends React.Component {
 </div>
 </div>)}) :  myRegisteredEvents.map((registered) => {
      return (
-      <div class="col">
+      <div className="col" key={registered.id}>
  <div className ="card border-primary mb-3" style={{width: "18rem"}} key={registered.id} >
   <img src={registered.image} className="card-img-top" />
 <div className="card-body">
@@ -166,8 +166,10 @@ export class Profile extends React.Component {
  </div>
 )})}
       <h2> Completed EVENTS</h2>
+      <div className ="row container text-center "  >
     {myCompletedEvents.map((registered) => {
      return (
+      <div className="col" key={registered.id} >
  <div className ="card" style={{width: "18rem"}} key={registered.id} >
 <div className="card-body">
  <h5 className="card-title">Event Name:{registered.eventName}</h5>
@@ -175,16 +177,34 @@ export class Profile extends React.Component {
  <h6 className="card-subtitle mb-2 text-muted">Event Description:{registered.description}</h6>
  <Link className="card-link" to={`/events/${registered.id}`}>Event Detail</Link>
 </div>
+</div>
 </div>)})}
+</div>
 <h2> Your Records</h2>
+<div className="container text-center">
+  <div className="row align-items-start">
+    <div className="col">
+    Event Name
+    </div>
+    <div className="col">
+     Event Id
+    </div>
+    <div className="col">
+      Time
+    </div>
+    <div className="col">
+      Event Detail
+    </div>
+    </div>
+    </div>
   {myRecords.length ? myRecords.map((record) => {
      return (
- <div className ="card" style={{width: "18rem"}} key={record.id} >
-<div className="card-body">
- <h5 className="card-title">Event Name:{record.eventName}</h5>
- <h6 className="card-subtitle mb-2 text-muted">Event Id: {record.eventId}</h6>
- <h6 className="card-subtitle mb-2 text-muted">Time:{record.time}</h6>
- <Link className="card-link" to={`/events/${record.eventId}`}>Event Detail</Link>
+ <div className ="container text-center" key={record.id} >
+<div className="row align-items-start">
+ <h5 className="col">{record.eventName}</h5>
+ <h6 className="col">{record.eventId}</h6>
+ <h6 className="col">{record.time}</h6>
+ <Link className="col" to={`/events/${record.eventId}`}>Event Detail</Link>
 </div>
 </div>)}) : <h5>No Records Yet. Step it up Pal!</h5>}
 </div>
