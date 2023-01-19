@@ -41,7 +41,11 @@ export class UsersPage extends React.Component {
       const myRegisteredEvents = this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId == myId)
       const myResults = this.props.allResults.filter(result => result.userId == myId)
       const myRecords = this.props.allRecords.filter(record => record.userId == myId)
-
+      myRegisteredEvents.sort(function (x, y) {
+        let a = new Date(x.endDate),
+            b = new Date(y.endDate);
+        return a - b;
+    });
 
   return (
 
@@ -56,6 +60,7 @@ export class UsersPage extends React.Component {
 <div className="card-body">
  <h5 className="card-title">{event.eventName}</h5>
  <h6 className="card-subtitle mb-2 text-muted">{event.description}</h6>
+ <h6 className="card-subtitle mb-2 text-muted">{event.endDate}</h6>
  <h6 className="card-text">{event.completed ? <p>DONE</p> :<p>NOT DONE </p>}</h6>
 </div>
 </div>

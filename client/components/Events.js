@@ -50,6 +50,11 @@ const  todayDate = today.toISOString().substring(0, 10);
   // console.log("DAYS", days)
   const myId = this.props.userId
   const allEvents = this.props.allEvents
+  allEvents.sort(function (x, y) {
+    let a = new Date(x.endDate),
+        b = new Date(y.endDate);
+    return a - b;
+});
   // console.log("all", allEvents)
 
   // console.log("ACT", active)

@@ -42,6 +42,9 @@ render () {
     <div className="col">
      Event Name
     </div>
+    {/* <div className="col">
+     Date
+    </div> */}
     <div className="col">
       Time
     </div>
@@ -61,6 +64,9 @@ render () {
     <div className="col"><Link to={`/events/${result.eventId}`}>
         {result.eventName}</Link>
     </div>
+    {/* <div className="col">
+     {Date(result.updatedAt)}
+    </div> */}
     <div className="col">
        {result.time}
     </div>

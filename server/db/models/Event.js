@@ -28,7 +28,8 @@ const Event = db.define('event', {
     // },
   type: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 'Random'
   },
   image: {
     type: Sequelize.TEXT,
