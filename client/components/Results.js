@@ -30,7 +30,7 @@ handleChange(event) {
     // image: this.props.singleEvent.image
   })
 
-  console.log("STATEEE", this.state)
+  // console.log("STATEEE", this.state)
   };
 
 

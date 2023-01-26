@@ -50,8 +50,9 @@ export class UsersPage extends React.Component {
   return (
 
     <div>
-      <h1>{this.props.singleUser.username}</h1>
-      <h2>EVENTS</h2>
+      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>{this.props.singleUser.username}</h1>
+      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>EVENTS</h2>
+      <hr></hr>
       <div className ="row container text-center ">
     {myRegisteredEvents.map((event) => {
      return (
@@ -66,7 +67,9 @@ export class UsersPage extends React.Component {
 </div>
 </div>)})}
 </div>
-<h2>Results</h2>
+<hr></hr>
+<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Results</h2>
+<hr></hr>
 <div className="container text-center">
   <div className="row align-items-start">
     <div className="col">
@@ -95,7 +98,9 @@ export class UsersPage extends React.Component {
  </div>
  </div>
 )})}
-<h2> Records</h2>
+<hr></hr>
+<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}> Records</h2>
+<hr></hr>
   {myRecords.length ? myRecords.map((record) => {
      return (
  <div className ="card" style={{width: "18rem"}} key={record.id} >

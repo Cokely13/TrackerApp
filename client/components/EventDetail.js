@@ -96,7 +96,7 @@ render () {
 
 
   return (
-    <div>
+    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>
     <div>
     <div className ="card grid text-center" style={{width: "18rem"}}  >
     <img src={this.props.singleEvent.image} className="card-img-top" />
@@ -122,8 +122,9 @@ render () {
  )})}
  </div>
  </div>
-<h2>Results</h2>
-{sorted.map((event) => {
+<h2>Results: </h2>
+{sorted.length?
+sorted.map((event) => {
      return (
  <div className ="card" style={{width: "18rem"}} key={event.id} >
 <div className="card-body">
@@ -132,8 +133,8 @@ render () {
  <h6 className="card-text">Time: {event.time}</h6>
  </div>
  </div>
-)})}
-<h2>Current Record</h2>
+)}): <h1>No Results Yet</h1> }
+<h2>Current Record:</h2>
 <div className ="card" style={{width: "18rem"}} >
 <div className="card-body">
 <h5 className="card-title">RecordHolder: {tempRecord? tempRecord.userName : "N/A" }</h5>
@@ -142,7 +143,7 @@ render () {
 </div>
 </div>
 </div>
-<h2>All Time Record</h2>
+<h2>All Time Record:</h2>
 <div className ="card" style={{width: "18rem"}} >
 <div className="card-body">
 <h5 className="card-title">RecordHolder: {myRecord ? myRecord.userName : "No Record Yet" }</h5>

@@ -101,7 +101,8 @@ const  todayDate = today.toISOString().substring(0, 10);
               {unique.map((event) => <option key={event} value={event}>{event}</option>)}
             </select>
           </div>
-    <div>Active Events</div>
+    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Active Events</div>
+    <hr></hr>
     <div className="container text-center">
       <div className='row'>
        {eventTypeSelected.length ? active.filter(event=> event.type == eventTypeSelected).map((event) => {
@@ -111,12 +112,13 @@ const  todayDate = today.toISOString().substring(0, 10);
     <img src={event.image} className="card-img-top" />
   <div className="card-body">
     <h5 className="card-title">{event.eventName}</h5>
-    <h5 className="card-subtitle mb-2 text-muted">Type: {event.type}</h5>
-    <h5 className="card-subtitle mb-2 text-muted">End Date: {event.endDate}</h5>
+    </div>
+    <h5 className="list-group-item">Type: {event.type}</h5>
+    <h5 className="list-group-item">End Date: {event.endDate}</h5>
     {/* <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6> */}
     <p className="card-text">{event.description}</p>
-    <h6> {event.endDate}</h6>
-    <h6 className="card-text">{event.endDate >=  todayDate ? <p>Active</p> :<p>NOT DONE </p>}</h6>
+    {/* <h6> {event.endDate}</h6>
+    <h6 className="card-text">{event.endDate >=  todayDate ? <p>Active</p> :<p>NOT DONE </p>}</h6> */}
     <Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link>
     <h1></h1>
     <p></p>
@@ -124,7 +126,6 @@ const  todayDate = today.toISOString().substring(0, 10);
    <p></p>
    <h5>{event.createdBy == myId ?  <button className="btn btn-primary"  onClick={() => this.props.deleteEvent(event.id)} >Delete Event</button> : <div></div>}</h5>
     {/* <button className="btn btn-primary" onClick={this.handleSubmit}>Register</button> */}
-  </div>
 </div>
 <p></p>
 <p></p>
@@ -136,17 +137,20 @@ const  todayDate = today.toISOString().substring(0, 10);
     <div className='col' key={event.id} >
 <div className ="card border-primary mb-3" style={{width: "18rem"}} >
 <img src={event.image} className="card-img-top" />
-<div className="card-body">
-<h5 className="card-title">{event.eventName}</h5>
-<h5 className="card-subtitle mb-2 text-muted">Type: {event.type}</h5>
-<h5 className="card-subtitle mb-2 text-muted">End Date: {event.endDate}</h5>
-{/* <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6> */}
-<p className="card-text">{event.description}</p>
-<h6> {event.endDate}</h6>
-<h6 className="card-text">{event.endDate >=  todayDate ? <p>Active</p> :<p>NOT DONE </p>}</h6>
+{/* <div className="card-body"> */}
+<h5 className="card-header">{event.eventName}</h5>
+{/* </div> */}
+<ul class="list-group list-group-flush">
+<li className="list-group-item">Type: {event.type}</li>
+<li className="list-group-item">End Date: {event.endDate}</li>
+<li className="card-text">{event.description}</li>
+</ul>
+{/* <h6> {event.endDate}</h6>
+<h6 className="card-text">{event.endDate >=  todayDate ? <p>Active</p> :<p>NOT DONE </p>}</h6> */}
+<div class="card-body">
 <Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link>
-<h1></h1>
-<p></p>
+{/* <h1></h1>
+<p></p> */}
 <h5>{event.createdBy == myId ?  <Link className="btn btn-primary"  to={`/eventsedit/${event.id}`}>Edit Event</Link> : <div></div>}</h5>
 <p></p>
 <h5>{event.createdBy == myId ?  <button className="btn btn-primary"  onClick={() => this.props.deleteEvent(event.id)} >Delete Event</button> : <div></div>}</h5>
@@ -160,9 +164,11 @@ const  todayDate = today.toISOString().substring(0, 10);
 </div>
 )})}
 </div>
- <Link className="btn btn-primary" to={`/events/create`}>Create Event</Link>
+ {/* <Link className="btn btn-primary" to={`/events/create`}>Create Event</Link> */}
 </div>
-<div>Past Events</div>
+<hr></hr>
+<div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Past Events</div>
+<hr></hr>
     <div className="container text-center">
       <div className='row'>
       {eventTypeSelected.length ? past.filter(event=> event.type == eventTypeSelected).map((event) => {
@@ -172,12 +178,14 @@ const  todayDate = today.toISOString().substring(0, 10);
     <img src={event.image} className="card-img-top" />
   <div className="card-body">
     <h5 className="card-title">{event.eventName}</h5>
-    <h5 className="card-subtitle mb-2 text-muted">Type: {event.type}</h5>
-    <h5 className="card-subtitle mb-2 text-muted">End Date: {event.endDate}</h5>
+    <ul class="list-group list-group-flush">
+    <h5 className="list-group-item">Type: {event.type}</h5>
+    <h5 className="list-group-item">End Date: {event.endDate}</h5>
+    </ul>
     {/* <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6> */}
     <p className="card-text">{event.description}</p>
-    <h6> {event.endDate}</h6>
-    <h6 className="card-text">{event.endDate >  todayDate ? <p>Active</p> :<p>Past Due </p>}</h6>
+    {/* <h6> {event.endDate}</h6>
+    <h6 className="card-text">{event.endDate >  todayDate ? <p>Active</p> :<p>Past Due </p>}</h6> */}
     <Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link>
     <h1></h1>
     {/* <button className="btn btn-primary" onClick={this.handleSubmit}>Register</button> */}
@@ -195,12 +203,14 @@ const  todayDate = today.toISOString().substring(0, 10);
 <img src={event.image} className="card-img-top" />
 <div className="card-body">
 <h5 className="card-title">{event.eventName}</h5>
-<h5 className="card-subtitle mb-2 text-muted">Type: {event.type}</h5>
-<h5 className="card-subtitle mb-2 text-muted">End Date: {event.endDate}</h5>
+<ul class="list-group list-group-flush">
+<h5 className="list-group-item">Type: {event.type}</h5>
+<h5 className="list-group-item">End Date: {event.endDate}</h5>
+</ul>
 {/* <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6> */}
 <p className="card-text">{event.description}</p>
-<h6> {event.endDate}</h6>
-<h6 className="card-text">{event.endDate >  todayDate ? <p>Active</p> :<p>Past Due </p>}</h6>
+{/* <h6> {event.endDate}</h6>
+<h6 className="card-text">{event.endDate >  todayDate ? <p>Active</p> :<p>Past Due </p>}</h6> */}
 <Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link>
 <h1></h1>
 {/* <button className="btn btn-primary" onClick={this.handleSubmit}>Register</button> */}
@@ -213,6 +223,10 @@ const  todayDate = today.toISOString().substring(0, 10);
 </div>
 )})}
 </div>
+</div>
+<hr></hr>
+<div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}} >
+<Link className="btn btn-primary" to={`/events/create`}>Create Event</Link>
 </div>
 </div>
 )

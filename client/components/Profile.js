@@ -73,7 +73,7 @@ export class Profile extends React.Component {
       const myRecords = this.props.allRecords.filter(record => record.userId == myId)
       // const myRecords = filteredRecords[0]
 
-      console.log("my records", myRegisteredEvents)
+      // console.log("my records", myRegisteredEvents)
       // console.log("my records", sorted)
 
       const eventTypes=myRegisteredEvents.map(({ type }) => type)
@@ -83,18 +83,23 @@ export class Profile extends React.Component {
   return (
 
     <div>
-      <h1>{this.props.singleUser.username}</h1>
+      <div>
+      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>{this.props.singleUser.username}</h1>
+      <div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>
       <Image roundedCircle id="userProfileImage"  style={{width: "18rem"}} src={this.props.singleUser.imageUrl}/>
-      <h1>Birthday: {this.props.singleUser.birthday}</h1>
-      <h1>Gender:{this.props.singleUser.gender}</h1>
-      <h1># of Records:{myRecords.length}  </h1>
+      </div>
+      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Birthday: {this.props.singleUser.birthday}</h1>
+      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Gender:{this.props.singleUser.gender}</h1>
+      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}># of Records:{myRecords.length}  </h1>
+      <hr></hr>
       <div>
         <select onChange={this.handleChange} name="eventTypes" className='custom-select'>
               <option value="">Filter by Event Type</option>
               {unique.map((event) => <option key={event} value={event}>{event}</option>)}
             </select>
           </div>
-      <h2> Active EVENTS</h2>
+          </div>
+      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}> Active Events: </h2>
       {/* gy-5 */}
       <div className ="row container text-center "  >
     {eventTypeSelected.length ? myRegisteredEvents.filter(event=> event.type == eventTypeSelected).map((registered) => {
@@ -133,7 +138,7 @@ export class Profile extends React.Component {
 </div>
 </div>)})}
 </div>
-<h2>Results</h2>
+ <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Results: </h2>{myResults.length ? <div>
 <div className="container text-center">
   <div className="row align-items-start">
     <div className="col">
@@ -171,10 +176,10 @@ export class Profile extends React.Component {
 <p></p>
  </div>
  </div>
-)})}
-      <h2> Completed EVENTS</h2>
+)})}</div>: <div className ="container text-center"><h5>No Results Yet. Step it up Pal!</h5></div>}
+      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}> Completed Events:</h2>
       <div className ="row container text-center "  >
-    {myCompletedEvents.map((registered) => {
+    {myCompletedEvents.length ?myCompletedEvents.map((registered) => {
      return (
       <div className="col" key={registered.id} >
  <div className ="card" style={{width: "18rem"}} key={registered.id} >
@@ -185,11 +190,13 @@ export class Profile extends React.Component {
  <Link className="card-link" to={`/events/${registered.id}`}>Event Detail</Link>
 </div>
 </div>
-</div>)})}
+</div>)}):
+   <h5>No Completed Events Yet. Step it up Pal!</h5>
+  }
 </div>
-<h2> Your Records</h2>
-<div className="container text-center">
-  <div className="row align-items-start">
+<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}> Your Records:</h2>
+{myRecords.length ? <div className="container text-center">
+   <div className="row align-items-start">
     <div className="col">
     Event Name
     </div>
@@ -203,8 +210,8 @@ export class Profile extends React.Component {
       Event Detail
     </div>
     </div>
-    </div>
-  {myRecords.length ? myRecords.map((record) => {
+    <div>
+    {myRecords.map((record) => {
      return (
  <div className ="container text-center" key={record.id} >
 <div className="row align-items-start">
@@ -213,9 +220,8 @@ export class Profile extends React.Component {
  <h6 className="col">{record.time}</h6>
  <Link className="col" to={`/events/${record.eventId}`}>Event Detail</Link>
 </div>
-</div>)}) : <h5>No Records Yet. Step it up Pal!</h5>}
+</div> )})}</div></div> : <div className ="container text-center"><h5>No Records Yet. Step it up Pal!</h5></div>}
 </div>
-
 )
 }}
 

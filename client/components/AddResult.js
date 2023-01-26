@@ -36,10 +36,12 @@ export class AddResult extends React.Component {
   }
 
   handleChange(event) {
+    const result = event.target.value.replace(/\D/g, '');
+    console.log("result", result)
     this.setState({
       eventName:this.props.singleEvent.eventName,
       userName:this.props.singleUser.username,
-      [event.target.name]: event.target.value,
+      time: result
     // register: {
     //   id: this.myRegisteredEvent.id,
     // }
@@ -63,6 +65,8 @@ export class AddResult extends React.Component {
       // const myEvent = myRegisteredEvents.filter(myRegisteredEvent => myRegisteredEvent.eventId === "7")
       // console.log("EVENT", myEvent)
       // console.log("IDDDD", regId)
+       const value = this.state.time
+       console.log("VALUE", value)
   return (
 
 
@@ -79,7 +83,7 @@ export class AddResult extends React.Component {
           </div>
         <div className="col">
         <label>Time</label>
-          <input name='time' onChange={this.handleChange}  type="text" className='form-control' placeholder='Enter Result'/>
+          <input name='time' onChange={this.handleChange} value= {value} type="text" className='form-control' placeholder='Enter Result'/>
         </div>
       <button type="submit" className="btn btn-secondary">Add Result</button>
       </div>
