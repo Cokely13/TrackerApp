@@ -6,24 +6,39 @@ import { fetchSingleUser } from '../store/singleUserStore';
 import {updateSingleRegisteredEvent} from '../store/singleRegisteredEventStore'
 import { fetchResults, deleteResult } from '../store/allResultsStore';
 import { fetchRecords } from '../store/allRecordsStore';
+import { fetchUsers } from '../store/allUsersStore';
+import { createChallenge } from '../store/allChallengesStore';
 import {Image} from 'react-bootstrap'
-import RegisterUpdate from './RegisterUpdate';
+// import RegisterUpdate from './RegisterUpdate';
+// import { fetchUsers } from '../store/allUsersStore';
 
 export class Profile extends React.Component {
   constructor() {
     super();
     this.state = {
       reset: true,
-      eventTypes: ""
+      eventTypes: "",
+      challengeOn: "",
+      challenge: {
+        eventName: "",
+        eventId: "",
+        endDate: "",
+        challenger: "",
+        type: "",
+        challenged: ""
+      }
 
     };
 
     this.handleClick = this.handleClick.bind(this);
-    this.handleChange = this.handleChange.bind(this)
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleChange2 = this.handleChange2.bind(this);
+    this.handleClick2 = this.handleClick2.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
     componentDidMount(){
+      this.props.fetchUsers()
       this.props.fetchRegisteredEvents()
       this.props.fetchSingleUser(this.props.userId)
       this.props.fetchResults()
@@ -51,9 +66,35 @@ export class Profile extends React.Component {
         })
       };
 
-      // handleSubmit(id) {
-      //   this.props.deleteResult(id)
-      //  }
+      handleChange2(event, registered) {
+        this.setState({
+          challenge: {
+            challenge: {
+              eventName: registered.eventName,
+              eventId: registered.id,
+              endDate: registered.endDate,
+              challenger: this.props.userId,
+              type: registered.type,
+              challenged:event.target.value,
+            }
+          }
+        })
+      };
+
+      handleClick2(event, registered) {
+        console.log("EVENT", registered)
+        this.setState({
+          challengeOn: registered.id,
+        })
+        // this.props.createChallenge(event)
+       }
+
+       handleSubmit(event) {
+        event.preventDefault()
+        // const newChallenge = this.state.challenge
+        console.log("newChallenge", this.state.challenge.challenge)
+       this.props.createChallenge(this.state.challenge.challenge)
+      };
 
 
 
@@ -71,6 +112,8 @@ export class Profile extends React.Component {
       const myCompletedEvents = this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId === myId && registeredEvent.completed == true)
       const myResults = this.props.allResults.filter(result => result.userId === myId)
       const myRecords = this.props.allRecords.filter(record => record.userId == myId)
+      const users = this.props.allUsers.filter(user => user.id !== myId)
+      const userNames=users.map(({ username }) => username)
       // const myRecords = filteredRecords[0]
 
       // console.log("my records", myRegisteredEvents)
@@ -79,6 +122,7 @@ export class Profile extends React.Component {
       const eventTypes=myRegisteredEvents.map(({ type }) => type)
       let unique = eventTypes.filter((item, i, ar) => ar.indexOf(item) === i)
       const eventTypeSelected = this.state.eventTypes
+      console.log("StATE", this.state)
 
   return (
 
@@ -134,6 +178,20 @@ export class Profile extends React.Component {
  <h6> {registered.endDate >= todayDate ?  <Link className="card-link" to={`/results/add/${registered.eventId}`}>Add Result</Link>:<p>Past </p>}</h6>
  <h1></h1>
  <button onClick={event => this.handleClick(event, registered)}>Complete Event</button>
+ <h1></h1>
+ <button onClick={event => this.handleClick2(event, registered)}>Challenge Friend</button>
+  {this.state.challengeOn == registered.id ? <div>
+  <hr></hr>
+      <div>
+        <select onChange={event => this.handleChange2(event, registered)} name="challenged" className='custom-select'>
+              <option value="">Pick Friend</option>
+              {userNames.map((event) => <option key={event} value={event}>{event}</option>)}
+            </select>
+          </div>
+          <div>
+ <button onClick={this.handleSubmit} className="btn btn-secondary">CHALLENGE!</button>
+ </div> </div>
+  : <div> </div>}
 </div>
 </div>
 </div>)})}
@@ -231,7 +289,8 @@ const mapState = (state) => {
     userId: state.auth.id,
     singleUser: state.singleUser,
     allResults: state.allResults,
-    allRecords: state.allRecords
+    allRecords: state.allRecords,
+    allUsers: state.allUsers
   }
 }
 
@@ -241,7 +300,9 @@ const mapDispatch = (dispatch, { history }) => {
     fetchSingleUser: (id) => {dispatch(fetchSingleUser(id))},
     updateSingleRegisteredEvent: (id) => (dispatch(updateSingleRegisteredEvent((id)))),
     fetchResults: () => dispatch(fetchResults()),
+    fetchUsers: () => dispatch(fetchUsers()),
     fetchRecords: () => dispatch(fetchRecords()),
+    createChallenge: (event) => dispatch(createChallenge(event, history)),
     deleteResult: (id) => dispatch(deleteResult(id, history))
   };
 };

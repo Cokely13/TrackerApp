@@ -4,6 +4,7 @@ const db = require('./db')
 
 const User = require('./models/User')
 const Event = require('./models/Event')
+const Challenge = require('./models/Challenge')
 const Result = require('./models/Result')
 const Record = require('./models/Record')
 const RegisteredEvent = require('./models/RegisteredEvent')
@@ -31,6 +32,7 @@ module.exports = {
     Event,
     Result,
     RegisteredEvent,
-    Record
+    Record,
+    Challenge
   },
 }

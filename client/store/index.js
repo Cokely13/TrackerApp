@@ -13,6 +13,7 @@ import singleRegisteredEventReducer from './singleRegisteredEventStore'
 import recordsReducer from './allRecordsStore'
 import singleRecordReducer from './singleRecordStore'
 import singleResultReducer from './singleResultsStore'
+import challengesReducer from './allChallengesStore'
 
 const reducer = combineReducers({ auth,
 allEvents: eventsReducer,
@@ -24,7 +25,8 @@ singleUser: singleUserReducer,
 singlRecord: singleRecordReducer,
 singleResult: singleResultReducer,
 registeredEvents: registeredEventsReducer,
-singleRegisteredEvent: singleRegisteredEventReducer })
+singleRegisteredEvent: singleRegisteredEventReducer,
+allChallenges: challengesReducer })
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
