@@ -1,10 +1,10 @@
 const router = require('express').Router()
-const { models: { Challenge}} = require('../db')
+const { models: { Challenge, Event}} = require('../db')
 
 
 router.get('/', async (req, res, next) => {
   try {
-    const challenges = await Challenge.findAll()
+    const challenges = await Challenge.findAll({include: Event})
     res.json(challenges)
   } catch (err) {
     next(err)

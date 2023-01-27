@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const { models: { Record }} = require('../db')
+const { models: { Record, Event }} = require('../db')
 
 router.get('/', async (req, res, next) => {
   try {
-    const records = await Record.findAll()
+    const records = await Record.findAll({include: Event})
     res.json(records)
   } catch (err) {
     next(err)

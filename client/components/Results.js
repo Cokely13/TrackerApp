@@ -49,6 +49,7 @@ render () {
 
   return (
     <div>
+      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>RESULTS: </h1>
       <div>
         <select onChange={this.handleChange} name="filterEvents" className='custom-select'>
               <option value="">Filter by Event Id</option>

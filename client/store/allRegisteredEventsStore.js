@@ -37,7 +37,7 @@ export const createRegisteredEvent = (registeredevent, history) => {
   return async (dispatch) => {
     const { data: created } = await Axios.post("/api/registered", registeredevent);
     dispatch(_createRegisteredEvent(created));
-    history.push("/profile");
+    // history.push("/profile");
   };
 };
 

@@ -56,8 +56,8 @@ export class UsersPage extends React.Component {
       <div className ="row container text-center ">
     {myRegisteredEvents.map((event) => {
      return (
-      <div class="col">
- <div className ="card" style={{width: "18rem"}} key={event.id} >
+      <div className="col" key={event.id} >
+ <div className ="card" style={{width: "18rem"}}>
 <div className="card-body">
  <h5 className="card-title">{event.eventName}</h5>
  <h6 className="card-subtitle mb-2 text-muted">{event.description}</h6>

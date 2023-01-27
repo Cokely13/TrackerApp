@@ -31,7 +31,7 @@ export const fetchResult = (id) => {
 };
 
 export const updateSingleResult = (result, history) => {
-  console.log("IT MADE IT!")
+  // console.log("IT MADE IT!")
   return async (dispatch) => {
     try {
         await axios.put(`/api/results/${result.id}`, result);

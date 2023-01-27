@@ -89,7 +89,6 @@ export class EditEvent extends React.Component {
 
 
   handleSubmit(event) {
-    console.log("STATE", this.state)
     event.preventDefault();
     this.props.updateSingleEvent({ ...this.state});
     this.props.history.push('/events')

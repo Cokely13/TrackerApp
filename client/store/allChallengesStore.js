@@ -37,7 +37,7 @@ export const createChallenge = (event, history) => {
   return async (dispatch) => {
     const { data: created } = await Axios.post("/api/challenges", event);
     dispatch(_createChallenge(created));
-    history.push("/challenges");
+    history.push("/profile");
   };
 };
 
@@ -45,7 +45,7 @@ export const deleteChallenge= (id, history) => {
   return async (dispatch) => {
     const { data: event } = await Axios.delete(`/api/challenges/${id}`);
     dispatch(_deleteChallenge(event));
-    history.push("/challenges");
+    history.push("/profile");
   };
 };
 

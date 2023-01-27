@@ -7,8 +7,9 @@ import {updateSingleRegisteredEvent} from '../store/singleRegisteredEventStore'
 import { fetchResults, deleteResult } from '../store/allResultsStore';
 import { fetchRecords } from '../store/allRecordsStore';
 import { fetchUsers } from '../store/allUsersStore';
-import { createChallenge } from '../store/allChallengesStore';
+import { createChallenge, fetchChallenges } from '../store/allChallengesStore';
 import {Image} from 'react-bootstrap'
+import { updateSingleChallenge } from '../store/singleChallengeStore';
 // import RegisterUpdate from './RegisterUpdate';
 // import { fetchUsers } from '../store/allUsersStore';
 
@@ -24,8 +25,10 @@ export class Profile extends React.Component {
         eventId: "",
         endDate: "",
         challenger: "",
+        challengerId: "",
         type: "",
-        challenged: ""
+        challenged: "",
+        challengedId: "",
       }
 
     };
@@ -34,6 +37,7 @@ export class Profile extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleChange2 = this.handleChange2.bind(this);
     this.handleClick2 = this.handleClick2.bind(this);
+    this.handleClick3 = this.handleClick3.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -43,11 +47,11 @@ export class Profile extends React.Component {
       this.props.fetchSingleUser(this.props.userId)
       this.props.fetchResults()
       this.props.fetchRecords()
+      this.props.fetchChallenges()
     }
 
     handleClick(event, registered){
       event.preventDefault()
-      console.log("TEST", registered)
       const reg = registered.id
 
       registered.completed = true
@@ -71,9 +75,10 @@ export class Profile extends React.Component {
           challenge: {
             challenge: {
               eventName: registered.eventName,
-              eventId: registered.id,
+              eventId: registered.eventId,
               endDate: registered.endDate,
-              challenger: this.props.userId,
+              challengerId: this.props.userId,
+              challenger: this.props.singleUser.username,
               type: registered.type,
               challenged:event.target.value,
             }
@@ -82,18 +87,22 @@ export class Profile extends React.Component {
       };
 
       handleClick2(event, registered) {
-        console.log("EVENT", registered)
         this.setState({
           challengeOn: registered.id,
         })
-        // this.props.createChallenge(event)
+       }
+
+       handleClick3(event, registered) {
+        registered.accepted = true
+        this.props.updateSingleChallenge(registered)
        }
 
        handleSubmit(event) {
         event.preventDefault()
-        // const newChallenge = this.state.challenge
-        console.log("newChallenge", this.state.challenge.challenge)
        this.props.createChallenge(this.state.challenge.challenge)
+       this.setState({
+        challengeOn: "",
+      })
       };
 
 
@@ -114,6 +123,9 @@ export class Profile extends React.Component {
       const myRecords = this.props.allRecords.filter(record => record.userId == myId)
       const users = this.props.allUsers.filter(user => user.id !== myId)
       const userNames=users.map(({ username }) => username)
+      const myChallenges = this.props.allChallenges.filter(challenge => challenge.challenged == this.props.singleUser.username)
+      const myAcceptedChallenges = myChallenges.filter(challenge => challenge.accepted == true)
+      const myPendingChallenges = myChallenges.filter(challenge => challenge.accepted == false)
       // const myRecords = filteredRecords[0]
 
       // console.log("my records", myRegisteredEvents)
@@ -136,6 +148,27 @@ export class Profile extends React.Component {
       <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Gender:{this.props.singleUser.gender}</h1>
       <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}># of Records:{myRecords.length}  </h1>
       <hr></hr>
+      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}> Challenge:</h2>
+      <div className ="row container text-center "  >
+    {myPendingChallenges.length ?myPendingChallenges.map((registered) => {
+     return (
+      <div className="col" key={registered.id} >
+ <div className ="card" style={{width: "18rem"}} key={registered.id} >
+<div className="card-body">
+ <h5 className="card-title">Event Name:{registered.eventName}</h5>
+ <h6 className="card-subtitle mb-2 text-muted">Event Id: {registered.eventId}</h6>
+ <h6 className="card-subtitle mb-2 text-muted">EndDate:{registered.endDate}</h6>
+ <h6 className="card-subtitle mb-2 text-muted">Challenged By:{registered.challengedId}</h6>
+ <h6 className="card-subtitle mb-2 text-muted">Challenged By:{registered.challenger}</h6>
+ <Link className="card-link" to={`/events/${registered.eventId}`}>Event Detail</Link>
+ <button onClick={event => this.handleClick3(event, registered)}className="btn btn-secondary">ACCEPT CHALLENGE!</button>
+</div>
+</div>
+</div>)}):
+   <h5>No Challenges Right now. Challenge a friend!</h5>
+  }
+</div>
+<hr></hr>
       <div>
         <select onChange={this.handleChange} name="eventTypes" className='custom-select'>
               <option value="">Filter by Event Type</option>
@@ -290,7 +323,8 @@ const mapState = (state) => {
     singleUser: state.singleUser,
     allResults: state.allResults,
     allRecords: state.allRecords,
-    allUsers: state.allUsers
+    allUsers: state.allUsers,
+    allChallenges: state.allChallenges
   }
 }
 
@@ -298,10 +332,12 @@ const mapDispatch = (dispatch, { history }) => {
   return {
     fetchRegisteredEvents: () => dispatch(fetchRegisteredEvents()),
     fetchSingleUser: (id) => {dispatch(fetchSingleUser(id))},
-    updateSingleRegisteredEvent: (id) => (dispatch(updateSingleRegisteredEvent((id)))),
+    updateSingleRegisteredEvent: (event) => (dispatch(updateSingleRegisteredEvent((event)))),
+    updateSingleChallenge: (event) => (dispatch(updateSingleChallenge(event, history))),
     fetchResults: () => dispatch(fetchResults()),
     fetchUsers: () => dispatch(fetchUsers()),
     fetchRecords: () => dispatch(fetchRecords()),
+    fetchChallenges: () => dispatch(fetchChallenges()),
     createChallenge: (event) => dispatch(createChallenge(event, history)),
     deleteResult: (id) => dispatch(deleteResult(id, history))
   };

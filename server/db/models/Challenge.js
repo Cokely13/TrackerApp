@@ -15,8 +15,12 @@ const Challenge = db.define('challenge', {
     allowNull: false
   },
   challenger: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false
+  },
+  challengerId: {
+    type: Sequelize.INTEGER,
+    // allowNull: false
   },
     // : {
     //   type: Sequelize.ENUM("pending", "active", "disabled"),
@@ -30,6 +34,10 @@ const Challenge = db.define('challenge', {
       type: Sequelize.STRING,
       allowNull: false
     },
+  accepted: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }
   // record: {
   //   type: Sequelize.STRING,
   //   defaultValue: "N/A"

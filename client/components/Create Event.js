@@ -79,7 +79,6 @@ export class CreateEvent extends React.Component {
   handleSubmit(event) {
     console.log("EVENT", event)
     event.preventDefault()
-    console.log("SENDING", this.state)
     this.props.createEvent({ ...this.state})
     // this.props.createRecord({ ...this.state});
   }

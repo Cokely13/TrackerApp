@@ -36,12 +36,12 @@ export class AddResult extends React.Component {
   }
 
   handleChange(event) {
-    const result = event.target.value.replace(/\D/g, '');
-    console.log("result", result)
+    // const result = event.target.value.replace(/\D/g, '');
+    // console.log("result", result)
     this.setState({
       eventName:this.props.singleEvent.eventName,
       userName:this.props.singleUser.username,
-      time: result
+      time: event.target.value
     // register: {
     //   id: this.myRegisteredEvent.id,
     // }

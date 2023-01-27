@@ -31,7 +31,7 @@ export const fetchSingleRegisteredEvent = (id) => {
 export const updateSingleRegisteredEvent = (event) => {
   return async (dispatch) => {
     try {
-      console.log("IDDTEST", event)
+      // console.log("IDDTEST", event)
         // await axios.put(`/api/registered/${event.id}`, event);
         await axios.put(`/api/registered/${event.id}`, event
         );

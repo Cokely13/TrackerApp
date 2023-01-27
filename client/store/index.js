@@ -14,6 +14,7 @@ import recordsReducer from './allRecordsStore'
 import singleRecordReducer from './singleRecordStore'
 import singleResultReducer from './singleResultsStore'
 import challengesReducer from './allChallengesStore'
+import singleChallengeReducer from './singleChallengeStore'
 
 const reducer = combineReducers({ auth,
 allEvents: eventsReducer,
@@ -24,6 +25,7 @@ singleEvent: singleEventReducer,
 singleUser: singleUserReducer,
 singlRecord: singleRecordReducer,
 singleResult: singleResultReducer,
+singleChallenge: singleChallengeReducer,
 registeredEvents: registeredEventsReducer,
 singleRegisteredEvent: singleRegisteredEventReducer,
 allChallenges: challengesReducer })

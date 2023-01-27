@@ -73,7 +73,7 @@ const  todayDate = today.toISOString().substring(0, 10);
 
  const eventTypes=eventsAvailable.map(({ type }) => type)
  let unique = eventTypes.filter((item, i, ar) => ar.indexOf(item) === i)
- console.log("EVENTYPES", eventTypes)
+//  console.log("EVENTYPES", eventTypes)
  const eventTypeSelected = this.state.eventTypes
 
  const active = eventsAvailable.filter(event=> event.endDate >= todayDate)
@@ -140,14 +140,14 @@ const  todayDate = today.toISOString().substring(0, 10);
 {/* <div className="card-body"> */}
 <h5 className="card-header">{event.eventName}</h5>
 {/* </div> */}
-<ul class="list-group list-group-flush">
+<ul className="list-group list-group-flush">
 <li className="list-group-item">Type: {event.type}</li>
 <li className="list-group-item">End Date: {event.endDate}</li>
 <li className="card-text">{event.description}</li>
 </ul>
 {/* <h6> {event.endDate}</h6>
 <h6 className="card-text">{event.endDate >=  todayDate ? <p>Active</p> :<p>NOT DONE </p>}</h6> */}
-<div class="card-body">
+<div className="card-body">
 <Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link>
 {/* <h1></h1>
 <p></p> */}
@@ -178,7 +178,7 @@ const  todayDate = today.toISOString().substring(0, 10);
     <img src={event.image} className="card-img-top" />
   <div className="card-body">
     <h5 className="card-title">{event.eventName}</h5>
-    <ul class="list-group list-group-flush">
+    <ul className="list-group list-group-flush">
     <h5 className="list-group-item">Type: {event.type}</h5>
     <h5 className="list-group-item">End Date: {event.endDate}</h5>
     </ul>
@@ -203,7 +203,7 @@ const  todayDate = today.toISOString().substring(0, 10);
 <img src={event.image} className="card-img-top" />
 <div className="card-body">
 <h5 className="card-title">{event.eventName}</h5>
-<ul class="list-group list-group-flush">
+<ul className="list-group list-group-flush">
 <h5 className="list-group-item">Type: {event.type}</h5>
 <h5 className="list-group-item">End Date: {event.endDate}</h5>
 </ul>
