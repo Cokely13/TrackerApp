@@ -37,6 +37,10 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  admin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   imageUrl: {
     type: Sequelize.TEXT,
     defaultValue: 'https://cquipsplus.ca/wp-content/themes/cera/assets/images/avatars/user-avatar.png',

@@ -14,7 +14,7 @@ export class CreateEvent extends React.Component {
       eventName: "",
       description: "",
       endDate: "",
-      type: "",
+      type: "Random",
       createdBy: "",
       image: "https://www.news-medical.net/images/Article_Images/ImageForArticle_22980_16600577310868068.jpg"
     };

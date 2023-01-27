@@ -19,7 +19,7 @@ export class EditEvent extends React.Component {
       description: "",
       endDate: "",
       createdBy: "",
-      type: "",
+      type: "Random",
       image: ""
 
     };
@@ -30,17 +30,18 @@ export class EditEvent extends React.Component {
 
   componentDidMount(){
     this.props.fetchEvent(this.props.match.params.eventId)
-    // if (this.props.singleEvent.length) {
-    // this.setState({
-    //   id: this.props.singleResult.id,
-    //   eventName: this.props.singleResult.eventName,
-    //   time: this.props.singleResult.time,
-    //   userName: this.props.singleResult.userName,
-    //   userId: this.props.singleResult.userId,
-    //   eventId: this.props.singleResult.eventId,
-    // })} else {
-    //   console.log("NOPE")
-    // }
+    this.setState({event: this.props.singleEvent})
+    if (this.props.singleEvent.length) {
+    this.setState({
+      id: this.props.singleEvent.id,
+      eventName: this.props.singleEvent.eventName,
+      time: this.props.singleEvent.time,
+      userName: this.props.singleEvent.userName,
+      userId: this.props.singleEvent.userId,
+      eventId: this.props.singleEvent.eventId,
+    })} else {
+      console.log("NOPE")
+    }
   }
 
 
@@ -55,7 +56,6 @@ export class EditEvent extends React.Component {
       // image: this.props.singleEvent.image
     })
 
-    console.log("STATEEE", this.state)
     };
 
     handleChange2(event2) {
@@ -71,7 +71,7 @@ export class EditEvent extends React.Component {
         if (prop === "Row"){
           return "https://www.byrdie.com/thmb/wt0s4-TZV_nQt3NXswXUYHil48Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/TheseOnlineRowingClassesWillHelpYouGetTonedinNoTime-a2959753b88f4ebb8ac9532971123761.jpg"
         }
-        if (prop === "Random"){
+        if (prop == "Random"){
           return "https://res.cloudinary.com/upskilled/image/fetch/w_600,h_400,c_crop,c_fill,g_face:auto,f_auto/https://www.upskilled.edu.au/getmedia%2Ff4633697-8724-4633-8488-825ec4a1587f%2Fchallenge-yourself-in-your-next-role-HERO.jpg%3B.aspx%3Fwidth%3D1000%26height%3D667%26ext%3D.jpg"
         }
         else {
@@ -87,6 +87,14 @@ export class EditEvent extends React.Component {
       });
     }
 
+    componentDidUpdate(prevProps) {
+      if (prevProps.singleEvent.eventName !== this.props.singleEvent.eventName ) {
+        this.setState({
+          name: this.props.singleEvent.eventName || '',
+          // address: this.props.singleCampus.address || ''
+        });
+    }}
+
 
   handleSubmit(event) {
     event.preventDefault();
@@ -97,6 +105,7 @@ export class EditEvent extends React.Component {
 
     render() {
       const myEvent =this.props.singleEvent
+      console.log("STATEEE", this.state)
   return (
 
 
@@ -105,7 +114,7 @@ export class EditEvent extends React.Component {
       <div className="form-row">
       <div className="col">
         <label>Event Name</label>
-          <input name='eventName' onChange={this.handleChange}  type="text" className='form-control' />
+          <input name='eventName' onChange={this.handleChange}  type="text" className='form-control' value={myEvent.eventName}  />
         </div>
         <div className="col">
         <label>Description</label>

@@ -7,7 +7,7 @@ import {updateSingleRegisteredEvent} from '../store/singleRegisteredEventStore'
 import { fetchResults, deleteResult } from '../store/allResultsStore';
 import { fetchRecords } from '../store/allRecordsStore';
 import { fetchUsers } from '../store/allUsersStore';
-import { createChallenge, fetchChallenges } from '../store/allChallengesStore';
+import { createChallenge, fetchChallenges, deleteChallenge } from '../store/allChallengesStore';
 import {Image} from 'react-bootstrap'
 import { updateSingleChallenge } from '../store/singleChallengeStore';
 // import RegisterUpdate from './RegisterUpdate';
@@ -102,6 +102,16 @@ export class Profile extends React.Component {
        this.props.createChallenge(this.state.challenge.challenge)
        this.setState({
         challengeOn: "",
+        challenge: {
+          eventName: "",
+          eventId: "",
+          endDate: "",
+          challenger: "",
+          challengerId: "",
+          type: "",
+          challenged: "",
+          challengedId: "",
+        }
       })
       };
 
@@ -124,6 +134,7 @@ export class Profile extends React.Component {
       const users = this.props.allUsers.filter(user => user.id !== myId)
       const userNames=users.map(({ username }) => username)
       const myChallenges = this.props.allChallenges.filter(challenge => challenge.challenged == this.props.singleUser.username)
+      const myChallengesSent = this.props.allChallenges.filter(challenge => challenge.challenger == this.props.singleUser.username)
       const myAcceptedChallenges = myChallenges.filter(challenge => challenge.accepted == true)
       const myPendingChallenges = myChallenges.filter(challenge => challenge.accepted == false)
       // const myRecords = filteredRecords[0]
@@ -134,7 +145,9 @@ export class Profile extends React.Component {
       const eventTypes=myRegisteredEvents.map(({ type }) => type)
       let unique = eventTypes.filter((item, i, ar) => ar.indexOf(item) === i)
       const eventTypeSelected = this.state.eventTypes
-      console.log("StATE", this.state)
+      console.log("StATE", this.props.allChallenges)
+      console.log("MINE", myChallengesSent)
+      console.log("ACSTATE", this.props)
 
   return (
 
@@ -148,7 +161,7 @@ export class Profile extends React.Component {
       <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Gender:{this.props.singleUser.gender}</h1>
       <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}># of Records:{myRecords.length}  </h1>
       <hr></hr>
-      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}> Challenge:</h2>
+      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}> Challenges:</h2>
       <div className ="row container text-center "  >
     {myPendingChallenges.length ?myPendingChallenges.map((registered) => {
      return (
@@ -162,6 +175,28 @@ export class Profile extends React.Component {
  <h6 className="card-subtitle mb-2 text-muted">Challenged By:{registered.challenger}</h6>
  <Link className="card-link" to={`/events/${registered.eventId}`}>Event Detail</Link>
  <button onClick={event => this.handleClick3(event, registered)}className="btn btn-secondary">ACCEPT CHALLENGE!</button>
+</div>
+</div>
+</div>)}):
+   <h5>No Challenges Right now. Challenge a friend!</h5>
+  }
+</div>
+<hr></hr>
+      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}> Challenges Sent:</h2>
+      <div className ="row container text-center "  >
+    {myChallengesSent.length ?myChallengesSent.map((registered) => {
+     return (
+      <div className="col" key={registered.id} >
+ <div className ="card" style={{width: "18rem"}} key={registered.id} >
+<div className="card-body">
+ <h5 className="card-title">Event Name:{registered.eventName}</h5>
+ <h6 className="card-subtitle mb-2 text-muted">Event Id: {registered.eventId}</h6>
+ <h6 className="card-subtitle mb-2 text-muted">EndDate:{registered.endDate}</h6>
+ <h6 className="card-subtitle mb-2 text-muted">Challenged By:{registered.challenged}</h6>
+ <h6 className="card-subtitle mb-2 text-muted">Accepted:{registered.accepted ? "Accepted" : " Not Yet" }</h6>
+ <Link className="card-link" to={`/events/${registered.eventId}`}>Event Detail</Link>
+ <div><button type="button" className="btn btn-danger" style={{width: "10rem"}}onClick={() => this.props.deleteChallenge(registered.id)}>Delete Challenge</button>
+ </div>
 </div>
 </div>
 </div>)}):
@@ -339,7 +374,8 @@ const mapDispatch = (dispatch, { history }) => {
     fetchRecords: () => dispatch(fetchRecords()),
     fetchChallenges: () => dispatch(fetchChallenges()),
     createChallenge: (event) => dispatch(createChallenge(event, history)),
-    deleteResult: (id) => dispatch(deleteResult(id, history))
+    deleteResult: (id) => dispatch(deleteResult(id, history)),
+    deleteChallenge: (id) => dispatch(deleteChallenge(id, history))
   };
 };
 

@@ -19,12 +19,24 @@ export class EventDetail extends React.Component {
   constructor() {
     super();
     this.state = {
-      record: "",
-      recordHolderName: "",
-      recordHolderId: ""
+      // record: "",
+      // recordHolderName: "",
+      // recordHolderId: ""
+      edit: false,
+      id: "",
+      eventName: "",
+      description: "",
+      endDate: "",
+      type: "",
+      createdBy: "",
+      image: ""
     };
 
      this.handleSubmit = this.handleSubmit.bind(this)
+     this.handleSubmit2 = this.handleSubmit2.bind(this)
+     this.handleClick = this.handleClick.bind(this)
+    //  this.handleChange =this.handleChange(this)
+     this.handleChange2 = this.handleChange2.bind(this)
     //  this.handleSubmit2 = this.handleSubmit2.bind(this);
 }
 
@@ -54,6 +66,81 @@ handleSubmit(event) {
   // this.props.updateSingleEvent(update)
 }
 
+handleSubmit2(event) {
+  event.preventDefault();
+  const updateEvent = {
+    eventName: this.state.eventName,
+    description: this.state.description,
+    createdBy: this.state.createdBy,
+    endDate: this.state.endDate,
+    image: this.state.image,
+    type: this.state.type,
+    id: this.state.id
+  }
+  console.log("update", updateEvent)
+  this.props.updateSingleEvent(updateEvent);
+  this.setState ({
+    edit: false,
+  })
+  console.log("stateAgain", this.state)
+  // this.props.history.push('/events')
+  // updateSingleRegisteredEvent(this.state.register)
+}
+
+handleClick(event, singleEvent){
+  console.log("SINGLE", singleEvent)
+  this.setState ({
+    edit: true,
+    id: singleEvent.id,
+    createdBy: singleEvent.createdBy,
+    eventName: singleEvent.eventName,
+    description: singleEvent.description,
+    endDate: singleEvent.endDate,
+    type: singleEvent.type,
+    image: singleEvent.image
+  })
+
+  console.log("STATE", this.state)
+}
+
+
+
+handleChange2(event2) {
+  const pick = event2.target.value
+  console.log("STATE", this.state)
+  function Image(prop){
+    if (prop === "Swim"){
+      return "https://www.shape.com/thmb/y7XHTgiQzL_gLqtB7AVR1LBYZHc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/swimming-workouts-for-women-d137e32a8fcf4d68bf4713ce2c628a07.jpg"
+    }
+    if (prop === "Bike"){
+      return "https://c.ndtvimg.com/2020-08/dtm9edd8_cycling_625x300_05_August_20.jpg?ver-20221221.02"
+    }
+    if (prop === "Row"){
+      return "https://www.byrdie.com/thmb/wt0s4-TZV_nQt3NXswXUYHil48Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/TheseOnlineRowingClassesWillHelpYouGetTonedinNoTime-a2959753b88f4ebb8ac9532971123761.jpg"
+    }
+    if (prop == "Random"){
+      return "https://res.cloudinary.com/upskilled/image/fetch/w_600,h_400,c_crop,c_fill,g_face:auto,f_auto/https://www.upskilled.edu.au/getmedia%2Ff4633697-8724-4633-8488-825ec4a1587f%2Fchallenge-yourself-in-your-next-role-HERO.jpg%3B.aspx%3Fwidth%3D1000%26height%3D667%26ext%3D.jpg"
+    }
+    else {
+      return 'https://www.news-medical.net/images/Article_Images/ImageForArticle_22980_16600577310868068.jpg'
+    }
+  }
+  const newImage = Image(pick)
+  console.log("NEW IMAGE", newImage)
+
+  this.setState({
+    [event2.target.name]: event2.target.value,
+    image: newImage
+  });
+}
+
+handleChange(event) {
+  // event.persist()
+  console.log("EVENT", event)
+  this.setState({
+    [event.target.name]: event.target.value,
+  })
+}
 // handleSubmit2(event) {
 //   event.preventDefault();
 //   this.setState({
@@ -80,6 +167,7 @@ handleSubmit(event) {
 
 
 render () {
+  const singleEvent = this.props.singleEvent
   const myId = this.props.userId
   const eventId = this.props.match.params.eventId
   const registered = this.props.registeredEvents.filter(event => event.eventId == eventId)
@@ -92,15 +180,51 @@ render () {
   const users = this.props.allUsers
   const today = new Date();
   const  todayDate = today.toISOString().substring(0, 10);
+  const regUsers =registered.map(({ user }) => user)
+  // const eventName = this.state.
 
-  console.log("register", registered)
+  console.log("regusersr", this.state)
 
 
 
   return (
     // <div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>
+
     <div>
-      <div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>
+
+    {this.state.edit? <div className="mb-4 col">
+    <form action="" onSubmit={this.handleSubmit2}>
+      <div className="form-row">
+      <div className="col">
+        <label>Event Name</label>
+          <input name='eventName' onChange={event => this.handleChange(event)} type="text" className='form-control' value={this.state.eventName} />
+        </div>
+        <div className="col">
+        <label>Description</label>
+          <input name='description' onChange={event => this.handleChange(event)} type="text" className='form-control' value={this.state.description}/>
+        </div>
+        <div className="col">
+        <label>End Date</label>
+          <input name='endDate' onChange={event => this.handleChange(event)} type="text" className='form-control' value={this.state.endDate}/>
+        </div>
+        <div className="col">
+        <label>Type</label>
+          {/* <input name='type' onChange={event => this.handleChange(event)}  type="text" className='form-control' placeholder={myEvent.type} /> */}
+
+          <label>Type</label>
+          <select  onChange={this.handleChange2} name="type" className="form-control">
+          <option  defaultValue={this.state.type}>{this.state.type}</option>
+          <option value="Run">Run</option>
+          <option value="Bike">Bike</option>
+          <option value="Swim">Swim</option>
+          <option value="Row">Row</option>
+          <option value="Random">Random</option>
+          </select>
+        </div>
+      <button type="submit" className="btn btn-secondary">Update Event</button>
+      </div>
+    </form>
+  </div> :<div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>
     <div className ="card grid text-center" style={{width: "18rem"}}  >
     <img src={this.props.singleEvent.image} className="card-img-top" />
   <div className="card-body">
@@ -110,12 +234,13 @@ render () {
     <h5 className="card-subtitle mb-2 text-muted">End Date: {this.props.singleEvent.endDate}</h5>
    {todayDate >= this.props.singleEvent.endDate ? <div>Too Late To Register</div> : registeredId.length ? <div>Already Registered </div> : <Link className="btn btn-primary" onClick={this.handleSubmit} to='/profile' >Register</Link>}
    <p></p>
-   <h5>{this.props.singleEvent.createdBy == myId ?  <Link className="btn btn-primary"  to={`/eventsedit/${this.props.singleEvent.id}`}>Edit Event</Link> : <div></div>}</h5>
+   <h5>{this.props.singleEvent.createdBy == myId ?  <button className="btn btn-primary"  onClick={event => this.handleClick(event, singleEvent)}>Edit Event</button> : <div></div>}</h5>
    <p></p>
    <h5>{this.props.singleEvent.createdBy == myId ?  <button className="btn btn-primary"  onClick={() => this.props.deleteEvent(eventId)} >Delete Event</button> : <div></div>}</h5>
   </div>
 </div>
-</div>
+</div> }
+
 <div>
   <hr></hr>
 <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}} >Registered Users: </h2>
@@ -123,17 +248,17 @@ render () {
 {/* <div className ="card" style={{width: "18rem"}}>
 <div className="card-body"> */}
 <div className="card-group">
-{registered.map((event) => {
+{/* {registered.length ? regUsers.map((event) => {
      return (
-      <div className='col' key={event.id} >
+      <div className='col' key={event.id }>
       <div className ="card" style={{width: "18rem"}} >
-      <img src={event.user.imageUrl} className="card-img-top" />
+      <img src={event.imageUrl ? event.imageUrl : none} className="card-img-top" />
 <div className="card-body">
- <h6 className="card-text" >Name: {event.user ? event.user.username : "No Users" }</h6>
+ <h6 className="card-text" >Name: {event.username}</h6>
  </div>
  </div>
  </div>
- )})}
+ )}): <div> No Users</div>} */}
  </div>
  {/* </div>
  </div> */}
@@ -160,6 +285,7 @@ render () {
     </div>
     </div>
     </div>
+
 {sorted.length?
 sorted.map((result) => {
      return (<div className="container text-center"key={result.id}>
@@ -173,7 +299,7 @@ sorted.map((result) => {
 </div>
 </div>
 </div>
-)}): <h1>No Results Yet</h1> }
+)}): <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>No Results Yet</h1> }
 <hr></hr>
 <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Current Record:</h2>
 <hr></hr>
@@ -215,7 +341,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch, { history }) => {
   return{
     fetchEvent: (id) => {dispatch(fetchEvent(id))},
-    updateSingleEvent: (event) => dispatch(updateSingleEvent(event)),
+    updateSingleEvent: (event) => dispatch(updateSingleEvent(event, history)),
     createRegisteredEvent: (event) => dispatch(createRegisteredEvent(event, history)),
     fetchResults: () => dispatch(fetchResults()),
     fetchUsers: () => dispatch(fetchUsers()),
