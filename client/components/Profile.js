@@ -157,8 +157,7 @@ export class Profile extends React.Component {
       <div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>
       <Image roundedCircle id="userProfileImage"  style={{width: "18rem"}} src={this.props.singleUser.imageUrl}/>
       </div>
-      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Birthday: {this.props.singleUser.birthday}</h1>
-      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Gender:{this.props.singleUser.gender}</h1>
+      <Link style={{display: 'flex',  justifyContent:'center', alignItems:'center',}} to='/details'>Details</Link>
       <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}># of Records:{myRecords.length}  </h1>
       <hr></hr>
       <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}> Challenges:</h2>

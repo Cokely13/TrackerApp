@@ -13,9 +13,10 @@ export class Details extends React.Component {
       email: "",
       id: "",
       imageUrl: "",
+      birthday: "",
       name: "",
       password: "",
-      username: ""
+      username: "",
     };
 
     this.handleClick = this.handleClick.bind(this)
@@ -34,6 +35,7 @@ handleClick(event, user){
       email: user.email,
       id: user.id,
       imageUrl: user.imageUrl,
+      birthday: user.birthday,
       name: user.name,
       username: user.username
   })
@@ -54,7 +56,8 @@ handleSubmit2(event) {
     id: this.state.id,
     imageUrl: this.state.imageUrl,
     name: this.state.name,
-    username: this.state.username
+    username: this.state.username,
+    birthday: this.state.birthday
   }
   this.props.updateSingleUser(updateDetails);
   this.setState ({
@@ -67,7 +70,8 @@ render () {
   const myDetails = this.props.singleUser
   const results = this.props.allResults
   const registeredEvents = this.props.registeredEvents
-  console.log("Results", this.state)
+  console.log("Results", myDetails)
+  console.log("State", this.state)
 
   return (
 
@@ -86,14 +90,14 @@ render () {
         </div>
         <div className="col">
         <label>Name</label>
-          <input name='name' onChange={event => this.handleChange(event)} type="text" className='form-control' value={this.name}/>
+          <input name='name' onChange={event => this.handleChange(event)} type="text" className='form-control' value={this.state.name}/>
         </div>
         <div className="col">
-        <label>Password</label>
-          <input name='password' onChange={event => this.handleChange(event)} type="text" className='form-control' placeholder='Password'/>
+        <label>Birthday</label>
+          <input name='birthday' onChange={event => this.handleChange(event)} type="text" className='form-control' value={this.state.birthday}/>
         </div>
         <div className="col">
-      <button type="submit" className="btn btn-secondary">Update Details</button>
+      <button type="submit" className="btn btn-secondary" >Update Details</button>
       </div>
       </div>
     </form>
@@ -103,9 +107,10 @@ render () {
   <div className="card-body">
     <h5 className="card-title">{myDetails.username}</h5>
     <h5 className="card-subtitle mb-2 text-muted">Birthday: {myDetails.birthday}</h5>
+    <h5 className="card-subtitle mb-2 text-muted">Name: {myDetails.name}</h5>
     <h5 className="card-subtitle mb-2 text-muted">Email: {myDetails.email}</h5>
    <p></p>
-    <button className="btn btn-primary"  onClick={event => this.handleClick(event, myDetails)}>Edit Event</button>
+    <button className="btn btn-primary"  onClick={event => this.handleClick(event, myDetails)} >Edit Details</button>
    <p></p>
   </div>
 </div>
