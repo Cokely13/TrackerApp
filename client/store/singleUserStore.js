@@ -13,7 +13,7 @@ export const _setSingleUser= (userdata) => {
   };
 };
 
-const _updateSingleEvent = (userdata) => {
+const _updateSingleUser = (userdata) => {
   return {
     type: UPDATE_SINGLE_USER,
     eventuser,
@@ -31,10 +31,11 @@ export const fetchSingleUser = (id) => {
 export const updateSingleUser = (user, history) => {
   return async (dispatch) => {
     try {
-        await axios.put(`/api/users/update/${user.id}`, user);
+      console.log("HELLO!!!!!")
+        await axios.put(`/api/users/${user.id}`, user);
         const { data: userData } = await axios.get(`/api/users/${user.id}`);
         dispatch(_updateSingleUser(userData));
-        history.push(`/users/${user.id}`)
+        // history.push(`/profile`)
       }
      catch (error) {
       next(error)

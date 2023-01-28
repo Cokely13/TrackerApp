@@ -15,6 +15,7 @@ import UsersPage from './components/UsersPage';
 import Calendar from './components/Calendar'
 import Records from './components/Records';
 import EditResult from './components/EditResult';
+import Details from './components/Details';
 // import EditEvent from './components/EditEvent';
 import Registration from './components/Registration';
 import {me} from './store'
@@ -37,6 +38,8 @@ class Routes extends Component {
           <Switch>
             <Route exact path="/home" component={Home} />
             <Route exact path="/cal" component={Calendar} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/details" component={Details} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/users" component={Users} />
             <Route exact path="/users/:userId" component={UsersPage} />
