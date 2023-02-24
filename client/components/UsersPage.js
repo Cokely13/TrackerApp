@@ -49,10 +49,9 @@ export class UsersPage extends React.Component {
 
   return (
 
-    <div>
-      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>{this.props.singleUser.username}</h1>
-      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>EVENTS</h2>
-      <hr></hr>
+    <div style={{marginTop: "50px"}}>
+      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>{this.props.singleUser.username}'s Activities</h1>
+      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:'10px', marginBottom:'10px'}}><u>EVENTS</u></h2>
       <div className ="row container text-center ">
     {myRegisteredEvents.map((event) => {
      return (
@@ -67,29 +66,23 @@ export class UsersPage extends React.Component {
 </div>
 </div>)})}
 </div>
-<hr></hr>
-<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Results</h2>
-<hr></hr>
+<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:'15px', marginBottom:'15px'}}><u>Results </u></h2>
 <div className="container text-center">
   <div className="row align-items-start">
-    <div className="col">
-      EventId
-    </div>
-    <div className="col">
+    <h3 className="col">
      Event Name
-    </div>
-    <div className="col">
+    </h3>
+    <h3 className="col">
       Time
-    </div>
+    </h3>
     </div>
     </div>
 {myResults.map((event) => {
      return (
       <div className ="container text-center" key={event.id} >
 <div className="row align-items-start">
- <h5 className="col">{event.eventId}</h5>
- <h6 className="col">{event.eventName}</h6>
- <h6 className="col">{event.time}</h6>
+ <h3 className="col">{event.eventName}</h3>
+ <h3 className="col">{event.time}</h3>
  {/* <div className ="card" style={{width: "18rem"}} key={event.id} >
 <div className="card-body">
  <h5 className="card-title">Event Name: {event.eventName}</h5>
@@ -98,9 +91,7 @@ export class UsersPage extends React.Component {
  </div>
  </div>
 )})}
-<hr></hr>
-<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}> Records</h2>
-<hr></hr>
+<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop:'10px', marginBottom:'10px'}}><u> Records</u></h2>
   {myRecords.length ? myRecords.map((record) => {
      return (
  <div className ="card" style={{width: "18rem"}} key={record.id} >

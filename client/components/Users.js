@@ -28,6 +28,8 @@ render () {
   console.log("Results", registeredEvents)
 
   return (
+    <div>
+    <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop: "50px"}}><u>Users</u></h1>
     <table className="table">
     <thead>
       <tr>
@@ -54,7 +56,7 @@ render () {
         })}
     </tbody>
   </table>
-
+  </div>
   )
 }
 }

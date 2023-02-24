@@ -148,17 +148,16 @@ export class Profile extends React.Component {
 
   return (
 
-    <div>
+    <div style={{marginTop:"50px"}}>
       <div>
-      <h1  style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>{this.props.singleUser.username}</h1>
+      <h1  style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:"15px", marginBottom:"15px"}}>{this.props.singleUser.username}</h1>
       <div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>
       <Image roundedCircle id="userProfileImage"  style={{width: "18rem"}} src={this.props.singleUser.imageUrl}/>
       </div>
-      <Link style={{display: 'flex',  justifyContent:'center', alignItems:'center',}} to='/details'>Details</Link>
-      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}># of Records:{myRecords.length}  </h1>
-      <hr></hr>
-      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}> Challenges:</h2>
-      <div className ="row container text-center "  >
+      <Link style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop:"15px", marginBottom:"15px"}} to='/details'>Details</Link>
+      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:"15px", marginBottom:"15px"}}># of Records: {myRecords.length}  </h1>
+      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop:"15px", marginBottom:"15px"}}> <u>Challenges</u></h2>
+      <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}  >
     {myPendingChallenges.length ?myPendingChallenges.map((registered) => {
      return (
       <div className="col" key={registered.id} >
@@ -177,9 +176,8 @@ export class Profile extends React.Component {
    <h5>No Challenges Right now. Challenge a friend!</h5>
   }
 </div>
-<hr></hr>
-      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}> Challenges Sent:</h2>
-      <div className ="row container text-center "  >
+      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:"15px", marginBottom:"15px"}}> <u>Challenges Sent </u></h2>
+      <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}} >
     {myChallengesSent.length ?myChallengesSent.map((registered) => {
      return (
       <div className="col" key={registered.id} >
@@ -199,15 +197,14 @@ export class Profile extends React.Component {
    <h5>No Challenges Right now. Challenge a friend!</h5>
   }
 </div>
-<hr></hr>
-      <div>
+      <div style={{marginTop:"15px", marginBottom:"15px"}}>
         <select onChange={this.handleChange} name="eventTypes" className='custom-select'>
               <option value="">Filter by Event Type</option>
               {unique.map((event) => <option key={event} value={event}>{event}</option>)}
             </select>
           </div>
           </div>
-      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}> Active Events: </h2>
+      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:"15px", marginBottom:"15px"}}> <u>Active Events </u> </h2>
       {/* gy-5 */}
       <div className ="row container text-center "  >
     {eventTypeSelected.length ? myRegisteredEvents.filter(event=> event.type == eventTypeSelected).map((registered) => {
@@ -260,47 +257,38 @@ export class Profile extends React.Component {
 </div>
 </div>)})}
 </div>
- <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Results: </h2>{myResults.length ? <div>
+ <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:"15px", marginBottom:"15px"}}> <u>Results</u> </h2>{myResults.length ? <div>
 <div className="container text-center">
   <div className="row align-items-start">
-    <div className="col">
-      EventId
-    </div>
-    <div className="col">
+    <h3 className="col">
      Event Name
-    </div>
-    <div className="col">
+    </h3>
+    <h3 className="col">
       Time
-    </div>
-    <div className="col">
-      Event Detail
-    </div>
-    <div className="col">
+    </h3>
+    <h3 className="col">
       Edit Result
-    </div>
-    <div className="col">
+    </h3>
+    <h3 className="col">
       Delete Result
-    </div>
+    </h3>
     </div>
     </div>
 {myResults.map((event) => {
      return (
  <div className ="container text-center" key={event.id} >
 <div className="row align-items-start">
- <h5 className="col">{event.eventId}</h5>
- <h6 className="col">{event.eventName}</h6>
- <h6 className="col">{event.time}</h6>
- <Link className="col" to={`/events/${event.eventId}`}>Event Detail</Link>
- <Link className="col" to={`/results/${event.id}`}>Edit Result</Link>
+ <h3 className="col"><Link className="col" to={`/events/${event.id}`}>{event.eventName}</Link></h3>
+ <h3 className="col">{event.time}</h3>
+ <h3 className="col"><Link className="col" to={`/results/${event.id}`}>Edit Result</Link></h3>
 
- <button type="button" className="btn btn-danger" style={{width: "10rem"}}onClick={() => this.props.deleteResult(event.id)}>Delete Result</button>
- <p></p>
-<p></p>
+ <h3 className="col"><button type="button" className="btn btn-danger" style={{width: "10rem"}}onClick={() => this.props.deleteResult(event.id)}>Delete Result</button></h3>
  </div>
  </div>
 )})}</div>: <div className ="container text-center"><h5>No Results Yet. Step it up Pal!</h5></div>}
-      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}> Completed Events:</h2>
-      <div className ="row container text-center "  >
+      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:"15px", marginBottom:"15px"}}> <u>Completed Events</u></h2>
+      {/* <div className ="row container text-center "  > */}
+      <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}  >
     {myCompletedEvents.length ?myCompletedEvents.map((registered) => {
      return (
       <div className="col" key={registered.id} >
@@ -316,31 +304,24 @@ export class Profile extends React.Component {
    <h5>No Completed Events Yet. Step it up Pal!</h5>
   }
 </div>
-<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}> Your Records:</h2>
+<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:"15px", marginBottom:"15px"}}> <u>Your Records</u></h2>
 {myRecords.length ? <div className="container text-center">
    <div className="row align-items-start">
-    <div className="col">
+    <h3 className="col">
     Event Name
-    </div>
-    <div className="col">
-     Event Id
-    </div>
-    <div className="col">
+    </h3>
+    <h3 className="col">
       Time
-    </div>
-    <div className="col">
-      Event Detail
-    </div>
+    </h3>
     </div>
     <div>
     {myRecords.map((record) => {
      return (
  <div className ="container text-center" key={record.id} >
 <div className="row align-items-start">
- <h5 className="col">{record.eventName}</h5>
- <h6 className="col">{record.eventId}</h6>
- <h6 className="col">{record.time}</h6>
- <Link className="col" to={`/events/${record.eventId}`}>Event Detail</Link>
+ <h3 className="col"><Link to={`/events/${record.eventId}`}>{record.eventName}</Link></h3>
+ <h3 className="col">{record.time}</h3>
+ {/* <Link className="col" to={`/events/${record.eventId}`}>Event Detail</Link> */}
 </div>
 </div> )})}</div></div> : <div className ="container text-center"><h5>No Records Yet. Step it up Pal!</h5></div>}
 </div>

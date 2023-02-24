@@ -28,23 +28,15 @@ render () {
 
   return (
     <div>
+      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop: "50px"}}><u>Records</u></h1>
     <div className="container text-center">
   <div className="row align-items-start">
     <div className="col">
       UserName
     </div>
     <div className="col">
-      UserId
-    </div>
-    <div className="col">
-      EventId
-    </div>
-    <div className="col">
      Event Name
     </div>
-    {/* <div className="col">
-     Date
-    </div> */}
     <div className="col">
       Time
     </div>
@@ -55,11 +47,6 @@ render () {
         return (<div className="container text-center"key={result.id}>
           <div className="row align-items-start">
           <div className="col" ><Link to={`/users/${result.userId}`}>{result.userName}</Link>
-    </div>
-        <div className="col" ><Link to={`/users/${result.userId}`}>{result.userId}</Link>
-    </div>
-    <div className="col"><Link to={`/events/${result.eventId}`}>
-        {result.eventId}</Link>
     </div>
     <div className="col"><Link to={`/events/${result.eventId}`}>
         {result.eventName}</Link>

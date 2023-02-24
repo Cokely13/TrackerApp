@@ -186,7 +186,7 @@ render () {
   return (
     // <div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>
 
-    <div>
+    <div style={{marginTop:"50px"}}>
 
     {this.state.edit? <div className="mb-4 col">
     <form action="" onSubmit={this.handleSubmit2}>
@@ -238,7 +238,7 @@ render () {
 </div> }
 
 <div>
-<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}} >Registered Users: </h2>
+<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop:"15px", marginBottom:"15px"}} ><u>Registered Users</u> </h2>
 {/* <div className ="card" style={{width: "18rem"}}>
 <div className="card-body"> */}
 <div className="card-group">
@@ -256,58 +256,50 @@ render () {
  </div>
  {/* </div>
  </div> */}
-<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Results:
+<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop:"15px", marginBottom:"15px"}}><u>Results</u>
 </h2>
-<div className="container text-center">
-  <div className="row align-items-start">
-    <div className="col">
-      UserName
-    </div>
-    <div className="col">
-      UserId
-    </div>
-    {/* <div className="col">
-      EventId
-    </div>
-    <div className="col">
-     Event Name
-    </div> */}
-    <div className="col">
-      Time
-    </div>
-    </div>
-    </div>
 
 {sorted.length?
 sorted.map((result) => {
-     return (<div className="container text-center"key={result.id}>
+     return (
+      <div>
+      <div className="container text-center">
+      <div className="row align-items-start">
+        <h3 className="col">
+          UserName
+        </h3>
+        <h3 className="col">
+          Time
+        </h3>
+        </div>
+        </div>
+     <div className="container text-center"key={result.id}>
      <div className="row align-items-start">
      <div className="col" ><Link to={`/users/${result.userId}`}>{result.userName}</Link>
-</div>
-   <div className="col" ><Link to={`/users/${result.userId}`}>{result.userId}</Link>
 </div>
 <div className="col">
   {result.time}
 </div>
 </div>
 </div>
+</div>
 )}): <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>No Results Yet</h1> }
-<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Current Record:</h2>
+<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:"15px", marginBottom:"15px"}}><u>Current Record</u></h2>
 <div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>
 <div className ="card" style={{width: "18rem"}} >
 <div className="card-body">
-<h5 className="card-title">RecordHolder: {tempRecord? tempRecord.userName : "N/A" }</h5>
+<h5 className="card-title">Record Holder: {tempRecord? tempRecord.userName : "N/A" }</h5>
 <h5 className="card-title">Record: {tempRecord ? tempRecord.time : "N/A" }</h5>
 <h5>{this.props.singleEvent.record ? <Link className="btn btn-primary" onClick={() => this.props.updateSingleRecord(tempRecord, this.props.singleEvent.record.id)} to='/records'> Update All Time Record</Link>: <button className="btn btn-primary" onClick={() => this.props.createRecord(tempRecord)} > Create Record</button>}</h5>
 </div>
 </div>
 </div>
 </div>
-<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>All Time Record:</h2>
+<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop:"15px", marginBottom:"15px"}}><u>All Time Record</u></h2>
 <div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>
 <div className ="card" style={{width: "18rem"}} >
 <div className="card-body">
-<h5 className="card-title">RecordHolder: {myRecord ? myRecord.userName : "No Record Yet" }</h5>
+<h5 className="card-title">Record Holder: {myRecord ? myRecord.userName : "No Record Yet" }</h5>
 <h5 className="card-title">Record: {myRecord ? myRecord.time : "No Record Yet" }</h5>
 </div>
 </div>

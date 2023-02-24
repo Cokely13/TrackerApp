@@ -40,9 +40,8 @@ allEvents.sort(function (x, y) {
 
 const newestResults = allResults.splice(0,3)
 
-console.log("ALL", allEvents)
   return (
-    <div>
+    <div style={{marginTop:"50px"}}>
       <h3>Welcome, {this.props.username}</h3>
       <div>Newest Events:</div>
       <div className='row'>

@@ -38,9 +38,9 @@ render () {
   const result = this.props.allResults
   const records = this.props.allResults
   const eventsIn = this.state.filterEvents
-  let eventIds = result.map(({ eventId }) => eventId)
+  console.log("hey", result)
+  let eventIds = result.map(({ eventName }) => eventName)
   let unique = eventIds.filter((item, i, ar) => ar.indexOf(item) === i)
-  console.log("records", unique)
   const sorted = result.sort((a, b) => (a.eventId -b.eventId || parseInt(a.time) - parseInt(b.time)))
     // return parseInt(a.time) - parseInt(b.time);
 // });
@@ -49,10 +49,10 @@ render () {
 
   return (
     <div>
-      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>RESULTS: </h1>
+      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop: "50px"}}><u>RESULTS</u></h1>
       <div>
         <select onChange={this.handleChange} name="filterEvents" className='custom-select'>
-              <option value="">Filter by Event Id</option>
+              <option value="">Filter by Event Name</option>
               {unique.map((event) => <option key={event} value={event}>{event}</option>)}
               {/* <option value="2">2</option>
               <option value="6">6</option>
@@ -65,12 +65,6 @@ render () {
       UserName
     </div>
     <div className="col">
-      UserId
-    </div>
-    <div className="col">
-      EventId
-    </div>
-    <div className="col">
      Event Name
     </div>
     <div className="col">
@@ -80,15 +74,10 @@ render () {
     </div>
     <div>
     {/* this.props.registeredEvents.filter(registeredEvent => registeredEvent.userId === myId) */}
-    {eventsIn.length ? sorted.filter(event=> event.eventId == eventsIn).map((result) => {
+    {eventsIn.length ? sorted.filter(event=> event.eventName == eventsIn).map((result) => {
         return (<div className="container text-center"key={result.id}>
           <div className="row align-items-start">
           <div className="col" ><Link to={`/users/${result.userId}`}>{result.userName}</Link>
-    </div>
-        <div className="col" ><Link to={`/users/${result.userId}`}>{result.userId}</Link>
-    </div>
-    <div className="col"><Link to={`/events/${result.eventId}`}>
-        {result.eventId}</Link>
     </div>
     <div className="col"><Link to={`/events/${result.eventId}`}>
         {result.eventName}</Link>
@@ -101,11 +90,6 @@ render () {
         return (<div className="container text-center"key={result.id}>
           <div className="row align-items-start">
           <div className="col" ><Link to={`/users/${result.userId}`}>{result.userName}</Link>
-    </div>
-        <div className="col" ><Link to={`/users/${result.userId}`}>{result.userId}</Link>
-    </div>
-    <div className="col"><Link to={`/events/${result.eventId}`}>
-        {result.eventId}</Link>
     </div>
     <div className="col"><Link to={`/events/${result.eventId}`}>
         {result.eventName}</Link>

@@ -79,17 +79,6 @@ const  todayDate = today.toISOString().substring(0, 10);
  const active = eventsAvailable.filter(event=> event.endDate >= todayDate)
  const past = eventsAvailable.filter(event=> event.endDate < todayDate)
 
-//  const sorted = eventsAvailable.sort((a, b) => {
-//   return b.endDate - a.endDate;
-// });
-
-  //  const images = {
-  //         Bike: "https://c.ndtvimg.com/2020-08/dtm9edd8_cycling_625x300_05_August_20.jpg?ver-20221221.02",
-  //         Row: "https://www.byrdie.com/thmb/wt0s4-TZV_nQt3NXswXUYHil48Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/TheseOnlineRowingClassesWillHelpYouGetTonedinNoTime-a2959753b88f4ebb8ac9532971123761.jpg",
-  //         Run: 'https://www.news-medical.net/images/Article_Images/ImageForArticle_22980_16600577310868068.jpg',
-  //         Swim: "https://www.shape.com/thmb/y7XHTgiQzL_gLqtB7AVR1LBYZHc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/swimming-workouts-for-women-d137e32a8fcf4d68bf4713ce2c628a07.jpg",
-  //         Random: "https://res.cloudinary.com/upskilled/image/fetch/w_600,h_400,c_crop,c_fill,g_face:auto,f_auto/https://www.upskilled.edu.au/getmedia%2Ff4633697-8724-4633-8488-825ec4a1587f%2Fchallenge-yourself-in-your-next-role-HERO.jpg%3B.aspx%3Fwidth%3D1000%26height%3D667%26ext%3D.jpg"
-  // };
 
 
 
@@ -101,7 +90,7 @@ const  todayDate = today.toISOString().substring(0, 10);
               {unique.map((event) => <option key={event} value={event}>{event}</option>)}
             </select>
           </div>
-    <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Active Events</h2>
+    <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop: "20px"}}><u>Active Events</u></h2>
     {/* <div className="container text-center"> */}
       <div className='row'>
        {eventTypeSelected.length ? active.filter(event=> event.type == eventTypeSelected).map((event) => {
@@ -126,24 +115,25 @@ const  todayDate = today.toISOString().substring(0, 10);
     <div className='col zoom' key={event.id} >
       <div className="container text-center mt-2">
       <div className="border border-primary rounded-circle border-5 text-center" style={{width:"18rem", backgroundColor:"white", marginLeft:'15px', marginBottom:"15px", marginTop: "15px"}}>
+      <Link to={`/events/${event.id}`}>
 <img src={event.image} className="card-img-top rounded-circle" style={{width:"75%", marginTop: "5%", marginBottom: "10%", marginLeft:"auto", marginRight: "auto"}} />
 <div className="card-body">
 <h2 className="card-title">{event.eventName}</h2>
 <div className="list-group-item">Type: {event.type}</div>
 <div className="list-group-item">End Date: {event.endDate}</div>
 <div className="card-text">{event.description}</div>
-<Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link>
 <h5>{event.createdBy == myId ?  <Link className="btn btn-primary"  to={`/eventsedit/${event.id}`}>Edit Event</Link> : <div></div>}</h5>
 <h5>{event.createdBy == myId ?  <button className="btn btn-primary"  onClick={() => this.props.deleteEvent(event.id)} >Delete Event</button> : <div></div>}</h5>
 {/* <button className="btn btn-primary" onClick={this.handleSubmit}>Register</button> */}
 </div>
+</Link>
 </div>
 </div>
 </div>
 )})}
 {/* </div> */}
 </div>
-<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Past Events</h2>
+<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}><u>Past Events</u></h2>
     <div className="container text-center">
       <div className='row'>
       {eventTypeSelected.length ? past.filter(event=> event.type == eventTypeSelected).map((event) => {
@@ -161,25 +151,22 @@ const  todayDate = today.toISOString().substring(0, 10);
     {/* <button className="btn btn-primary" onClick={this.handleSubmit}>Register</button> */}
   </div>
 </div>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
 </div>
 )}) : past.map((event) => {
   return (
     <div className='col zoom' key={event.id} >
       <div className="border border-primary rounded-circle border-5 " style={{backgroundColor:"white", marginLeft:'15px', marginBottom:"15px", marginTop: "15px", width:"18rem"}}>
+      <Link to={`/events/${event.id}`}>
 <img src={event.image} className="card-img-top rounded-circle" style={{width:"75%", marginTop: "5%", marginBottom: "10%", marginLeft:"auto", marginRight: "auto"}}/>
 <div className="card-body">
 <h5 className="card-title">{event.eventName}</h5>
 <h5 className="list-group-item">Type: {event.type}</h5>
 <h5 className="list-group-item">End Date: {event.endDate}</h5>
 <p className="card-text">{event.description}</p>
-<Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link>
 <h1></h1>
 {/* <button className="btn btn-primary" onClick={this.handleSubmit}>Register</button> */}
 </div>
+</Link>
 </div>
 </div>
 )})}
