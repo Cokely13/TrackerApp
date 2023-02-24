@@ -101,74 +101,49 @@ const  todayDate = today.toISOString().substring(0, 10);
               {unique.map((event) => <option key={event} value={event}>{event}</option>)}
             </select>
           </div>
-    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Active Events</div>
-    <hr></hr>
-    <div className="container text-center">
+    <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Active Events</h2>
+    {/* <div className="container text-center"> */}
       <div className='row'>
        {eventTypeSelected.length ? active.filter(event=> event.type == eventTypeSelected).map((event) => {
         return (
           <div className='col' key={event.id} >
-    <div className ="card border-primary mb-3" style={{width: "18rem"}} >
+    <div className ="card border-primary mb-3 border-5 " style={{width: "18rem"}} >
     <img src={event.image} className="card-img-top" />
   <div className="card-body">
     <h5 className="card-title">{event.eventName}</h5>
     </div>
     <h5 className="list-group-item">Type: {event.type}</h5>
     <h5 className="list-group-item">End Date: {event.endDate}</h5>
-    {/* <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6> */}
     <p className="card-text">{event.description}</p>
-    {/* <h6> {event.endDate}</h6>
-    <h6 className="card-text">{event.endDate >=  todayDate ? <p>Active</p> :<p>NOT DONE </p>}</h6> */}
     <Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link>
-    <h1></h1>
-    <p></p>
    <h5>{event.createdBy == myId ?  <Link className="btn btn-primary"  to={`/eventsedit/${event.id}`}>Edit Event</Link> : <div></div>}</h5>
-   <p></p>
    <h5>{event.createdBy == myId ?  <button className="btn btn-primary"  onClick={() => this.props.deleteEvent(event.id)} >Delete Event</button> : <div></div>}</h5>
     {/* <button className="btn btn-primary" onClick={this.handleSubmit}>Register</button> */}
 </div>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
 </div>
 )}) : active.map((event) => {
   return (
-    <div className='col' key={event.id} >
-<div className ="card border-primary mb-3" style={{width: "18rem"}} >
-<img src={event.image} className="card-img-top" />
-{/* <div className="card-body"> */}
-<h5 className="card-header">{event.eventName}</h5>
-{/* </div> */}
-<ul className="list-group list-group-flush">
-<li className="list-group-item">Type: {event.type}</li>
-<li className="list-group-item">End Date: {event.endDate}</li>
-<li className="card-text">{event.description}</li>
-</ul>
-{/* <h6> {event.endDate}</h6>
-<h6 className="card-text">{event.endDate >=  todayDate ? <p>Active</p> :<p>NOT DONE </p>}</h6> */}
+    <div className='col zoom' key={event.id} >
+      <div className="container text-center mt-2">
+      <div className="border border-primary rounded-circle border-5 text-center" style={{width:"18rem", backgroundColor:"white", marginLeft:'15px', marginBottom:"15px", marginTop: "15px"}}>
+<img src={event.image} className="card-img-top rounded-circle" style={{width:"75%", marginTop: "5%", marginBottom: "10%", marginLeft:"auto", marginRight: "auto"}} />
 <div className="card-body">
+<h2 className="card-title">{event.eventName}</h2>
+<div className="list-group-item">Type: {event.type}</div>
+<div className="list-group-item">End Date: {event.endDate}</div>
+<div className="card-text">{event.description}</div>
 <Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link>
-{/* <h1></h1>
-<p></p> */}
 <h5>{event.createdBy == myId ?  <Link className="btn btn-primary"  to={`/eventsedit/${event.id}`}>Edit Event</Link> : <div></div>}</h5>
-<p></p>
 <h5>{event.createdBy == myId ?  <button className="btn btn-primary"  onClick={() => this.props.deleteEvent(event.id)} >Delete Event</button> : <div></div>}</h5>
 {/* <button className="btn btn-primary" onClick={this.handleSubmit}>Register</button> */}
 </div>
 </div>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
+</div>
 </div>
 )})}
+{/* </div> */}
 </div>
- {/* <Link className="btn btn-primary" to={`/events/create`}>Create Event</Link> */}
-</div>
-<hr></hr>
-<div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Past Events</div>
-<hr></hr>
+<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Past Events</h2>
     <div className="container text-center">
       <div className='row'>
       {eventTypeSelected.length ? past.filter(event=> event.type == eventTypeSelected).map((event) => {
@@ -178,14 +153,9 @@ const  todayDate = today.toISOString().substring(0, 10);
     <img src={event.image} className="card-img-top" />
   <div className="card-body">
     <h5 className="card-title">{event.eventName}</h5>
-    <ul className="list-group list-group-flush">
-    <h5 className="list-group-item">Type: {event.type}</h5>
-    <h5 className="list-group-item">End Date: {event.endDate}</h5>
-    </ul>
-    {/* <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6> */}
+    <h5 className="card-text">Type: {event.type}</h5>
+    <h5 className="card-text">End Date: {event.endDate}</h5>
     <p className="card-text">{event.description}</p>
-    {/* <h6> {event.endDate}</h6>
-    <h6 className="card-text">{event.endDate >  todayDate ? <p>Active</p> :<p>Past Due </p>}</h6> */}
     <Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link>
     <h1></h1>
     {/* <button className="btn btn-primary" onClick={this.handleSubmit}>Register</button> */}
@@ -198,34 +168,24 @@ const  todayDate = today.toISOString().substring(0, 10);
 </div>
 )}) : past.map((event) => {
   return (
-    <div className='col' key={event.id} >
-<div className ="card border-dark mb-3" style={{width: "18rem"}} >
-<img src={event.image} className="card-img-top" />
+    <div className='col zoom' key={event.id} >
+      <div className="border border-primary rounded-circle border-5 " style={{backgroundColor:"white", marginLeft:'15px', marginBottom:"15px", marginTop: "15px", width:"18rem"}}>
+<img src={event.image} className="card-img-top rounded-circle" style={{width:"75%", marginTop: "5%", marginBottom: "10%", marginLeft:"auto", marginRight: "auto"}}/>
 <div className="card-body">
 <h5 className="card-title">{event.eventName}</h5>
-<ul className="list-group list-group-flush">
 <h5 className="list-group-item">Type: {event.type}</h5>
 <h5 className="list-group-item">End Date: {event.endDate}</h5>
-</ul>
-{/* <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6> */}
 <p className="card-text">{event.description}</p>
-{/* <h6> {event.endDate}</h6>
-<h6 className="card-text">{event.endDate >  todayDate ? <p>Active</p> :<p>Past Due </p>}</h6> */}
 <Link className="card-link" to={`/events/${event.id}`}>Event Detail</Link>
 <h1></h1>
 {/* <button className="btn btn-primary" onClick={this.handleSubmit}>Register</button> */}
 </div>
 </div>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
 </div>
 )})}
 </div>
 </div>
-<hr></hr>
-<div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}} >
+<div style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:"15px", marginBotton:"150px"}} >
 <Link className="btn btn-primary" to={`/events/create`}>Create Event</Link>
 </div>
 </div>

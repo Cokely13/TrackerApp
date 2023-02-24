@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background-color:#fffaf2;
 }
 
 a {
@@ -31,4 +32,22 @@ form div {
 
   /* style="background-image: url('https://media.istockphoto.com/id/155170343/photo/black-and-white-photo-of-bowman-lake.jpg?s=612x612&w=0&k=20&c=q51Jh9GuFs2x24aaPtYN9OOzFiTpq2TIkFyUcrGz4XU=')" */
 
+}
+
+.events {
+ border-color: brown;
+}
+
+.zoom {
+  /* padding: 50px; */
+  /* background-color: green; */
+  transition: transform .2s;
+  /* width: 200px;
+  height: 200px;
+  margin: 0 auto; */
+
+}
+
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }

@@ -29,7 +29,6 @@ export const fetchEvent = (id) => {
 };
 
 export const updateSingleEvent = (event, history) => {
-  console.log("EVE!!NT", event)
   return async (dispatch) => {
     try {
         await axios.put(`/api/events/${event.id}`, event);

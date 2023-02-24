@@ -77,14 +77,10 @@ handleSubmit2(event) {
     type: this.state.type,
     id: this.state.id
   }
-  console.log("update", updateEvent)
   this.props.updateSingleEvent(updateEvent);
   this.setState ({
     edit: false,
   })
-  console.log("stateAgain", this.state)
-  // this.props.history.push('/events')
-  // updateSingleRegisteredEvent(this.state.register)
 }
 
 handleClick(event, singleEvent){
@@ -242,9 +238,7 @@ render () {
 </div> }
 
 <div>
-  <hr></hr>
 <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}} >Registered Users: </h2>
-<hr></hr>
 {/* <div className ="card" style={{width: "18rem"}}>
 <div className="card-body"> */}
 <div className="card-group">
@@ -262,10 +256,8 @@ render () {
  </div>
  {/* </div>
  </div> */}
- <hr></hr>
 <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Results:
 </h2>
-<hr></hr>
 <div className="container text-center">
   <div className="row align-items-start">
     <div className="col">
@@ -300,9 +292,7 @@ sorted.map((result) => {
 </div>
 </div>
 )}): <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>No Results Yet</h1> }
-<hr></hr>
 <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>Current Record:</h2>
-<hr></hr>
 <div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>
 <div className ="card" style={{width: "18rem"}} >
 <div className="card-body">
@@ -313,9 +303,7 @@ sorted.map((result) => {
 </div>
 </div>
 </div>
-<hr></hr>
 <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>All Time Record:</h2>
-<hr></hr>
 <div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>
 <div className ="card" style={{width: "18rem"}} >
 <div className="card-body">

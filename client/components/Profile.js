@@ -145,15 +145,12 @@ export class Profile extends React.Component {
       const eventTypes=myRegisteredEvents.map(({ type }) => type)
       let unique = eventTypes.filter((item, i, ar) => ar.indexOf(item) === i)
       const eventTypeSelected = this.state.eventTypes
-      console.log("StATE", this.props.allChallenges)
-      console.log("MINE", myChallengesSent)
-      console.log("ACSTATE", this.props)
 
   return (
 
     <div>
       <div>
-      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>{this.props.singleUser.username}</h1>
+      <h1  style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>{this.props.singleUser.username}</h1>
       <div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>
       <Image roundedCircle id="userProfileImage"  style={{width: "18rem"}} src={this.props.singleUser.imageUrl}/>
       </div>
