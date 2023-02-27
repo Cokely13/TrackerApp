@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
-import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
+import {withRouter, Route, Switch, } from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import Events from './components/Events';
@@ -52,7 +52,6 @@ class Routes extends Component {
             <Route exact path="/results/:resultId" component={EditResult} />
             <Route exact path="/records" component={Records} />
             <Route exact path="/results/add/:eventId" component={AddResult} />
-            <Redirect to="/home" />
           </Switch>
         ) : (
           <Switch>
