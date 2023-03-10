@@ -38,17 +38,17 @@ form div {
  border-color: brown;
 }
 
-.zoom {
-  padding: 50px;
+/* .zoom {
+  padding: 50px; */
   /* background-color: green; */
-  transition: transform .2s;
+  /* transition: transform .2s; */
   /* width: 200px;
   height: 200px; */
   /* margin-left: 25% */
 
-}
+/* } */
 
-.zoom:hover {
+/* .zoom:hover {
   transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-  transform-origin: 10% center;
-}
+  /* transform-origin: 10% center; */
+
