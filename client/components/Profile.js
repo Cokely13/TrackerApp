@@ -148,9 +148,9 @@ export class Profile extends React.Component {
 
   return (
 
-    <div style={{marginTop:"50px"}}>
+    <div style={{marginTop:"200px"}}>
       <div>
-      <h1  style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:"15px", marginBottom:"15px"}}>{this.props.singleUser.username}</h1>
+      <h1  style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:"45px", marginBottom:"15px"}}>{this.props.singleUser.username}</h1>
       <div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>
       <Image roundedCircle id="userProfileImage"  style={{width: "18rem"}} src={this.props.singleUser.imageUrl}/>
       </div>
@@ -211,7 +211,7 @@ export class Profile extends React.Component {
      return (
       <div className="col" key={registered.id}>
  <div className ="card border-primary mb-3" style={{width: "18rem"}} key={registered.id} >
-  <img src={registered.image} className="card-img-top" />
+  <img src={registered.image} className="card-img-top rounded-circle" style={{width:"75%", marginTop: "5%", marginBottom: "10%", marginLeft:"auto", marginRight: "auto"}}  />
 <div className="card-body">
  <h5 className="card-title">Event Name:{registered.eventName}</h5>
  <h6 className="card-subtitle mb-2 text-muted">Event Id: {registered.eventId}</h6>
@@ -227,15 +227,14 @@ export class Profile extends React.Component {
 </div>)}) :  myRegisteredEvents.map((registered) => {
      return (
       <div className="col" key={registered.id}>
- <div className ="card border-primary mb-3" style={{width: "18rem"}} key={registered.id} >
-  <img src={registered.image} className="card-img-top" />
+ <div className="border border-primary rounded-circle border-5 text-center" style={{width:"20rem", backgroundColor:"white", marginLeft:'15px', marginBottom:"15px", marginTop: "15px", padding: "25px" }} >
+  <img src={registered.image} className="card-img-top rounded-circle" style={{width:"75%", marginTop: "5%", marginLeft:"auto", marginRight: "auto"}} />
 <div className="card-body">
  <h5 className="card-title">Event Name:{registered.eventName}</h5>
- <h6 className="card-subtitle mb-2 text-muted">Event Id: {registered.eventId}</h6>
  <h6 className="card-subtitle mb-2 text-muted">Event Date: {registered.endDate}</h6>
  <h6 className="card-subtitle mb-2 text-muted">Event Description:{registered.description}</h6>
  <Link className="card-link" to={`/events/${registered.eventId}`}>Event Detail</Link>
- <h6 className="card-text">{ registered.endDate >= todayDate ? <p>Active</p> :<p></p>}</h6>
+ {/* <h6 className="card-text">{ registered.endDate >= todayDate ? <p>Active</p> :<p></p>}</h6> */}
  <h6> {registered.endDate >= todayDate ?  <Link className="card-link" to={`/results/add/${registered.eventId}`}>Add Result</Link>:<p>Past </p>}</h6>
  <h1></h1>
  <button onClick={event => this.handleClick(event, registered)}>Complete Event</button>

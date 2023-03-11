@@ -75,7 +75,7 @@ render () {
 
   return (
 
-    <div style={{marginTop:"50px"}}>
+    <div style={{marginTop:"200px"}}>
 
     {this.state.edit? <div className="mb-4 col">
     <form action="" onSubmit={this.handleSubmit2}>

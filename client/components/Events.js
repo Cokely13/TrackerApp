@@ -83,7 +83,7 @@ const  todayDate = today.toISOString().substring(0, 10);
 
 
   return (
-    <div>
+    <div style={{marginTop:"200px"}}>
        <div>
         <select onChange={this.handleChange} name="eventTypes" className='custom-select'>
               <option value="">Filter by Event Type</option>

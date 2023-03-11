@@ -48,8 +48,8 @@ render () {
   // const sorted = this.props.allResults.sort((a,b) => {a.userId < b.userId})
 
   return (
-    <div>
-      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop: "50px"}}><u>RESULTS</u></h1>
+    <div style={{marginTop:"200px"}}>
+      <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop: "50px"}}><u>Results</u></h1>
       <div>
         <select onChange={this.handleChange} name="filterEvents" className='custom-select'>
               <option value="">Filter by Event Name</option>
@@ -62,13 +62,19 @@ render () {
     <div className="container text-center">
   <div className="row align-items-start">
     <div className="col">
-      UserName
+      <u>
+      Name
+      </u>
     </div>
     <div className="col">
+      <u>
      Event Name
+     </u>
     </div>
     <div className="col">
+      <u>
       Time
+      </u>
     </div>
     </div>
     </div>

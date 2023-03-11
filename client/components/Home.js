@@ -41,15 +41,15 @@ allEvents.sort(function (x, y) {
 const newestResults = allResults.splice(0,3)
 
   return (
-    <div style={{marginTop:"50px"}}>
-      <h3>Welcome, {this.props.username}</h3>
-      <div>Newest Events:</div>
+    <div style={{marginTop:"200px"}}>
+      <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop: "20px"}}><u>Newest Events</u></h2>
       <div className='row'>
      {newestEvents.map((event) => {
   return (
     <div className='col' key={event.id} >
-<div className ="card border-primary mb-3" style={{width: "18rem"}} >
-<img src={event.image} className="card-img-top" />
+      <div className="container text-center mt-2">
+<div className ="border border-primary rounded-circle border-5 text-center" style={{width:"18rem", backgroundColor:"white", marginLeft:'15px', marginBottom:"15px", marginTop: "15px"}}>
+<img src={event.image} className="card-img-top rounded-circle" style={{width:"75%", marginTop: "5%", marginBottom: "10%", marginLeft:"auto", marginRight: "auto"}} />
 <div className="card-body">
 <h5 className="card-title">{event.eventName}</h5>
 <h5 className="card-subtitle mb-2 text-muted">Type: {event.type}</h5>
@@ -62,9 +62,10 @@ const newestResults = allResults.splice(0,3)
 </div>
 </div>
 </div>
+</div>
 )})}
 </div>
-      <div>Newest Results:</div>
+<h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop: "20px"}}><u>Newest Results</u></h2>
       <div className="container text-center">
   <div className="row align-items-start">
     <div className="col">

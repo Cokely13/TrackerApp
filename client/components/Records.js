@@ -27,18 +27,21 @@ render () {
   // const sorted = this.props.allResults.sort((a,b) => {a.userId < b.userId})
 
   return (
-    <div>
+    <div style={{marginTop:"200px"}}>
       <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop: "50px"}}><u>Records</u></h1>
     <div className="container text-center">
   <div className="row align-items-start">
-    <div className="col">
-      UserName
+    <div className="col"><u>
+      Name
+      </u>
     </div>
-    <div className="col">
+    <div className="col"><u>
      Event Name
+     </u>
     </div>
-    <div className="col">
+    <div className="col"><u>
       Time
+      </u>
     </div>
     </div>
     </div>

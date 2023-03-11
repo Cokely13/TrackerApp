@@ -49,7 +49,7 @@ export class UsersPage extends React.Component {
 
   return (
 
-    <div style={{marginTop: "50px"}}>
+    <div style={{marginTop: "200px"}}>
       <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>{this.props.singleUser.username}'s Activities</h1>
       <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop:'10px', marginBottom:'10px'}}><u>EVENTS</u></h2>
       <div className ="row container text-center ">

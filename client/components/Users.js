@@ -28,23 +28,21 @@ render () {
   console.log("Results", registeredEvents)
 
   return (
-    <div>
+    <div style={{marginTop:"200px"}}>
     <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center',marginTop: "50px"}}><u>Users</u></h1>
     <table className="table">
     <thead>
       <tr>
-        <th scope="col"># ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Registered Events</th>
-        <th scope="col">Completed Events</th>
-        <th scope="col">Results</th>
+        <th scope="col"><u>Name</u></th>
+        <th scope="col"><u>Registered Events</u></th>
+        <th scope="col"><u>Completed Events</u></th>
+        <th scope="col"><u>Results</u></th>
       </tr>
     </thead>
     <tbody>
         {this.props.allUsers.map((user)=>{
           return (
        <tr key={user.id}>
-        <th scope="row">{user.id}</th>
         {/* <Link> */}
         <td><Link to={`/users/${user.id}`}>{user.username}</Link></td>
         <td>{registeredEvents.filter(registeredEvent => registeredEvent.userId == user.id && registeredEvent.completed == false).length}</td>

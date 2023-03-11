@@ -5,11 +5,11 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div style={{marginBottom:"20px"}}>
-    <h1>Fittest Of The Friends</h1>
+    {/* <h1>Fittest Of The Friends</h1> */}
     <nav className="navbar navbar-dark bg-dark fixed-top">
     {isLoggedIn ? (
   <div className="container-fluid">
-    <a className="navbar-brand" href="#">Fittest Of The Friends</a>
+    <a className="navbar-brand" style={{marginLeft: 'auto', marginRight: 'auto' }}  href="#"><h1>Fittest Of The Friends</h1></a>
     <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
       <span className="navbar-toggler-icon"></span>
     </button>
