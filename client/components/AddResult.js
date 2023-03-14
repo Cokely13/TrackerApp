@@ -70,7 +70,7 @@ export class AddResult extends React.Component {
   return (
 
 
-    <div className="mb-4 col">
+    <div className="mb-4 col" style={{marginTop:"150px"}}>
     <form action="" onSubmit={this.handleSubmit}>
       <div className="form-row">
       <div className="col">

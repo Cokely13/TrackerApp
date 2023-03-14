@@ -186,7 +186,7 @@ render () {
   return (
     // <div style={{display: 'flex',  justifyContent:'center', alignItems:'center',}}>
 
-    <div style={{marginTop:"50px"}}>
+    <div style={{marginTop:"150px"}}>
 
     {this.state.edit? <div className="mb-4 col">
     <form action="" onSubmit={this.handleSubmit2}>
