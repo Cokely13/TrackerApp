@@ -186,7 +186,7 @@ export class Profile extends React.Component {
  <h5 className="card-title">Event Name:{registered.eventName}</h5>
  <h6 className="card-subtitle mb-2 text-muted">Event Id: {registered.eventId}</h6>
  <h6 className="card-subtitle mb-2 text-muted">EndDate:{registered.endDate}</h6>
- <h6 className="card-subtitle mb-2 text-muted">Challenged By:{registered.challenged}</h6>
+ <h6 className="card-subtitle mb-2 text-muted">Challenged:{registered.challenged}</h6>
  <h6 className="card-subtitle mb-2 text-muted">Accepted:{registered.accepted ? "Accepted" : " Not Yet" }</h6>
  <Link className="card-link" to={`/events/${registered.eventId}`}>Event Detail</Link>
  <div><button type="button" className="btn btn-danger" style={{width: "10rem"}}onClick={() => this.props.deleteChallenge(registered.id)}>Delete Challenge</button>

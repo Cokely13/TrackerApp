@@ -87,7 +87,7 @@ export class CreateEvent extends React.Component {
 
       const {description, eventName} = this.state
   return (
-    <div className="mb-4 col">
+    <div className="mb-4 col" style={{marginTop: "100px"}}>
     <form action="" onSubmit={this.handleSubmit}>
       <div className="form-row">
         <div className="col">
